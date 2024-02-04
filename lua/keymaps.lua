@@ -10,6 +10,11 @@ vim.keymap.set("n", "k", "gk")
 -- select all
 vim.keymap.set("n", "<C-a>", "ggVG")
 
+-- move 9 lines up/down
+vim.keymap.set("n", "<A-u>", "9k")
+vim.keymap.set("n", "<A-d>", "9j")
+
+
 -- buffers
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
 vim.keymap.set("n", "<leader>c", ":bp<CR>")
