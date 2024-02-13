@@ -24,14 +24,14 @@ vim.keymap.set("n", "<leader>v", ":bn<CR>")
 vim.keymap.set("n", "<leader>w", ":bd<CR>")
 
 -- split
-vim.keymap.set("n", "<leader>L", ":vs<CR>")
-vim.keymap.set("n", "<leader>J", ":sp<CR>")
+vim.keymap.set("n", "L", ":vs<CR>")
+vim.keymap.set("n", "J", ":sp<CR>")
 
 -- panes
-vim.keymap.set("n", "<leader>l", "<C-w>l", {noremap = true})
-vim.keymap.set("n", "<leader>h", "<C-w>h", {noremap = true})
-vim.keymap.set("n", "<leader>j", "<C-w>j", {noremap = true})
-vim.keymap.set("n", "<leader>k", "<C-w>k", {noremap = true})
+vim.keymap.set("n", "<Right>", "<C-w>l", {noremap = true})
+vim.keymap.set("n", "<Left>", "<C-w>h", {noremap = true})
+vim.keymap.set("n", "<Down>", "<C-w>j", {noremap = true})
+vim.keymap.set("n", "<Up>", "<C-w>k", {noremap = true})
 
 
 -- move selected line up/down
