@@ -35,3 +35,6 @@ vim.keymap.set("n", "<Up>", "<C-w>k", {noremap = true})
 -- move selected line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
+
+-- delete full word
+vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
