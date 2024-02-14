@@ -52,3 +52,7 @@ vim.keymap.set({"n", "v"}, "<D-Left>", "_")
 vim.keymap.set("i", "<D-Left>", "<C-o>_")
 vim.keymap.set({"n", "v"}, "<D-Right>", "$")
 vim.keymap.set("i", "<D-Right>", "<C-o>$")
+
+-- save file, update to only save to this if there are changes
+vim.keymap.set("n", "<C-s>", ":update<CR>")
+vim.keymap.set("i", "<C-s>", "<Esc>:update<CR>gi")
