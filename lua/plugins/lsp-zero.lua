@@ -21,7 +21,7 @@ return {
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
         -- `Enter` key to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<CR>'] = cmp.mapping.confirm({select = true}),
 
         -- Ctrl+Space to trigger completion menu
         -- if set to <C-i> breaks tab in insert mode
