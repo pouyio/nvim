@@ -38,3 +38,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
 -- delete full word
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
+
+-- go back/forth
+vim.keymap.set("n", "<A-->", "<C-o>", {desc = "go back"})
+vim.keymap.set("n", "<A-S-->", "<C-i>", {desc = "go forth"})
