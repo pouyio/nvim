@@ -7,7 +7,7 @@ return {
 
     telescope.setup {
       defaults = {
-        layout_config = {width = 0.999, height = 0.999}
+        layout_config = {width = 0.95}
       },
     }
     vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
