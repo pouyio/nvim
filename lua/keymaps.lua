@@ -8,7 +8,7 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- select all
-vim.keymap.set("n", "<C-a>", "ggVG")
+vim.keymap.set("n", "<D-a>", "ggVG")
 
 -- move 9 lines up/down
 vim.keymap.set({"n", "v"}, "<A-u>", "9k")
@@ -42,3 +42,13 @@ vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", {desc = "go back"})
 vim.keymap.set("n", "<A-S-->", "<C-i>", {desc = "go forth"})
+
+-- next word
+vim.keymap.set({'n', "i"}, '<A-Right>', '<S-Right>', {noremap = true})
+vim.keymap.set({'n', "i"}, '<A-Left>', '<S-Left>', {noremap = true})
+
+-- start/end line
+vim.keymap.set("n", "<D-Left>", "_")
+vim.keymap.set("i", "<D-Left>", "<C-o>_")
+vim.keymap.set("n", "<D-Right>", "$")
+vim.keymap.set("i", "<D-Right>", "<C-o>$")
