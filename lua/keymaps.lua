@@ -44,11 +44,11 @@ vim.keymap.set("n", "<A-->", "<C-o>", {desc = "go back"})
 vim.keymap.set("n", "<A-S-->", "<C-i>", {desc = "go forth"})
 
 -- next word
-vim.keymap.set({'n', "i"}, '<A-Right>', '<S-Right>', {noremap = true})
-vim.keymap.set({'n', "i"}, '<A-Left>', '<S-Left>', {noremap = true})
+vim.keymap.set({'n', "i", "v"}, '<A-Right>', '<S-Right>', {noremap = true})
+vim.keymap.set({'n', "i", "v"}, '<A-Left>', '<S-Left>', {noremap = true})
 
 -- start/end line
-vim.keymap.set("n", "<D-Left>", "_")
+vim.keymap.set({"n", "v"}, "<D-Left>", "_")
 vim.keymap.set("i", "<D-Left>", "<C-o>_")
-vim.keymap.set("n", "<D-Right>", "$")
+vim.keymap.set({"n", "v"}, "<D-Right>", "$")
 vim.keymap.set("i", "<D-Right>", "<C-o>$")
