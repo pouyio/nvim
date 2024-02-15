@@ -7,13 +7,13 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/nvim-cmp',
     'L3MON4D3/LuaSnip',
-    {'j-hui/fidget.nvim', opts = {}},
+    { 'j-hui/fidget.nvim', opts = {} },
   },
   init = function()
     local lsp_zero = require("lsp-zero")
 
     lsp_zero.on_attach(function(client, bufnr)
-      lsp_zero.default_keymaps({buffer = bufnr})
+      lsp_zero.default_keymaps({ buffer = bufnr })
     end)
 
     local cmp = require('cmp')
@@ -22,7 +22,7 @@ return {
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
         -- `Enter` key to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
         -- Ctrl+Space to trigger completion menu
         -- if set to <C-i> breaks tab in insert mode
@@ -33,7 +33,7 @@ return {
 
         -- Scroll up and down in the completion documentation
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        --['<C-d>'] = cmp.mapping.scroll_docs(4),
       }),
       window = {
         completion = cmp.config.window.bordered(),
