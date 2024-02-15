@@ -43,15 +43,23 @@ vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 vim.keymap.set("n", "<A-->", "<C-o>", {desc = "go back"})
 vim.keymap.set("n", "<A-S-->", "<C-i>", {desc = "go forth"})
 
--- next word
+-- next/prev word macos
 vim.keymap.set({'n', "i", "v"}, '<A-Right>', '<S-Right>', {noremap = true})
 vim.keymap.set({'n', "i", "v"}, '<A-Left>', '<S-Left>', {noremap = true})
+-- next/prev word windows
+vim.keymap.set({'n', "v"}, '<C-Left>', '<S-Left>', {noremap = true})
+vim.keymap.set({'n', "v"}, '<C-Right>', '<S-Right>', {noremap = true})
 
--- start/end line
+-- start/end line macos
 vim.keymap.set({"n", "v"}, "<D-Left>", "_")
 vim.keymap.set("i", "<D-Left>", "<C-o>_")
 vim.keymap.set({"n", "v"}, "<D-Right>", "$")
 vim.keymap.set("i", "<D-Right>", "<C-o>$")
+-- start/end line windows
+vim.keymap.set({"n", "v"}, "<Home>", "_")
+vim.keymap.set("i", "<Home>", "<C-o>_")
+vim.keymap.set({"n", "v"}, "<End>", "$")
+vim.keymap.set("i", "<End>", "<C-o>$")
 
 -- save file, update to only save to this if there are changes
 vim.keymap.set("n", "<C-s>", ":update<CR>")
