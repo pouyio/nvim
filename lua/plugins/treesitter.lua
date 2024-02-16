@@ -1,7 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-    opts = {
+  config = function()
+    local treesitter = require("nvim-treesitter.configs")
+    treesitter.setup({
+
       highlight = {
         enable = true,
 
@@ -41,5 +44,16 @@ return {
         "yaml",
         "zig",
       },
-    }
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<D-A-Right>",
+          node_incremental = "<D-A-Right>",
+          scope_incremental = false,
+          node_decremental = "<D-A-Left>",
+        },
+      },
+
+    })
+  end
 }
