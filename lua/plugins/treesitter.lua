@@ -49,7 +49,7 @@ return {
         keymaps = {
           init_selection = "<D-A-Right>",
           node_incremental = "<D-A-Right>",
-          scope_incremental = false,
+          scope_incremental = true,
           node_decremental = "<D-A-Left>",
         },
       },
