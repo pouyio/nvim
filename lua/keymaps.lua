@@ -64,3 +64,6 @@ vim.keymap.set("i", "<End>", "<C-o>$")
 -- save file, update to only save to this if there are changes
 vim.keymap.set("n", "<C-s>", ":update<CR>")
 vim.keymap.set("i", "<C-s>", "<Esc>:update<CR>")
+
+-- redo
+vim.keymap.set("n", "<S-u>", "<C-r>")
