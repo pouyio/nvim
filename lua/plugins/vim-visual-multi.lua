@@ -1,11 +1,12 @@
 return {
   "mg979/vim-visual-multi",
   init = function()
+    local f = require("plugins.common.utils")
     vim.g.VM_maps = {
-      ["Find Under"] = "<D-d>",
-      ["Find Subword Under"] = "<D-d>",
-      ["Add Cursor Down"] = "<D-A-Down>",
-      ["Add Cursor Up"] = "<D-A-Up>",
+      ["Find Under"] = f.isMac() and "<C-d>" or "<D-d>",
+      ["Find Subword Under"] = f.isMac() and "<C-d>" or "<D-d>",
+      ["Add Cursor Down"] = f.isMac() and "<C-A-Down>" or "<D-A-Down>",
+      ["Add Cursor Up"] = f.isMac() and "<C-A-Up>" or "<D-A-Up>",
       ["Undo"] = "u"
     }
     vim.g.VM_theme = "ocean"

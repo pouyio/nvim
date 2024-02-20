@@ -2,6 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
+    local f = require("plugins.common.utils")
     local treesitter = require("nvim-treesitter.configs")
     treesitter.setup({
 
@@ -43,9 +44,9 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<D-A-Right>",
-          node_incremental = "<D-A-Right>",
-          node_decremental = "<D-A-Left>",
+          init_selection = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
+          node_incremental = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
+          node_decremental = f.isMac() and "<D-A-Left>" or "<C-A-Left>",
         },
       },
 
