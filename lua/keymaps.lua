@@ -37,7 +37,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
 -- delete full word
-vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
+vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', { noremap = true })
 
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
@@ -56,8 +56,8 @@ vim.keymap.set("i", "<D-Left>", "<C-o>_")
 vim.keymap.set({ "n", "v" }, "<D-Right>", "$")
 vim.keymap.set("i", "<D-Right>", "<C-o>$")
 -- start/end line windows
-vim.keymap.set({ "n", "v" }, "<Home>", "_")
-vim.keymap.set("i", "<Home>", "<C-o>_")
+vim.keymap.set({ "n", "v" }, "<Home>", "^")
+vim.keymap.set("i", "<Home>", "<C-o>^")
 vim.keymap.set({ "n", "v" }, "<End>", "$")
 vim.keymap.set("i", "<End>", "<C-o>$")
 
@@ -67,3 +67,4 @@ vim.keymap.set("i", "<C-s>", "<Esc>:update<CR>")
 
 -- redo
 vim.keymap.set("n", "<S-u>", "<C-r>")
+
