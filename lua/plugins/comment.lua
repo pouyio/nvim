@@ -1,11 +1,13 @@
+local f = require("plugins.common.utils")
+
 return {
   "numToStr/Comment.nvim",
   opts = {
     toggler = {
-      line = "<D-u>"
+      line = f.isMac() and "<D-u>" or "<C-u>"
     },
     opleader = {
-      line = "<D-u>"
+      line = f.isMac() and "<D-u>" or "<C-u>"
     }
   }
 }
