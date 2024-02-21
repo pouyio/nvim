@@ -61,3 +61,6 @@ vim.keymap.set("i", "<C-s>", "<Esc>:update<CR>")
 
 -- redo
 vim.keymap.set("n", "<S-u>", "<C-r>")
+
+-- search for selected text
+vim.keymap.set('v', '/', [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
