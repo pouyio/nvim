@@ -40,7 +40,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
 -- delete full word
 vim.api.nvim_set_keymap('i', f.isMac() and '<A-BS>' or '<C-H>', '<C-W>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<A-Del>' , '<C-o>dw', { noremap = true })
+vim.api.nvim_set_keymap('i', f.isMac() and '<A-Del>' or '<C-Del>', '<C-o>dw', { noremap = true })
 
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
@@ -57,10 +57,8 @@ vim.keymap.set({ "n", "v" }, f.isMac() and "<D-Right>" or "<End>", "$")
 vim.keymap.set("i", f.isMac() and "<D-Right>" or "<End>", "<C-o>$")
 
 -- save file, update to only save to this if there are changes
---vim.keymap.set("n", "<C-s>", ":update<CR>")
---vim.keymap.set("i", "<C-s>", "<Esc>:update<CR>")
-vim.keymap.set("n", "<D-s>", ":update<CR>")
-vim.keymap.set("i", "<D-s>", "<Esc>:update<CR>")
+vim.keymap.set("n", f.isMac() and "<D-s>" or "<C-s>", ":update<CR>")
+vim.keymap.set("i", f.isMac() and "<D-s>" or "<C-s>", "<Esc>:update<CR>")
 
 -- redo
 vim.keymap.set("n", "<S-u>", "<C-r>")
