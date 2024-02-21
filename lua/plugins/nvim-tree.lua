@@ -1,3 +1,5 @@
+local f = require("plugins.common.utils")
+
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -31,6 +33,7 @@ return {
     })
 
 
-    vim.keymap.set("n", "<C-b>", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
+    vim.keymap.set("n", f.isMac() and "<D-b>" or "<C-b>", "<cmd>NvimTreeFindFileToggle<CR>",
+      { desc = "Toggle file explorer on current file" })                                                                                        -- toggle file explorer on current file
   end,
 }
