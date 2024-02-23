@@ -14,6 +14,7 @@ return {
 
     lsp_zero.on_attach(function(client, bufnr)
       lsp_zero.default_keymaps({ buffer = bufnr })
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
     end)
 
     local cmp = require('cmp')

@@ -2,13 +2,14 @@ local f = require("plugins.common.utils")
 
 return {
   'nvim-telescope/telescope.nvim',
+  event = 'VeryLazy',
   branch = '0.1.x',
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = f.isMac() and "make" or
-      "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+          "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       config = function()
         require("telescope").load_extension("fzf")
       end,
@@ -27,5 +28,7 @@ return {
     vim.keymap.set('n', '<leader>f', builtin.live_grep, { desc = "Grep String" })
     -- vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Grep word" })
     -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find old files" })
+    vim.keymap.set('n', "gr", builtin.lsp_references)
+    vim.keymap.set('n', "gd", builtin.lsp_definitions)
   end
 }
