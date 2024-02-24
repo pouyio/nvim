@@ -4,7 +4,6 @@ return {
   config = function()
     local options = {
       sections = {
-        lualine_a = { "mode", "buffers" },
         lualine_y = {},
       },
       extensions = {
