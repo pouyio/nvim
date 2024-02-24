@@ -21,7 +21,7 @@ return {
       -- window splits
       actions = {
         open_file = {
-          quit_on_open = true,
+          quit_on_open = false,
           window_picker = {
             enable = false,
           },
@@ -34,6 +34,6 @@ return {
 
 
     vim.keymap.set("n", f.isMac() and "<D-b>" or "<C-b>", "<cmd>NvimTreeFindFileToggle<CR>",
-      { desc = "Toggle file explorer on current file" })                                                                                        -- toggle file explorer on current file
+      { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
   end,
 }
