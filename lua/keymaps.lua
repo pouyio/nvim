@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set("t", f.isMac() and "<D-j>" or "<C-j>", "<C-\\><C-n>", { noremap = true })
 
 -- visual movement
 vim.keymap.set("n", "j", "gj")
