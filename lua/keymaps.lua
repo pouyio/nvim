@@ -1,9 +1,11 @@
 local f = require("plugins.common.utils")
+local u = require("utils")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 
 -- visual movement
 vim.keymap.set("n", "j", "gj")
@@ -20,18 +22,17 @@ vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
 vim.keymap.set("n", "<leader>c", ":bp<CR>")
 vim.keymap.set("n", "<leader>v", ":bn<CR>")
-vim.keymap.set("n", "<leader>w", ":bd<CR>")
+vim.keymap.set("n", "<leader>w", u.closeBuffer, { noremap = true, silent = true })
 
 -- split
 vim.keymap.set("n", "L", ":vs<CR>")
-vim.keymap.set("n", "J", ":sp<CR>")
+vim.keymap.set('n', 'J', ':sp<CR><C-W>j', { noremap = true, silent = true })
 
 -- panes
 vim.keymap.set("n", "<Right>", "<C-w>l", { noremap = true })
 vim.keymap.set("n", "<Left>", "<C-w>h", { noremap = true })
 vim.keymap.set("n", "<Down>", "<C-w>j", { noremap = true })
 vim.keymap.set("n", "<Up>", "<C-w>k", { noremap = true })
-vim.keymap.set("n", "tt", ":tab split<CR>")
 
 -- move selected line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
