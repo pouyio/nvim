@@ -1,10 +1,12 @@
 return {
   'navarasu/onedark.nvim',
-  opts = {
-    style = 'deep'
-  },
-  config = function(_, opts)
-    require('onedark').setup(opts)
+  config = function()
+    require('onedark').setup({
+      style = 'deep',
+      code_style = {
+        functions = "bold"
+      }
+    })
     vim.cmd.colorscheme("onedark")
   end
 }
