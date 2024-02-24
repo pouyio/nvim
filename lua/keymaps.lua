@@ -35,8 +35,10 @@ vim.keymap.set("n", "<Down>", "<C-w>j", { noremap = true })
 vim.keymap.set("n", "<Up>", "<C-w>k", { noremap = true })
 
 -- windows resize
-vim.keymap.set("n", "<leader>rk", ":horizontal resize +5<CR>", { desc = "vert resize +10" })
-vim.keymap.set("n", "<leader>rj", ":horizontal resize -5<CR>", { desc = "vert resize -10" })
+vim.keymap.set("n", "<leader>rk", ":horizontal resize +5<CR>", { desc = "vertical resize +5" })
+vim.keymap.set("n", "<leader>rj", ":horizontal resize -5<CR>", { desc = "vertical resize -5" })
+vim.keymap.set("n", "<leader>rl", ":vertical resize +5<CR>", { desc = "horizontal resize +5" })
+vim.keymap.set("n", "<leader>rh", ":vertical resize -5<CR>", { desc = "horizontal resize -5" })
 
 -- move selected line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
@@ -48,6 +50,7 @@ vim.api.nvim_set_keymap('i', f.isMac() and '<A-Del>' or '<C-Del>', '<C-o>dw', { 
 
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
+-- TODO not working on windows, check if it works on macos
 vim.keymap.set("n", "<A-S-->", "<C-i>", { desc = "go forth" })
 
 -- next/prev word
