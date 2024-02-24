@@ -27,13 +27,19 @@ return {
         buffers = {
           initial_mode = "normal",
           theme = "dropdown"
+        },
+        grep_string = {
+          initial_mode = "normal"
         }
       }
     }
     vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
     vim.keymap.set('n', '<leader>f', builtin.live_grep, { desc = "Grep String" })
     vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = "Find buffer" })
-    -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find old files" })
+    vim.keymap.set('n', f.isMac() and '<D-f>' or '<C-f>', function()
+      local word = vim.fn.expand("<cword>")
+      builtin.grep_string({ search = word })
+    end)
     vim.keymap.set('n', "gr", builtin.lsp_references)
     vim.keymap.set('n', "gd", builtin.lsp_definitions)
   end
