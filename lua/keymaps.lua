@@ -20,8 +20,6 @@ vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 
 -- buffers
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
-vim.keymap.set("n", "<leader>c", ":bp<CR>")
-vim.keymap.set("n", "<leader>v", ":bn<CR>")
 vim.keymap.set("n", "<leader>w", u.closeBuffer, { noremap = true, silent = true })
 
 -- split

@@ -21,12 +21,18 @@ return {
 
     telescope.setup {
       defaults = {
-        layout_config = { width = 0.95 }
+        layout_config = { width = 0.95 },
       },
+      pickers = {
+        buffers = {
+          initial_mode = "normal",
+          theme = "dropdown"
+        }
+      }
     }
     vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
     vim.keymap.set('n', '<leader>f', builtin.live_grep, { desc = "Grep String" })
-    -- vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Grep word" })
+    vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = "Find buffer" })
     -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find old files" })
     vim.keymap.set('n', "gr", builtin.lsp_references)
     vim.keymap.set('n', "gd", builtin.lsp_definitions)
