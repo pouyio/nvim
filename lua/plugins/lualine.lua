@@ -4,6 +4,9 @@ return {
   config = function()
     local options = {
       sections = {
+        lualine_c = {
+          { "filename", path = 1 }
+        },
         lualine_y = {},
       },
       extensions = {
