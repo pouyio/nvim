@@ -34,10 +34,10 @@ return {
 		})
 		vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
 		vim.keymap.set("n", "<leader>f", builtin.live_grep, { desc = "Grep String" })
-    -- keymap to close buffers from selector 
+		-- keymap to close buffers from selector
 		vim.keymap.set("n", "<leader>b", function()
 			builtin.buffers({
-				attach_mappings = function(prompt_bufnr, map)
+				attach_mappings = function(_, map)
 					local actions_state = require("telescope.actions.state")
 					local delete_buf = function()
 						local selection = actions_state.get_selected_entry()
