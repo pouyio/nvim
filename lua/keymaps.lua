@@ -1,5 +1,4 @@
 local f = require("plugins.common.utils")
-local u = require("utils")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -20,7 +19,7 @@ vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 
 -- buffers
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
-vim.keymap.set("n", "<leader>w", u.closeBuffer, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true })
 
 -- split
 vim.keymap.set("n", "L", ":vs<CR>")
@@ -48,7 +47,7 @@ vim.api.nvim_set_keymap('i', f.isMac() and '<A-Del>' or '<C-Del>', '<C-o>dw', { 
 
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
--- TODO not working on windows, check if it works on macos
+-- TODO not working on windows
 vim.keymap.set("n", "<A-S-->", "<C-i>", { desc = "go forth" })
 
 -- next/prev word
