@@ -12,7 +12,7 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- select all
-vim.keymap.set("n", "<D-a>", "ggVG")
+vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG")
 
 -- move 9 lines up/down
 vim.keymap.set({ "n", "v" }, "<A-u>", "<C-u>")
