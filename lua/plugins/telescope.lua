@@ -31,6 +31,12 @@ return {
 				grep_string = {
 					initial_mode = "normal",
 				},
+				lsp_references = {
+					initial_mode = "normal",
+				},
+				lsp_definitions = {
+					initial_mode = "normal",
+				},
 			},
 			extensions = {
 				["ui-select"] = { -- show code actions in a telescope dropdown
