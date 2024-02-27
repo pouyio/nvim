@@ -67,8 +67,8 @@ return {
 			local text = f.getVisualSelected()
 			builtin.grep_string({ search = text })
 		end, { desc = "Find selected text" })
-		vim.keymap.set("n", "gr", builtin.lsp_references)
-		vim.keymap.set("n", "gd", builtin.lsp_definitions)
+		vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Show references" })
+		vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Show definitions" })
 		require("telescope").load_extension("ui-select")
 	end,
 }

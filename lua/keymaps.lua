@@ -11,20 +11,20 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- select all
-vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG")
+vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG", { desc = "Select all" })
 
 -- move 9 lines up/down
 vim.keymap.set({ "n", "v" }, "<A-u>", "<C-u>")
 vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 
 -- buffers
-vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
-vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { desc = "Toggle last buffer" })
+vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true, desc = "Close buffer" })
 
 -- split
-vim.keymap.set("n", "<leader>l", ":vs -<CR>")
-vim.keymap.set("n", "<leader>h", ":topleft vs -<CR>")
-vim.keymap.set("n", "<leader>j", ":sp<CR><C-W>j", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>l", ":vs -<CR>", { desc = "Split to right" })
+vim.keymap.set("n", "<leader>h", ":topleft vs -<CR>", { desc = "Split to left" })
+vim.keymap.set("n", "<leader>j", ":sp<CR><C-W>j", { desc = "Split to bottom", noremap = true, silent = true })
 
 -- panes
 vim.keymap.set("n", "<Right>", "<C-w>l", { noremap = true })
