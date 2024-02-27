@@ -22,9 +22,9 @@ vim.keymap.set("n", "<leader><leader>", ":b#<CR>")
 vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true })
 
 -- split
-vim.keymap.set("n", "L", ":vs -<CR>")
-vim.keymap.set("n", "H", ":topleft vs -<CR>")
-vim.keymap.set("n", "J", ":sp<CR><C-W>j", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>l", ":vs -<CR>")
+vim.keymap.set("n", "<leader>h", ":topleft vs -<CR>")
+vim.keymap.set("n", "<leader>j", ":sp<CR><C-W>j", { noremap = true, silent = true })
 
 -- panes
 vim.keymap.set("n", "<Right>", "<C-w>l", { noremap = true })

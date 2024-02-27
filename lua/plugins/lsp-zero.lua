@@ -14,10 +14,12 @@ return {
 		local f = require("plugins.common.utils")
 
 		lsp_zero.on_attach(function(client, bufnr)
-			lsp_zero.default_keymaps({ buffer = bufnr })
+			-- lsp_zero.default_keymaps({ buffer = bufnr })
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-			vim.keymap.set("n", "<leader>l", vim.diagnostic.goto_next)
-			vim.keymap.set("n", "<leader>h", vim.diagnostic.goto_prev)
+			vim.keymap.set("n", "L", vim.diagnostic.goto_next)
+			vim.keymap.set("n", "H", vim.diagnostic.goto_prev)
+			vim.keymap.set("n", "<A-i>", vim.lsp.buf.hover)
+			vim.keymap.set("n", f.isMac() and "<D-.>" or "<C-.>", vim.lsp.buf.code_action) -- show code actions for errors/warns
 		end)
 
 		local cmp = require("cmp")

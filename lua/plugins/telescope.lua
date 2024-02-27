@@ -14,6 +14,7 @@ return {
 				require("telescope").load_extension("fzf")
 			end,
 		},
+		{ "nvim-telescope/telescope-ui-select.nvim" },
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -29,6 +30,13 @@ return {
 				},
 				grep_string = {
 					initial_mode = "normal",
+				},
+			},
+			extensions = {
+				["ui-select"] = { -- show code actions in a telescope dropdown
+					require("telescope.themes").get_dropdown({
+						initial_mode = "normal",
+					}),
 				},
 			},
 		})
@@ -55,5 +63,6 @@ return {
 		end, { desc = "Find selected text" })
 		vim.keymap.set("n", "gr", builtin.lsp_references)
 		vim.keymap.set("n", "gd", builtin.lsp_definitions)
+		require("telescope").load_extension("ui-select")
 	end,
 }
