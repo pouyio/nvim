@@ -11,6 +11,7 @@ return {
 	},
 	init = function()
 		local lsp_zero = require("lsp-zero")
+		local f = require("plugins.common.utils")
 
 		lsp_zero.on_attach(function(client, bufnr)
 			lsp_zero.default_keymaps({ buffer = bufnr })
@@ -27,9 +28,9 @@ return {
 				-- `Enter` key to confirm completion
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 
-				-- Ctrl+Space to trigger completion menu
-				-- if set to <C-i> breaks tab in insert mode
-				["<C-Space>"] = cmp.mapping.complete(),
+				-- Ctrl+i to trigger completion menu
+				-- if set to <C-i> breaks tab in insert mode?
+				[f.isMac() and "<D-i>" or "<C-i>"] = cmp.mapping.complete(),
 				-- Navigate between snippet placeholder
 				["<C-f>"] = cmp_action.luasnip_jump_forward(),
 				["<C-b>"] = cmp_action.luasnip_jump_backward(),
