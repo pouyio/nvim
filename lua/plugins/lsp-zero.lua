@@ -14,7 +14,7 @@ return {
 		local f = require("plugins.common.utils")
 
 		lsp_zero.on_attach(function(client, bufnr)
-			-- lsp_zero.default_keymaps({ buffer = bufnr })
+			lsp_zero.default_keymaps({ buffer = bufnr })
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 			vim.keymap.set("n", "L", vim.diagnostic.goto_next)
 			vim.keymap.set("n", "H", vim.diagnostic.goto_prev)
