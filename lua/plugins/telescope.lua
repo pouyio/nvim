@@ -52,6 +52,7 @@ return {
 		vim.keymap.set("n", "<leader>b", function()
 			builtin.buffers({
 				attach_mappings = function(_, map)
+					local actions = require("telescope.actions")
 					local actions_state = require("telescope.actions.state")
 					local delete_buf = function()
 						local selection = actions_state.get_selected_entry()
@@ -59,6 +60,9 @@ return {
 					end
 
 					map("n", "<leader>w", delete_buf)
+					-- map("n", "b", actions_state.move_selection_next)
+					map("n", "b", actions.move_selection_next)
+					map("n", "v", actions.move_selection_previous)
 					return true
 				end,
 			})
