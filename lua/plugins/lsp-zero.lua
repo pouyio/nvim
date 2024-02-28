@@ -18,7 +18,7 @@ return {
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 			vim.keymap.set("n", "L", vim.diagnostic.goto_next)
 			vim.keymap.set("n", "H", vim.diagnostic.goto_prev)
-			vim.keymap.set("n", "<A-i>", vim.lsp.buf.hover)
+			vim.keymap.set({ "n", "i" }, "<A-i>", vim.lsp.buf.hover)
 			-- Not used the same as vscode because wsl does not support <C-.>
 			vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "Code actions" }) -- show code actions for errors/warns
 		end)
