@@ -16,3 +16,14 @@ create_cmd("CloseAllBuffers", function()
 		end
 	end
 end, { desc = "Close all other buffers" })
+
+create_cmd("SaveWithoutFormat", function()
+	-- disable conform plugin for formatting on save
+	require("conform").setup({ format_on_save = false })
+
+	-- saving
+	vim.api.nvim_command("update")
+
+	-- enabling conform plugin, not sure if it retrieves the original config in plugins/confom.lua
+	require("conform").setup({ format_on_save = true })
+end, { desc = "Save file without formatting" })
