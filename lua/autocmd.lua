@@ -7,3 +7,22 @@ if vim.fn.has("wsl") == 1 then
 		end,
 	})
 end
+
+vim.api.nvim_create_autocmd("CursorHold", {
+	group = vim.api.nvim_create_augroup("Hold", { clear = true }),
+	callback = function()
+		require("custom-blamer").blameVirtText()
+	end,
+})
+vim.api.nvim_create_autocmd("CursorMoved", {
+	group = vim.api.nvim_create_augroup("ClearMoved", { clear = true }),
+	callback = function()
+		require("custom-blamer").clearBlameVirtText()
+	end,
+})
+vim.api.nvim_create_autocmd("CursorMovedI", {
+	group = vim.api.nvim_create_augroup("ClearMovedI", { clear = true }),
+	callback = function()
+		require("custom-blamer").clearBlameVirtText()
+	end,
+})
