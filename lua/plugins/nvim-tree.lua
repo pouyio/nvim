@@ -37,6 +37,6 @@ return {
 			f.isMac() and "<D-b>" or "<C-b>",
 			"<cmd>NvimTreeFindFileToggle<CR>",
 			{ desc = "Toggle file explorer on current file" }
-		) -- toggle file explorer on current file
+		)
 	end,
 }
