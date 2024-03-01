@@ -43,8 +43,11 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
 -- delete full word
-vim.api.nvim_set_keymap("i", f.isMac() and "<A-BS>" or "<C-H>", "<C-W>", { noremap = true })
-vim.api.nvim_set_keymap("i", f.isMac() and "<A-Del>" or "<C-Del>", "<C-o>dw", { noremap = true })
+vim.keymap.set({ "i", "c" }, f.isMac() and "<A-BS>" or "<C-H>", function()
+	vim.api.nvim_input("<C-w>")
+end, { noremap = true })
+vim.keymap.set("i", f.isMac() and "<A-Del>" or "<C-Del>", "<C-o>dw", { noremap = true })
+vim.keymap.set("c", f.isMac() and "<A-Del>" or "<C-Del>", "<S-Right><C-W>", { noremap = true })
 
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
@@ -52,13 +55,15 @@ vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
 vim.keymap.set("n", "<A-S-->", "<C-i>", { desc = "go forth" })
 
 -- next/prev word
-vim.keymap.set({ "n", "i", "v" }, f.isMac() and "<A-Right>" or "C-Right", "<S-Right>", { noremap = true })
-vim.keymap.set({ "n", "i", "v" }, f.isMac() and "<A-Left>" or "C-Left", "<S-Left>", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "c" }, f.isMac() and "<A-Right>" or "C-Right", "<S-Right>", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "c" }, f.isMac() and "<A-Left>" or "C-Left", "<S-Left>", { noremap = true })
 
 -- start/end line
 vim.keymap.set({ "n", "v" }, f.isMac() and "<D-Left>" or "<Home>", "^")
 vim.keymap.set("i", f.isMac() and "<D-Left>" or "<Home>", "<C-o>^")
+vim.keymap.set("c", f.isMac() and "<D-Left>" or "<Home>", "<C-b>")
 vim.keymap.set({ "n", "v" }, f.isMac() and "<D-Right>" or "<End>", "$")
+vim.keymap.set("c", f.isMac() and "<D-Right>" or "<End>", "<C-e>")
 vim.keymap.set("i", f.isMac() and "<D-Right>" or "<End>", "<C-o>$")
 
 -- save file, update to only save to this if there are changes
