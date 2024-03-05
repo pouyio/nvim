@@ -1,6 +1,6 @@
 local create_cmd = vim.api.nvim_create_user_command
 
-create_cmd("CloseAllBuffers", function()
+create_cmd("CloseOtherBuffers", function()
 	-- Get the ID of the current buffer
 	local current_buffer = vim.api.nvim_get_current_buf()
 
