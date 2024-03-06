@@ -42,7 +42,13 @@ return {
 		telescope.setup({
 			defaults = {
 				path_display = filenameFirst,
-				layout_config = { width = 0.95 },
+        sorting_strategy = "ascending",
+        layout_config = {
+          width = 0.95,
+          horizontal = {
+            prompt_position = "top"
+          }
+        },
 			},
 			pickers = {
 				buffers = {
