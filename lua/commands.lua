@@ -27,3 +27,8 @@ create_cmd("SaveWithoutFormat", function()
 	-- enabling conform plugin, not sure if it retrieves the original config in plugins/confom.lua
 	require("conform").setup({ format_on_save = true })
 end, { desc = "Save file without formatting" })
+
+create_cmd("DiffThis", function()
+	-- Call Gitsigns plugin command
+	vim.api.nvim_command("Gitsigns diffthis")
+end, { desc = "Open git diff file" })
