@@ -31,4 +31,5 @@ end, { desc = "Save file without formatting" })
 create_cmd("DiffThis", function()
 	-- Call Gitsigns plugin command
 	vim.api.nvim_command("Gitsigns diffthis")
+	vim.api.nvim_command("wincmd p")
 end, { desc = "Open git diff file" })
