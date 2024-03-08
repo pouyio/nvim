@@ -41,6 +41,18 @@ return {
 		local builtin = require("telescope.builtin")
 		telescope.setup({
 			defaults = {
+				vimgrep_arguments = {
+					-- defaults
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					-- custom arg, to disable regex
+					"--fixed-strings",
+				},
 				path_display = filenameFirst,
 				sorting_strategy = "ascending",
 				layout_config = {
@@ -64,6 +76,9 @@ return {
 				lsp_definitions = {
 					initial_mode = "normal",
 				},
+				git_status = {
+					initial_mode = "normal",
+				},
 			},
 			extensions = {
 				["ui-select"] = { -- show code actions in a telescope dropdown
@@ -74,7 +89,14 @@ return {
 			},
 		})
 		vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
-		vim.keymap.set("n", "<leader>f", builtin.live_grep, { desc = "Grep String" })
+		vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Grep String" })
+		vim.keymap.set("v", "<leader>ff", function()
+			local text = f.getVisualSelected()
+			require("telescope.builtin").live_grep({
+				default_text = text,
+			})
+		end, { desc = "Grep Selected String" })
+		vim.keymap.set("n", "<leader>fg", builtin.git_status, { desc = "Find git status" })
 		-- keymap to close buffers from selector
 		vim.keymap.set("n", "<leader>v", function()
 			builtin.buffers({
