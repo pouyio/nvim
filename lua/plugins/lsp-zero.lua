@@ -31,8 +31,8 @@ return {
 				-- `Enter` key to confirm completion
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 
-				-- Ctrl+i to trigger completion menu
-				-- if set to <C-i> breaks tab in insert mode?
+				-- TODO Ctrl+i to trigger completion menu
+				-- if set to <C-i> breaks tab in insert mode only for windows
 				[f.isMac() and "<D-i>" or "<C-i>"] = cmp.mapping.complete(),
 				-- Navigate between snippet placeholder
 				["<C-f>"] = cmp_action.luasnip_jump_forward(),
