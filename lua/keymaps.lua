@@ -21,6 +21,10 @@ vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { desc = "Toggle last buffer" })
 vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true, desc = "Close buffer" })
 
+-- Switch buffers TODO subject to change for something more useful
+vim.keymap.set("n", "<A-,>", ":bprevious<CR>")
+vim.keymap.set("n", "<A-.>", ":bnext<CR>")
+
 -- split
 vim.keymap.set("n", "<leader>l", ":vs -<CR>", { desc = "Split to right" })
 vim.keymap.set("n", "<leader>h", ":topleft vs -<CR>", { desc = "Split to left" })
