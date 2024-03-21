@@ -78,6 +78,7 @@ return {
 				},
 				git_status = {
 					initial_mode = "normal",
+					theme = "dropdown",
 				},
 			},
 			extensions = {
