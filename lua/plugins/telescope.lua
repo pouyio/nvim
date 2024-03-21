@@ -99,7 +99,7 @@ return {
 		end, { desc = "Grep Selected String" })
 		vim.keymap.set("n", "<leader>fg", builtin.git_status, { desc = "Find git status" })
 		-- keymap to close buffers from selector
-		vim.keymap.set({ "n", "t" }, "<leader>v", function()
+		vim.keymap.set("n", "<leader>v", function()
 			builtin.buffers({
 				sort_lastused = true,
 				sort_mru = true,
