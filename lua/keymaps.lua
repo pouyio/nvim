@@ -84,7 +84,7 @@ vim.keymap.set("v", "/", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = tru
 -- Clear highlighting on pressing Escape
 vim.keymap.set("n", "<Esc>", "<esc>:nohlsearch<CR>", { silent = true })
 
--- Setting and goint to native marks
+-- Setting and going  to native marks
 vim.keymap.set("n", "<leader>th", "mH", { noremap = true })
 vim.keymap.set("n", "<leader>tj", "mJ", { noremap = true })
 vim.keymap.set("n", "<leader>tk", "mK", { noremap = true })
