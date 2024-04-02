@@ -16,6 +16,7 @@ return {
 	},
 	{
 		"olimorris/onedarkpro.nvim",
+		priority = 1000, -- Ensure it laods first
 		config = function()
 			require("onedarkpro").setup({
 				colors = {
