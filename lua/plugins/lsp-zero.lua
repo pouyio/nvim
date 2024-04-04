@@ -7,11 +7,13 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/nvim-cmp",
 		"L3MON4D3/LuaSnip",
+		"onsails/lspkind.nvim", -- vs-code like pictograms
 		{ "j-hui/fidget.nvim", opts = {} },
 	},
 	init = function()
 		local lsp_zero = require("lsp-zero")
 		local f = require("plugins.common.utils")
+		local lspkind = require("lspkind")
 
 		lsp_zero.on_attach(function(client, bufnr)
 			lsp_zero.default_keymaps({ buffer = bufnr })
@@ -45,6 +47,13 @@ return {
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
+			},
+			-- configure lspkind for vs-code like pictograms in completion menu
+			formatting = {
+				format = lspkind.cmp_format({
+					maxwidth = 50,
+					ellipsis_char = "...",
+				}),
 			},
 		})
 
