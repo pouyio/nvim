@@ -13,7 +13,7 @@ vim.keymap.set("n", "k", "gk")
 -- select all
 vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG", { desc = "Select all" })
 
--- move 9 lines up/down
+-- move half screen up/down
 vim.keymap.set({ "n", "v" }, "<A-u>", "<C-u>")
 vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 
