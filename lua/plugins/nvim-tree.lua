@@ -30,6 +30,9 @@ return {
 			filters = {
 				custom = { ".DS_Store", "^\\.git" },
 			},
+			git = {
+				ignore = false,
+			},
 		})
 
 		vim.keymap.set(
