@@ -73,7 +73,7 @@ vim.keymap.set("i", f.isMac() and "<D-Right>" or "<End>", "<C-o>$")
 
 -- save file, update to only save to this if there are changes
 vim.keymap.set("n", f.isMac() and "<D-s>" or "<C-s>", ":update<CR>")
-vim.keymap.set("i", f.isMac() and "<D-s>" or "<C-s>", "<Esc>:update<CR>")
+vim.keymap.set({ "i", "v" }, f.isMac() and "<D-s>" or "<C-s>", "<Esc>:update<CR>")
 
 -- redo
 vim.keymap.set("n", "<S-u>", "<C-r>")
