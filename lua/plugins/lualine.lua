@@ -19,6 +19,7 @@ return {
 				},
 				lualine_c = {
 					{ "filename", path = 1 },
+					{ "harpoon2" },
 				},
 				lualine_y = {},
 			},
