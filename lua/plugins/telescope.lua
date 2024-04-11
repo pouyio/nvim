@@ -80,6 +80,15 @@ return {
 					initial_mode = "normal",
 					theme = "dropdown",
 				},
+				find_files = {
+					find_command = {
+						"rg", -- Use ripgrep as the backend
+						"--files", -- Search for files
+						"--hidden", -- Include hidden files and directories
+						"--iglob",
+						"!.git", -- Exclude the .git directory
+					},
+				},
 			},
 			extensions = {
 				["ui-select"] = { -- show code actions in a telescope dropdown
