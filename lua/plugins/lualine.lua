@@ -25,8 +25,8 @@ return {
 					"diagnostics",
 				},
 				lualine_c = {
-					{ "filename", path = 1 },
 					{ Harpoonline.format, "filename" },
+					{ "filename", path = 1 },
 				},
 				lualine_y = {},
 			},
