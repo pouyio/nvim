@@ -22,10 +22,6 @@ vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { desc = "Toggle last buffer"
 vim.keymap.set("t", "<leader><leader>", "<C-\\><C-n>:b#<CR>", { desc = "Toggle last buffer from terminal" })
 vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true, desc = "Close buffer" })
 
--- Switch buffers TODO subject to change for something more useful
-vim.keymap.set("n", "<A-,>", ":bprevious<CR>")
-vim.keymap.set("n", "<A-.>", ":bnext<CR>")
-
 -- split
 vim.keymap.set("n", "<leader>sl", ":vs -<CR>", { desc = "Split to right" })
 vim.keymap.set("n", "<leader>sh", ":topleft vs -<CR>", { desc = "Split to left" })
@@ -83,14 +79,3 @@ vim.keymap.set("v", "/", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = tru
 
 -- Clear highlighting on pressing Escape
 vim.keymap.set("n", "<Esc>", "<esc>:nohlsearch<CR>", { silent = true })
-
--- Setting and going  to native marks
-vim.keymap.set("n", "<leader>th", "mH", { noremap = true })
-vim.keymap.set("n", "<leader>tj", "mJ", { noremap = true })
-vim.keymap.set("n", "<leader>tk", "mK", { noremap = true })
-vim.keymap.set("n", "<leader>tl", "mL", { noremap = true })
-
-vim.keymap.set("n", "<leader>h", "`H", { noremap = true })
-vim.keymap.set("n", "<leader>j", "`J", { noremap = true })
-vim.keymap.set("n", "<leader>k", "`K", { noremap = true })
-vim.keymap.set("n", "<leader>l", "`L", { noremap = true })
