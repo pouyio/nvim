@@ -122,7 +122,7 @@ return {
 
 					map("n", "<leader>w", delete_buf)
 					map("n", "v", actions.move_selection_next)
-					map("n", "c", actions.move_selection_previous) -- TODO waits for vim.o.timeoutlen delay to work, annoying
+					map("n", "c", actions.move_selection_previous, { nowait = true })
 					return true
 				end,
 			})
