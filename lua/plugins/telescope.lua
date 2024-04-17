@@ -52,6 +52,11 @@ return {
 					"--smart-case",
 					-- custom arg, to disable regex
 					"--fixed-strings",
+					-- ignore some files
+					"--glob",
+					"!yarn.lock",
+					"--glob",
+					"!package-lock.json",
 				},
 				path_display = filenameFirst,
 				sorting_strategy = "ascending",
