@@ -79,3 +79,6 @@ vim.keymap.set("v", "/", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = tru
 
 -- Clear highlighting on pressing Escape
 vim.keymap.set("n", "<Esc>", "<esc>:nohlsearch<CR>", { silent = true })
+
+-- Only hit by accident
+vim.keymap.set("n", "q:", "<Nop>")
