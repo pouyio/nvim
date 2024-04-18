@@ -31,7 +31,8 @@ return {
 				lualine_y = {},
 			},
 			extensions = {
-				"nvim-tree",
+				-- "nvim-tree",
+				"neo-tree",
 			},
 		}
 		require("lualine").setup(options)
