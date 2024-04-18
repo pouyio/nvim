@@ -12,12 +12,21 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local function filenameFirst(_, path)
+	local current_dir = vim.fn.getcwd()
+	local relative_path = vim.fn.fnamemodify(path, ":.")
 	local tail = vim.fs.basename(path)
 	local parent = vim.fs.dirname(path)
+
+	-- Check if the path is within the current directory
+	if vim.startswith(relative_path, current_dir) then
+		-- Trim the current directory part and any leading path separators
+		relative_path = vim.fn.fnamemodify(relative_path, ":~:.:h")
+	end
+
 	if parent == "." then
 		return tail
 	end
-	return string.format("%s\t\t%s", tail, parent)
+	return string.format("%s\t\t%s", tail, relative_path)
 end
 
 return {
@@ -77,6 +86,7 @@ return {
 				},
 				lsp_references = {
 					initial_mode = "normal",
+					show_line = false,
 				},
 				lsp_definitions = {
 					initial_mode = "normal",
