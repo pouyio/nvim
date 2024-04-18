@@ -18,7 +18,7 @@ local function filenameFirst(_, path)
 	local parent = vim.fs.dirname(path)
 
 	-- Check if the path is within the current directory
-	if vim.startswith(relative_path, current_dir) then
+	if vim.startswith(path, current_dir) then
 		-- Trim the current directory part and any leading path separators
 		relative_path = vim.fn.fnamemodify(relative_path, ":~:.:h")
 	end
