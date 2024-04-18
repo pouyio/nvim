@@ -129,13 +129,8 @@ return {
 				sort_mru = true,
 				attach_mappings = function(_, map)
 					local actions = require("telescope.actions")
-					local actions_state = require("telescope.actions.state")
-					local delete_buf = function()
-						local selection = actions_state.get_selected_entry()
-						vim.api.nvim_buf_delete(selection.bufnr, {})
-					end
 
-					map("n", "<leader>w", delete_buf)
+					map("n", "<leader>w", actions.delete_buffer)
 					map("n", "v", actions.move_selection_next)
 					map("n", "c", actions.move_selection_previous, { nowait = true })
 					return true
