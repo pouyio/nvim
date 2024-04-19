@@ -9,6 +9,8 @@ return {
 			Info = { color = "#0db9d7" },
 			Hint = { color = "#4fd6be" },
 			Misc = { color = "#c75ae8" },
+		handlers = {
+			handle = false,
 		},
 	},
 }
