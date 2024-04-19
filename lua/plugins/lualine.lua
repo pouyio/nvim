@@ -26,7 +26,9 @@ return {
 				},
 				lualine_c = {
 					{ Harpoonline.format, "filename" },
-					{ "filename", path = 1 },
+					{ "filename", path = 1, symbols = {
+						modified = "●",
+					} },
 				},
 				lualine_y = {},
 			},
