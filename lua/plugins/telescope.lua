@@ -117,15 +117,17 @@ return {
 			},
 		})
 		vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
+		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume last picker" })
 		vim.keymap.set({ "n", "v" }, "<leader>ff", builtin.live_grep, { desc = "Grep String" })
 		vim.keymap.set("v", "<leader>ff", function()
 			local text = f.getVisualSelected()
 			require("telescope.builtin").live_grep({
 				default_text = text,
+				initial_mode = "normal",
 			})
 		end, { desc = "Grep Selected String" })
 		vim.keymap.set("n", "<leader>fg", builtin.git_status, { desc = "Find git status" })
-		-- keymap to close buffers from selector
+		-- keymaps inside buffer picker
 		vim.keymap.set("n", "<leader>v", function()
 			builtin.buffers({
 				sort_lastused = true,
