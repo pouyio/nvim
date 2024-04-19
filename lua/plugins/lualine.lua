@@ -20,7 +20,6 @@ return {
 						local lastFolder = currentDir:match("[^/]+$")
 						return lastFolder
 					end,
-					"diagnostics",
 				},
 				lualine_c = {
 					{ Harpoonline.format, "filename" },
@@ -28,7 +27,7 @@ return {
 						modified = "●",
 					} },
 				},
-				lualine_x = { "diff", "encoding", "filetype" },
+				lualine_x = { "diagnostics", "diff", "encoding", "filetype" },
 				lualine_y = {},
 			},
 			extensions = {
