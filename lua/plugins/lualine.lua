@@ -31,7 +31,6 @@ return {
 				lualine_y = {},
 			},
 			extensions = {
-				-- "nvim-tree",
 				"neo-tree",
 			},
 		}
