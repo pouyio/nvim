@@ -76,6 +76,7 @@ vim.keymap.set("n", "<S-u>", "<C-r>")
 
 -- search for selected text
 vim.keymap.set("v", "/", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
+vim.keymap.set("v", "?", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
 
 -- Clear highlighting on pressing Escape
 vim.keymap.set("n", "<Esc>", "<esc>:nohlsearch<CR>", { silent = true })
