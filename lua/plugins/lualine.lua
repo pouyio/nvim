@@ -20,8 +20,6 @@ return {
 						local lastFolder = currentDir:match("[^/]+$")
 						return lastFolder
 					end,
-					"branch",
-					"diff",
 					"diagnostics",
 				},
 				lualine_c = {
@@ -30,6 +28,7 @@ return {
 						modified = "●",
 					} },
 				},
+				lualine_x = { "diff", "encoding", "filetype" },
 				lualine_y = {},
 			},
 			extensions = {
