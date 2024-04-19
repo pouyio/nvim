@@ -104,6 +104,9 @@ return {
 						"!.git", -- Exclude the .git directory
 					},
 				},
+				resume = {
+					initial_mode = "normal",
+				},
 			},
 			extensions = {
 				["ui-select"] = { -- show code actions in a telescope dropdown
