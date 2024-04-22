@@ -26,24 +26,17 @@ return {
 					functions = "bold",
 				},
 			})
-			-- vim.cmd.colorscheme("onedark_vivid")
+			vim.cmd.colorscheme("onedark_vivid")
 		end,
 	},
-	-- {
-	-- 	"rebelot/kanagawa.nvim",
-	-- 	opts = {},
-	-- 	config = function(_, opts)
-	-- 		require("kanagawa").setup(opts)
-	-- 		-- vim.cmd.colorscheme("kanagawa")
-	-- 	end,
-	-- },
 	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {},
-		config = function()
-			vim.cmd.colorscheme("tokyonight-night")
+		"rebelot/kanagawa.nvim",
+		opts = {
+			functionStyle = { bold = true },
+		},
+		config = function(_, opts)
+			require("kanagawa").setup(opts)
+			-- vim.cmd.colorscheme("kanagawa")
 		end,
 	},
 }
