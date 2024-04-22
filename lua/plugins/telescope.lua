@@ -50,6 +50,7 @@ return {
 		local builtin = require("telescope.builtin")
 		telescope.setup({
 			defaults = {
+				dynamic_preview_title = true,
 				vimgrep_arguments = {
 					-- defaults
 					"rg",
