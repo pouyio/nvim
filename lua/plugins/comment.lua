@@ -8,6 +8,12 @@ return {
 	},
 	config = function()
 		local comment = require("Comment")
+		vim.keymap.set(
+			"i",
+			f.isMac() and "<D-u>" or "<C-u>",
+			"<ESC> <Plug>(comment_toggle_linewise_current)i",
+			{ desc = "Toggle comment in insert mode" }
+		)
 		require("ts_context_commentstring").setup({
 			enable_autocmd = false,
 		})
