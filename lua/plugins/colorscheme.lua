@@ -20,7 +20,9 @@ return {
 		config = function()
 			require("onedarkpro").setup({
 				colors = {
-					bg = "#1f232d",
+					dark = {
+						bg = "#1f232d",
+					},
 				},
 				styles = {
 					functions = "bold",
