@@ -50,6 +50,7 @@ return {
 		local builtin = require("telescope.builtin")
 		telescope.setup({
 			defaults = {
+				file_ignore_patterns = { ".git" },
 				dynamic_preview_title = true,
 				vimgrep_arguments = {
 					-- defaults
@@ -84,6 +85,12 @@ return {
 				},
 				grep_string = {
 					initial_mode = "normal",
+				},
+				live_grep = {
+					additional_args = {
+						"--hidden",
+						-- still have to hide .git
+					},
 				},
 				lsp_references = {
 					initial_mode = "normal",
