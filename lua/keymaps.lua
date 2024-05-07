@@ -43,6 +43,12 @@ vim.keymap.set("n", "<leader>rh", ":vertical resize -5<CR>", { desc = "horizonta
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
+-- duplicate line
+vim.keymap.set("n", "<S-A-Down>", ":t.<CR>", { desc = "Duplicate line down" })
+vim.keymap.set("n", "<S-A-Up>", ":<C-u>.,.t-1<CR>", { desc = "Duplicate line up" })
+vim.keymap.set("v", "<S-A-Down>", "yPgv", { desc = "Duplicate selected lines down" })
+vim.keymap.set("v", "<S-A-Up>", "y'>pgv", { desc = "Duplicate selected lines up" })
+
 -- delete full word
 vim.keymap.set({ "i", "c" }, f.isMac() and "<A-BS>" or "<C-H>", function()
 	vim.api.nvim_input("<C-w>")
