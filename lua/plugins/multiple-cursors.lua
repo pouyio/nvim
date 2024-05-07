@@ -22,7 +22,7 @@ return {
 				{ "n", "x", "i" },
 				{ "<D-Right>" },
 				function()
-					vim.cmd("normal! $")
+					vim.cmd("normal! g$")
 				end,
 			},
 			{
