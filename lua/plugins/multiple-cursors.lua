@@ -60,6 +60,20 @@ return {
 					vim.cmd("normal! dw")
 				end,
 			},
+			{
+				{ "i", "c" },
+				f.isMac() and "<D-u>" or "<C-u>",
+				function()
+					vim.cmd([[execute "normal! \<Esc>\<Plug>(comment_toggle_linewise_current)i"]])
+				end,
+			},
+			{
+				{ "n" },
+				f.isMac() and "<D-u>" or "<C-u>",
+				function()
+					vim.cmd([[execute "normal! \<Esc>\<Plug>(comment_toggle_linewise_current)"]])
+				end,
+			},
 		},
 	},
 }
