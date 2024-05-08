@@ -13,13 +13,13 @@ return {
 		require("toggleterm").setup(opts)
 		local Terminal = require("toggleterm.terminal").Terminal
 		local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-		function _lazygit_toggle()
+		function _Lazygit_toggle()
 			lazygit:toggle()
 		end
 		vim.api.nvim_set_keymap(
 			"n",
 			f.isMac() and "<D-l>" or "<C-l>",
-			"<cmd>lua _lazygit_toggle()<CR>",
+			"<cmd>lua _Lazygit_toggle()<CR>",
 			{ noremap = true, silent = true }
 		)
 	end,

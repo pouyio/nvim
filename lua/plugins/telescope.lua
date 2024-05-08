@@ -101,7 +101,6 @@ return {
 				},
 				git_status = {
 					initial_mode = "normal",
-					theme = "dropdown",
 				},
 				find_files = {
 					find_command = {
