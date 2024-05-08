@@ -4,6 +4,11 @@ return {
 	config = function()
 		local f = require("plugins.common.utils")
 		local treesitter = require("nvim-treesitter.configs")
+
+		-- set .mdx files as markdown
+		local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+		ft_to_parser.mdx = "markdown"
+
 		treesitter.setup({
 
 			highlight = {
