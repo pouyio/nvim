@@ -1,6 +1,9 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { { "abeldekat/harpoonline", version = "*" }, { "nvim-tree/nvim-web-devicons" } },
+	dependencies = {
+		{ "abeldekat/harpoonline", version = "v3.1.0" },
+		{ "nvim-tree/nvim-web-devicons" },
+	},
 	config = function()
 		local Harpoonline = require("harpoonline")
 		Harpoonline.setup({
