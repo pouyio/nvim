@@ -19,7 +19,6 @@ vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
 
 -- buffers
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { desc = "Toggle last buffer" })
-vim.keymap.set("t", "<leader><leader>", "<C-\\><C-n>:b#<CR>", { desc = "Toggle last buffer from terminal" })
 vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true, desc = "Close buffer" })
 
 -- split
