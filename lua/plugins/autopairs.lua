@@ -1,6 +1,6 @@
 return {
 	"windwp/nvim-autopairs",
-	-- event = "InsertEnter", -- disabled to avoid conflict with multiple-cursors https://github.com/brenton-leighton/multiple-cursors.nvim?tab=readme-ov-file#windwpnvim-autopairs
+	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/nvim-cmp",
 	},
