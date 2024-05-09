@@ -1,5 +1,4 @@
 local f = require("plugins.common.utils")
-local actions = require("telescope.actions")
 
 -- show results in file picker, first filename then path lighter
 vim.api.nvim_create_autocmd("FileType", {
@@ -49,6 +48,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
+		local actions = require("telescope.actions")
 		telescope.setup({
 			defaults = {
 				file_ignore_patterns = { ".git" },
