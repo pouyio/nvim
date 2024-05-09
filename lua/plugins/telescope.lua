@@ -1,4 +1,5 @@
 local f = require("plugins.common.utils")
+local actions = require("telescope.actions")
 
 -- show results in file picker, first filename then path lighter
 vim.api.nvim_create_autocmd("FileType", {
@@ -75,6 +76,17 @@ return {
 					width = 0.95,
 					horizontal = {
 						prompt_position = "top",
+					},
+				},
+				mappings = {
+					n = {
+						[f.isMac and "<D-f>" or "<C-f>"] = actions.send_to_qflist + actions.open_qflist,
+					},
+					-- cycle through history in any picker
+					i = {
+						["<Down>"] = actions.cycle_history_next,
+						["<Up>"] = actions.cycle_history_prev,
+						[f.isMac and "<D-f>" or "<C-f>"] = actions.send_to_qflist + actions.open_qflist,
 					},
 				},
 			},
