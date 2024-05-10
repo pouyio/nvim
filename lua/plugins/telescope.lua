@@ -152,8 +152,6 @@ return {
 				sort_lastused = true,
 				sort_mru = true,
 				attach_mappings = function(_, map)
-					local actions = require("telescope.actions")
-
 					map("n", "<leader>w", actions.delete_buffer)
 					map("n", "v", actions.move_selection_next)
 					map("n", "c", actions.move_selection_previous, { nowait = true })
