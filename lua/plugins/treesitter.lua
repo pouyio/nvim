@@ -6,8 +6,7 @@ return {
 		local treesitter = require("nvim-treesitter.configs")
 
 		-- set .mdx files as markdown
-		local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-		ft_to_parser.mdx = "markdown"
+		vim.treesitter.language.register("markdown", { "mdx" })
 
 		treesitter.setup({
 
