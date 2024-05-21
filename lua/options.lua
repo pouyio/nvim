@@ -17,7 +17,6 @@ vim.o.ttimeoutlen = 0 -- Disables the time Neovim waits for a key code
 vim.wo.scl = "yes" -- Sets "sidescrolloff" to "yes," making the cursor stay a certain number of columns away from the screen edge when scrolling horizontally
 vim.o.scrolloff = 15 -- Specifies the minimum number of screen lines to keep above and below the cursor
 vim.o.pumheight = 10 -- Sets the maximum height of the popup menu
-vim.o.termguicolors = true -- Enables 24-bit RGB color in the terminal if supported
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- recomended for plugin auto-session
 vim.filetype.add({
 	extension = {

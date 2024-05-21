@@ -33,7 +33,6 @@ return {
 			formatters_by_ft = conform_formatters(),
 			format_on_save = {
 				lsp_fallback = true,
-				async = false,
 				timeout = 500,
 			},
 		})

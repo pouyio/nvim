@@ -11,28 +11,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-local function filenameFirst(_, path)
-	local current_dir = vim.fn.getcwd()
-	local relative_path = vim.fn.fnamemodify(path, ":.")
-	local tail = vim.fs.basename(path)
-	local parent = vim.fs.dirname(path)
-
-	-- Check if the path is within the current directory
-	if vim.startswith(path, current_dir) then
-		-- Trim the current directory part and any leading path separators
-		relative_path = vim.fn.fnamemodify(relative_path, ":~:.:h")
-	end
-
-	if parent == "." then
-		return tail
-	end
-	return string.format("%s\t\t%s", tail, relative_path)
-end
-
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
-	branch = "0.1.x",
+	branch = "master",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{
@@ -70,7 +52,9 @@ return {
 					"--glob",
 					"!package-lock.json",
 				},
-				path_display = filenameFirst,
+				path_display = {
+					"filename_first",
+				},
 				sorting_strategy = "ascending",
 				layout_config = {
 					width = 0.95,
