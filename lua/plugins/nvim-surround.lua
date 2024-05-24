@@ -8,6 +8,7 @@ return {
 		vim.keymap.set("v", "{", "<Plug>(nvim-surround-visual){lvi{", { desc = "Surround with curly brackets {}" })
 		vim.keymap.set("v", '"', '<Plug>(nvim-surround-visual)"lvi"', { desc = 'Surround with curly brackets ""' })
 		vim.keymap.set("v", "`", "<Plug>(nvim-surround-visual)`lvi`", { desc = "Surround with curly brackets ``" })
+		vim.keymap.set("v", "<", "<Plug>(nvim-surround-visual)<lvi>", { desc = "Surround with less/greater than <>" })
 		require("nvim-surround").setup({
 			surrounds = {
 				["("] = {
