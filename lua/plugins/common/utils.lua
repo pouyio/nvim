@@ -6,7 +6,7 @@ end
 
 M.closeBuffer = function()
 	local bufnr = vim.fn.bufnr("%") -- Get the buffer number of the current buffer
-	if vim.api.nvim_buf_get_option(bufnr, "buftype") == "terminal" then -- Check if the buffer is a terminal buffer
+	if vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "terminal" then -- Check if the buffer is a terminal buffer
 		vim.api.nvim_command("bd!")
 	else
 		vim.api.nvim_command("bd")
