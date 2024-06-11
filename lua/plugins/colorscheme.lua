@@ -9,6 +9,9 @@ return {
 						bg = "#1f232d",
 					},
 				},
+				options = {
+					cursorline = true,
+				},
 				styles = {
 					functions = "bold",
 				},
