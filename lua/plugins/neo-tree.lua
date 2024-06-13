@@ -18,7 +18,7 @@ return {
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			commands = {
-				addToHarpoon = function(state)
+				add_to_harpoon = function(state)
 					local node = state.tree:get_node()
 					local filepath = node:get_id()
 					local harpoon = require("harpoon")
@@ -37,12 +37,44 @@ return {
 					}
 					harpoon:list():add(item)
 				end,
+				copy_path = function(state)
+					local node = state.tree:get_node()
+					local filepath = node:get_id()
+					local filename = node.name
+					local modify = vim.fn.fnamemodify
+
+					local results = {
+						modify(filepath, ":."),
+						filename,
+						filepath,
+					}
+
+					vim.ui.select({
+						"1. Relative path: " .. results[1],
+						"2. Filename: " .. results[2],
+						"3. Absolute path: " .. results[3],
+					}, { prompt = "Choose to copy to clipboard:" }, function(choice)
+						if choice then
+							local i = tonumber(choice:sub(1, 1))
+							if i then
+								local result = results[i]
+								vim.fn.setreg('"', result)
+								vim.notify("Copied: " .. result)
+							else
+								vim.notify("Invalid selection")
+							end
+						else
+							vim.notify("Selection cancelled")
+						end
+					end)
+				end,
 			},
 			window = {
 				width = 35,
 				position = "right",
 				mappings = {
-					["<leader>a"] = "addToHarpoon",
+					["<leader>a"] = "add_to_harpoon",
+					["<leader>y"] = "copy_path",
 				},
 			},
 			filesystem = {
