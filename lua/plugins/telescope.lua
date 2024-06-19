@@ -65,6 +65,7 @@ return {
 				mappings = {
 					n = {
 						[f.isMac and "<D-f>" or "<C-f>"] = actions.send_to_qflist + actions.open_qflist,
+						["s"] = actions.select_vertical,
 					},
 					-- cycle through history in any picker
 					i = {
