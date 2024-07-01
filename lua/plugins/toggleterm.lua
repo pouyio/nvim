@@ -75,7 +75,7 @@ return {
 			vim.api.nvim_buf_set_keymap(
 				0,
 				"t",
-				f.isMac and "<D-e>" or "<C-e>",
+				f.isMac and "<D-o>" or "<C-o>",
 				string.format([[<Cmd>lua LazygitEdit(%d)<CR>]], current_buffer),
 				{ noremap = true, silent = true }
 			)
