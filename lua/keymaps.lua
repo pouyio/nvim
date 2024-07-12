@@ -91,7 +91,7 @@ vim.keymap.set("n", "q:", "<Nop>")
 
 -- Comments
 vim.keymap.set("n", f.isMac() and "<D-u>" or "<C-u>", "gcc", { remap = true })
-vim.keymap.set("v", f.isMac() and "<D-u>" or "<C-u>", "gcc", { remap = true })
+vim.keymap.set("v", f.isMac() and "<D-u>" or "<C-u>", "gcgv", { remap = true })
 vim.keymap.set("i", f.isMac() and "<D-u>" or "<C-u>", "<ESC>gcci", { remap = true })
 
 -- Go to absolute line
