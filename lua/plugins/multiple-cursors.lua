@@ -61,17 +61,38 @@ return {
 				end,
 			},
 			{
-				{ "i", "c" },
+				{ "i" },
 				f.isMac() and "<D-u>" or "<C-u>",
 				function()
-					vim.cmd([[execute "normal! \<Esc>\<Plug>(comment_toggle_linewise_current)i"]])
+					vim.cmd("normal gcci")
+				end,
+			},
+			{
+				{ "v" },
+				f.isMac() and "<D-u>" or "<C-u>",
+				function()
+					vim.cmd("normal gcgv")
 				end,
 			},
 			{
 				{ "n" },
 				f.isMac() and "<D-u>" or "<C-u>",
 				function()
-					vim.cmd([[execute "normal! \<Esc>\<Plug>(comment_toggle_linewise_current)"]])
+					vim.cmd("normal gcc")
+				end,
+			},
+			{
+				{ "n" },
+				"j",
+				function()
+					vim.cmd("normal gj")
+				end,
+			},
+			{
+				{ "n" },
+				"k",
+				function()
+					vim.cmd("normal gk")
 				end,
 			},
 		},
