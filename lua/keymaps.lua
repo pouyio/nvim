@@ -96,3 +96,7 @@ vim.keymap.set("i", f.isMac() and "<D-u>" or "<C-u>", "<ESC>gcci", { remap = tru
 
 -- Go to absolute line
 vim.keymap.set("n", "<CR>", "G")
+
+-- Indent in visual mode using tab
+vim.keymap.set("v", "<Tab>", ">gv")
+vim.keymap.set("v", "<S-Tab>", "<gv")
