@@ -1,17 +1,10 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		{ "abeldekat/harpoonline", version = "v3.1.0" },
+		{ "letieu/harpoon-lualine" },
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	config = function()
-		local Harpoonline = require("harpoonline")
-		Harpoonline.setup({
-			on_update = function()
-				require("lualine").refresh()
-			end,
-		})
-
 		local mode_map = {
 			["NORMAL"] = "N",
 			["O-PENDING"] = "N?",
@@ -53,7 +46,7 @@ return {
 					end,
 				},
 				lualine_c = {
-					{ Harpoonline.format, "filename" },
+					"harpoon2",
 					{ "filename", path = 1, symbols = {
 						modified = "●",
 					} },
