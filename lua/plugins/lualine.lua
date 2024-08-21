@@ -46,7 +46,11 @@ return {
 					end,
 				},
 				lualine_c = {
-					"harpoon2",
+					{
+						"harpoon2",
+						indicators = { " 1 ", " 2 ", " 3 ", " 4 " },
+						_separator = "",
+					},
 					{ "filename", path = 1, symbols = {
 						modified = "●",
 					} },
