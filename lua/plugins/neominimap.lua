@@ -8,7 +8,9 @@ return {
 		vim.opt.wrap = false -- Recommended
 		vim.opt.sidescrolloff = 36 -- It's recommended to set a large value
 		vim.g.neominimap = {
-			minimap_width = 13,
+			float = {
+				minimap_width = 13,
+			},
 			auto_enable = true,
 			click = {
 				enabled = true,
