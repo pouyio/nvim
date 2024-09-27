@@ -78,7 +78,7 @@ return {
 			pickers = {
 				buffers = {
 					initial_mode = "normal",
-					theme = "dropdown",
+					-- theme = "dropdown",
 				},
 				grep_string = {
 					initial_mode = "normal",

@@ -1,5 +1,6 @@
 local f = require("plugins.common.utils")
 return {
+	enabled = false,
 	"brenton-leighton/multiple-cursors.nvim",
 	version = "*",
 	keys = {
@@ -18,6 +19,25 @@ return {
 			require("nvim-autopairs").enable()
 		end,
 		custom_key_maps = {
+			{
+				{ "n" },
+				{ "<D-A-Right>" },
+				function()
+					-- Call incremental selection here
+					-- this is my treesitter keymap
+					-- init_selection = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
+					-- node_incremental = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
+				end,
+			},
+			{
+				{ "n" },
+				{ "<D-A-Left>" },
+				function()
+					-- Call decremental selection here
+					-- this is my treesitter keymap
+					-- node_decremental = f.isMac() and "<D-A-Left>" or "<C-A-Left>",
+				end,
+			},
 			{
 				{ "n", "x", "i" },
 				{ "<D-Right>" },
