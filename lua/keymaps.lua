@@ -22,9 +22,7 @@ vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { desc = "Toggle last buffer"
 vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true, desc = "Close buffer" })
 
 -- split
-vim.keymap.set("n", "<leader>sl", ":vs -<CR>", { desc = "Split to right" })
-vim.keymap.set("n", "<leader>sh", ":topleft vs -<CR>", { desc = "Split to left" })
-vim.keymap.set("n", "<leader>sj", ":sp<CR><C-W>j", { desc = "Split to bottom", noremap = true, silent = true })
+vim.keymap.set("n", "<leader>s", ":vs <CR>", { desc = "Split to right" })
 
 -- panes
 vim.keymap.set("n", "<Right>", "<C-w>l", { noremap = true })

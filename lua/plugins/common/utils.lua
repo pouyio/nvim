@@ -6,10 +6,16 @@ end
 
 M.closeBuffer = function()
 	local bufnr = vim.fn.bufnr("%") -- Get the buffer number of the current buffer
-	if vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "terminal" then -- Check if the buffer is a terminal buffer
-		vim.api.nvim_command("bd!")
+	local window_count = #vim.api.nvim_tabpage_list_wins(0) -- Get the number of windows in the current tab
+
+	if vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "terminal" then
+		vim.api.nvim_command("bd!") -- Force close terminal buffer
 	else
-		vim.api.nvim_command("bd")
+		if window_count > 1 then
+			vim.api.nvim_command("close") -- Close the window if there are multiple windows
+		else
+			vim.api.nvim_command("bd") -- Close the buffer if it's the only window
+		end
 	end
 end
 
