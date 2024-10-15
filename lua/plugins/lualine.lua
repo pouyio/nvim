@@ -25,39 +25,41 @@ return {
 			["MORE"] = "M",
 		}
 
-		local options = {
-			sections = {
-				lualine_a = {
-					{
-						"mode",
-						fmt = function(s)
-							return mode_map[s] or s
-						end,
-					},
-				},
-				lualine_b = {
-					function()
-						-- Get the current working directory
-						local currentDir = vim.fn.getcwd()
-
-						-- Extract the last folder from the path
-						local lastFolder = currentDir:match("[^/]+$")
-						return lastFolder
+		local allSections = {
+			lualine_a = {
+				{
+					"mode",
+					fmt = function(s)
+						return mode_map[s] or s
 					end,
 				},
-				lualine_c = {
-					{
-						"harpoon2",
-						indicators = { " 1 ", " 2 ", " 3 ", " 4 " },
-						_separator = "",
-					},
-					{ "filename", path = 1, symbols = {
-						modified = "●",
-					} },
-				},
-				lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
-				lualine_y = {},
 			},
+			lualine_b = {
+				function()
+					-- Get the current working directory
+					local currentDir = vim.fn.getcwd()
+
+					-- Extract the last folder from the path
+					local lastFolder = currentDir:match("[^/]+$")
+					return lastFolder
+				end,
+			},
+			lualine_c = {
+				{
+					"harpoon2",
+					indicators = { " 1 ", " 2 ", " 3 ", " 4 " },
+					_separator = "",
+				},
+				{ "filename", path = 1, symbols = {
+					modified = "●",
+				} },
+			},
+			lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
+			lualine_y = {},
+		}
+		local options = {
+			sections = allSections,
+			inactive_sections = allSections,
 			extensions = {
 				"neo-tree",
 			},
