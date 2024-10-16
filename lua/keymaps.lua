@@ -92,8 +92,18 @@ vim.keymap.set("n", f.isMac() and "<D-u>" or "<C-u>", "gcc", { remap = true })
 vim.keymap.set("v", f.isMac() and "<D-u>" or "<C-u>", "gcgv", { remap = true })
 vim.keymap.set("i", f.isMac() and "<D-u>" or "<C-u>", "<ESC>gcci", { remap = true })
 
--- Go to absolute line
-vim.keymap.set("n", "<CR>", "G")
+-- Go to absolute line, not in quickfix list
+vim.keymap.set("n", "<CR>", function()
+	if vim.bo.buftype == "quickfix" then
+		return "<CR>" -- Default behavior in quickfix list
+	else
+		return "G" -- Your custom behavior for normal buffers
+	end
+end, { expr = true })
+
+-- Navigate in quickfix list items
+vim.keymap.set("n", f.isMac() and "<D-down>" or "C-down", ":cnext<CR>")
+vim.keymap.set("n", f.isMac() and "<D-up>" or "C-up", ":cprevious<CR>")
 
 -- Indent in visual mode using tab
 vim.keymap.set("v", "<Tab>", ">gv")
