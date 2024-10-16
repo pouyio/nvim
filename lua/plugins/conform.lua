@@ -1,40 +1,34 @@
-local prettier_ft = {
-	"javascript",
-	"javascriptreact",
-	"typescript",
-	"typescriptreact",
-	"css",
-	"scss",
-	"html",
-	"json",
-	"jsonc",
-	"yaml",
-	"markdown",
-	"markdown.mdx",
-	"graphql",
-}
-
-local conform_formatters = function()
-	local formatters = {
-		["lua"] = { "stylua" },
-	}
-	for _, ft in ipairs(prettier_ft) do
-		formatters[ft] = { "prettier" }
+local function use_biome_if_installed_locally(bufnr)
+	local biome_info = require("conform").get_formatter_info("biome", bufnr)
+	if biome_info and biome_info.available and biome_info.command:match("node_modules/.bin/biome") then
+		return { "biome" }
 	end
-	return formatters
+
+	return { "prettier" }
 end
 
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		require("conform").setup({
-
-			formatters_by_ft = conform_formatters(),
-			format_on_save = {
-				lsp_fallback = true,
-				timeout = 500,
-			},
-		})
-	end,
+	opts = {
+		formatters_by_ft = {
+			["javascript"] = use_biome_if_installed_locally,
+			["javascriptreact"] = use_biome_if_installed_locally,
+			["typescript"] = use_biome_if_installed_locally,
+			["typescriptreact"] = use_biome_if_installed_locally,
+			["css"] = { "prettier" },
+			["scss"] = { "prettier" },
+			["html"] = { "prettier" },
+			["json"] = { "prettier" },
+			["jsonc"] = { "prettier" },
+			["yaml"] = { "prettier" },
+			["markdown"] = { "prettier" },
+			["markdown.mdx"] = { "prettier" },
+			["graphql"] = { "prettier" },
+			["lua"] = { "stylua" },
+		},
+		format_on_save = {
+			lsp_format = "fallback",
+			timeout = 500,
+		},
+	},
 }
