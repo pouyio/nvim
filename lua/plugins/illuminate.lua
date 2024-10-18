@@ -4,10 +4,6 @@ return {
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
 		modes_denylist = { "v", "V" },
-		providers = {
-			"lsp",
-			"treesitter",
-		},
 	},
 	config = function(_, opts)
 		require("illuminate").configure(opts)
