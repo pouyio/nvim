@@ -37,8 +37,8 @@ vim.keymap.set("n", "<leader>rl", ":vertical resize +5<CR>", { desc = "horizonta
 vim.keymap.set("n", "<leader>rh", ":vertical resize -5<CR>", { desc = "horizontal resize -5" })
 
 -- move selected line up/down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move line down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move line up" })
 
 -- duplicate line
 vim.keymap.set("n", "<S-A-Down>", ":t.<CR>", { desc = "Duplicate line down" })
