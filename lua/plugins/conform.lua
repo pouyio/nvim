@@ -15,6 +15,7 @@ return {
 			["javascriptreact"] = use_biome_if_installed_locally,
 			["typescript"] = use_biome_if_installed_locally,
 			["typescriptreact"] = use_biome_if_installed_locally,
+			["graphql"] = use_biome_if_installed_locally,
 			["css"] = { "prettier" },
 			["scss"] = { "prettier" },
 			["html"] = { "prettier" },
@@ -23,7 +24,6 @@ return {
 			["yaml"] = { "prettier" },
 			["markdown"] = { "prettier" },
 			["markdown.mdx"] = { "prettier" },
-			["graphql"] = { "prettier" },
 			["lua"] = { "stylua" },
 		},
 		format_on_save = {
