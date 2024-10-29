@@ -26,11 +26,14 @@ return {
 			end,
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
+		{ "theprimeagen/harpoon" },
 	},
 	config = function()
 		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
 		local actions = require("telescope.actions")
+		local harpoon = require("harpoon")
+
 		telescope.setup({
 			defaults = {
 				file_ignore_patterns = { ".git/" },
@@ -107,6 +110,20 @@ return {
 						"--iglob",
 						"!.git", -- Exclude the .git directory
 					},
+					attach_mappings = function(_, map)
+						map("n", "<leader>a", function()
+							local selected_entry = require("telescope.actions.state").get_selected_entry()
+							local item = {
+								value = selected_entry.value,
+								context = {
+									row = 1,
+									col = 0,
+								},
+							}
+							harpoon:list():add(item)
+						end)
+						return true
+					end,
 				},
 				resume = {
 					initial_mode = "normal",
