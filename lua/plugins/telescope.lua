@@ -89,6 +89,7 @@ return {
 				live_grep = {
 					additional_args = {
 						"--hidden",
+						"-i",
 						-- still have to hide .git
 					},
 				},
