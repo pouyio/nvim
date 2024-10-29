@@ -19,14 +19,4 @@ return {
 			vim.cmd.colorscheme("onedark_vivid")
 		end,
 	},
-	{
-		"rebelot/kanagawa.nvim",
-		opts = {
-			functionStyle = { bold = true },
-		},
-		config = function(_, opts)
-			require("kanagawa").setup(opts)
-			-- vim.cmd.colorscheme("kanagawa")
-		end,
-	},
 }
