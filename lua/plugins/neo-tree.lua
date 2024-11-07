@@ -1,4 +1,9 @@
 local f = require("plugins.common.utils")
+
+local function on_move(data)
+	Snacks.rename.on_rename_file(data.source, data.destination)
+end
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -15,6 +20,7 @@ return {
 			"<cmd>Neotree toggle<CR>",
 			{ desc = "Toggle file explorer on current file" }
 		)
+		local events = require("neo-tree.events")
 		require("neo-tree").setup({
 			close_if_last_window = true,
 			commands = {
@@ -89,10 +95,18 @@ return {
 			},
 			event_handlers = {
 				{
-					event = "file_opened",
+					event = events.FILE_OPENED,
 					handler = function()
 						require("neo-tree.command").execute({ action = "close" })
 					end,
+				},
+				{
+					event = events.FILE_MOVED,
+					handler = on_move, -- not working, review with updated snacks.nvim
+				},
+				{
+					event = events.FILE_RENAMED,
+					handler = on_move, -- not working, review with updated snacks.nvim
 				},
 			},
 		})

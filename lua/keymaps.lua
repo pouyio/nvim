@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("t", f.isMac() and "<D-j>" or "<C-j>", "<C-\\><C-n>", { noremap = true })
 
 -- visual movement
 vim.keymap.set("n", "j", "gj")
@@ -80,9 +79,6 @@ vim.keymap.set("n", "<S-u>", "<C-r>")
 -- search for selected text
 vim.keymap.set("v", "/", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
 vim.keymap.set("v", "?", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
-
--- Clear highlighting on pressing Escape
-vim.keymap.set("n", "<Esc>", "<esc>:nohlsearch<CR>", { silent = true })
 
 -- Only hit by accident
 vim.keymap.set("n", "q:", "<Nop>")

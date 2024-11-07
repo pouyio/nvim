@@ -30,6 +30,8 @@ return {
 				mc.clearCursors()
 			else
 				-- Default <esc> handler.
+				-- Clear highlighting on pressing Escape
+				vim.cmd("nohlsearch")
 			end
 		end)
 
