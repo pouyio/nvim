@@ -1,16 +1,21 @@
 local f = require("plugins.common.utils")
 
 -- Function to check clipboard with retries
-local function getRelativeFilepath(retries, delay)
-	local relative_filepath
-	for i = 1, retries do
-		relative_filepath = vim.fn.getreg("+")
+local function getRelativeFilepath(retries, delay, callback)
+	local function tryGetFilepath(remaining_retries)
+		local relative_filepath = vim.fn.getreg("+")
 		if relative_filepath ~= "" then
-			return relative_filepath -- Return filepath if clipboard is not empty
+			callback(relative_filepath) -- Call the callback with the filepath if found
+		elseif remaining_retries > 1 then
+			vim.defer_fn(function()
+				tryGetFilepath(remaining_retries - 1)
+			end, delay)
+		else
+			callback(nil) -- Call the callback with nil if retries are exhausted
 		end
-		vim.loop.sleep(delay) -- Wait before retrying
 	end
-	return nil -- Return nil if clipboard is still empty after retries
+
+	tryGetFilepath(retries)
 end
 
 -- Function to handle editing from Lazygit
@@ -24,24 +29,24 @@ function LazygitEdit(original_buffer)
 	end
 
 	vim.fn.chansend(channel_id, "\15") -- \15 is <c-o> to copy path
-	-- vim.cmd("close") -- Close Lazygit
 
-	local relative_filepath = getRelativeFilepath(5, 50)
-	if not relative_filepath then
-		vim.notify("Clipboard is empty or invalid.", vim.log.levels.ERROR)
-		return
-	end
+	getRelativeFilepath(5, 50, function(relative_filepath)
+		if not relative_filepath then
+			vim.notify("Clipboard is empty or invalid.", vim.log.levels.ERROR)
+			return
+		end
 
-	local winid = vim.fn.bufwinid(original_buffer)
+		local winid = vim.fn.bufwinid(original_buffer)
 
-	if winid == -1 then
-		vim.notify("Could not find the original window.", vim.log.levels.ERROR)
-		return
-	end
+		if winid == -1 then
+			vim.notify("Could not find the original window.", vim.log.levels.ERROR)
+			return
+		end
 
-	Snacks.lazygit()
-	vim.fn.win_gotoid(winid)
-	vim.cmd("e " .. relative_filepath)
+		Snacks.lazygit()
+		vim.fn.win_gotoid(winid)
+		vim.cmd("e " .. relative_filepath)
+	end)
 end
 
 function Lazygit_toggle() end
