@@ -104,3 +104,6 @@ vim.keymap.set("n", f.isMac() and "<D-up>" or "C-up", ":cprevious<CR>")
 -- Indent in visual mode using tab
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
+
+-- disable copy when pasting in visual
+vim.keymap.set("v", "p", '"_dP')
