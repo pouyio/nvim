@@ -62,6 +62,7 @@ return {
 		words = {
 			debounce = 50,
 			enabled = true,
+			notify_jump = true,
 		},
 		lazygit = {
 			win = {
