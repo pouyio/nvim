@@ -65,7 +65,8 @@ vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Left>" or "C-Left"
 vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<D-Left>" or "<Home>", "^")
 vim.keymap.set("i", f.isMac() and "<D-Left>" or "<Home>", "<C-o>^")
 vim.keymap.set("c", f.isMac() and "<D-Left>" or "<Home>", "<C-b>")
-vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<D-Right>" or "<End>", "$")
+vim.keymap.set({ "n", "o" }, f.isMac() and "<D-Right>" or "<End>", "$")
+vim.keymap.set("v", f.isMac() and "<D-Right>" or "<End>", "g_") -- move to last non-blank character
 vim.keymap.set("c", f.isMac() and "<D-Right>" or "<End>", "<C-e>")
 vim.keymap.set("i", f.isMac() and "<D-Right>" or "<End>", "<C-o>$")
 
