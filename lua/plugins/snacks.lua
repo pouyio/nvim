@@ -49,8 +49,6 @@ function LazygitEdit(original_buffer)
 	end)
 end
 
-function Lazygit_toggle() end
-
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
