@@ -1,6 +1,7 @@
 local M = {}
 
 M.isMac = function()
+	---@diagnostic disable-next-line: undefined-field -- os_uname is a reliable field
 	return vim.loop.os_uname().sysname == "Darwin"
 end
 
