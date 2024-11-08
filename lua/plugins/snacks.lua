@@ -68,6 +68,15 @@ return {
 				height = 0.95,
 				width = 0.95,
 				backdrop = false,
+				keys = {
+					{
+						f.isMac() and "<D-l>" or "<C-l>",
+						function()
+							Snacks.lazygit()
+						end,
+						mode = "t",
+					},
+				},
 			},
 		},
 		terminal = {
@@ -94,22 +103,6 @@ return {
 			desc = "Open Lazygit",
 		},
 		{
-			f.isMac() and "<D-l>" or "<C-l>",
-			function()
-				Snacks.lazygit()
-			end,
-			mode = "t",
-			desc = "Close Lazygit when opened",
-		},
-		{
-			"q", -- overrides default keymap to avoid closing the window, just toggling it
-			function()
-				Snacks.lazygit()
-			end,
-			mode = "t",
-			desc = "Close Lazygit when opened",
-		},
-		{
 			f.isMac() and "<D-j>" or "<C-j>",
 			function()
 				Snacks.terminal("zsh")
@@ -122,7 +115,7 @@ return {
 				Snacks.terminal.toggle("zsh")
 			end,
 			mode = "t",
-			desc = "Close Terminal when opened",
+			desc = "Toggle Terminal when opened",
 		},
 		{
 			"<A-n>",
