@@ -50,7 +50,7 @@ return {
 				keymaps = {
 					init_selection = "<CR>",
 					node_incremental = "<CR>",
-					node_decremental = "<S-CR>",
+					node_decremental = f.isMac() and "<S-CR>" or "<up>", -- mapped in windows terminal because it does not send shift+space
 				},
 			},
 		})
