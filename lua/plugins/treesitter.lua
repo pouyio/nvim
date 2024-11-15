@@ -48,9 +48,9 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
-					node_incremental = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
-					node_decremental = f.isMac() and "<D-A-Left>" or "<C-A-Left>",
+					init_selection = "<CR>",
+					node_incremental = "<CR>",
+					node_decremental = "<S-CR>",
 				},
 			},
 		})
