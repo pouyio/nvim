@@ -68,7 +68,6 @@ return {
 			win = {
 				height = 0.95,
 				width = 0.95,
-				backdrop = false,
 				keys = {
 					{
 						f.isMac() and "<D-l>" or "<C-l>",
@@ -84,7 +83,6 @@ return {
 			win = {
 				height = 0.95,
 				width = 0.95,
-				backdrop = false,
 			},
 		},
 	},
