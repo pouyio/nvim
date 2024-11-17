@@ -54,10 +54,6 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		bigfile = { enabled = false },
-		notifier = { enabled = false },
-		notify = { enabled = false },
-		quickfile = { enabled = false },
 		statuscolumn = { enabled = false }, -- not working :( would add folding and remove gitsigns plugin
 		words = {
 			debounce = 50,
