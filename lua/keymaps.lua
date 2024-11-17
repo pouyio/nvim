@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
-vim.keymap.set("t", f.isMac() and "<D-j>" or "<C-j>", "<C-\\><C-n>", { noremap = true })
 
 -- visual movement
 vim.keymap.set("n", "j", "gj")
@@ -66,7 +65,8 @@ vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Left>" or "C-Left"
 vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<D-Left>" or "<Home>", "^")
 vim.keymap.set("i", f.isMac() and "<D-Left>" or "<Home>", "<C-o>^")
 vim.keymap.set("c", f.isMac() and "<D-Left>" or "<Home>", "<C-b>")
-vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<D-Right>" or "<End>", "$")
+vim.keymap.set({ "n", "o" }, f.isMac() and "<D-Right>" or "<End>", "$")
+vim.keymap.set("v", f.isMac() and "<D-Right>" or "<End>", "g_") -- move to last non-blank character
 vim.keymap.set("c", f.isMac() and "<D-Right>" or "<End>", "<C-e>")
 vim.keymap.set("i", f.isMac() and "<D-Right>" or "<End>", "<C-o>$")
 
@@ -81,9 +81,6 @@ vim.keymap.set("n", "<S-u>", "<C-r>")
 vim.keymap.set("v", "/", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
 vim.keymap.set("v", "?", [[y/\V<C-R>=escape(@",'/\\')<CR><CR>]], { noremap = true })
 
--- Clear highlighting on pressing Escape
-vim.keymap.set("n", "<Esc>", "<esc>:nohlsearch<CR>", { silent = true })
-
 -- Only hit by accident
 vim.keymap.set("n", "q:", "<Nop>")
 
@@ -92,15 +89,6 @@ vim.keymap.set("n", f.isMac() and "<D-u>" or "<C-u>", "gcc", { remap = true })
 vim.keymap.set("v", f.isMac() and "<D-u>" or "<C-u>", "gcgv", { remap = true })
 vim.keymap.set("i", f.isMac() and "<D-u>" or "<C-u>", "<ESC>gcci", { remap = true })
 
--- Go to absolute line, not in quickfix list
-vim.keymap.set("n", "<CR>", function()
-	if vim.bo.buftype == "quickfix" then
-		return "<CR>" -- Default behavior in quickfix list
-	else
-		return "G" -- Your custom behavior for normal buffers
-	end
-end, { expr = true })
-
 -- Navigate in quickfix list items
 vim.keymap.set("n", f.isMac() and "<D-down>" or "C-down", ":cnext<CR>")
 vim.keymap.set("n", f.isMac() and "<D-up>" or "C-up", ":cprevious<CR>")
@@ -108,3 +96,6 @@ vim.keymap.set("n", f.isMac() and "<D-up>" or "C-up", ":cprevious<CR>")
 -- Indent in visual mode using tab
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
+
+-- disable copy when pasting in visual
+vim.keymap.set("v", "p", '"_dP')

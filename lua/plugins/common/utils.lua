@@ -1,21 +1,17 @@
 local M = {}
 
 M.isMac = function()
+	---@diagnostic disable-next-line: undefined-field -- os_uname is a reliable field
 	return vim.loop.os_uname().sysname == "Darwin"
 end
 
 M.closeBuffer = function()
-	local bufnr = vim.fn.bufnr("%") -- Get the buffer number of the current buffer
 	local window_count = #vim.api.nvim_tabpage_list_wins(0) -- Get the number of windows in the current tab
 
-	if vim.api.nvim_get_option_value("buftype", { buf = bufnr }) == "terminal" then
-		vim.api.nvim_command("bd!") -- Force close terminal buffer
+	if window_count > 1 then
+		vim.api.nvim_command("close") -- Close the window if there are multiple windows
 	else
-		if window_count > 1 then
-			vim.api.nvim_command("close") -- Close the window if there are multiple windows
-		else
-			vim.api.nvim_command("bd") -- Close the buffer if it's the only window
-		end
+		Snacks.bufdelete() -- Calling snacks because provides a meesage if the buffer is unsaved. Works with terminal buffers as well
 	end
 end
 

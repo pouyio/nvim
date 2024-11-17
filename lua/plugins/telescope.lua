@@ -11,6 +11,22 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+local function addToHarpoon(_, map)
+	local harpoon = require("harpoon")
+	map("n", "<leader>a", function()
+		local selected_entry = require("telescope.actions.state").get_selected_entry()
+		local item = {
+			value = selected_entry.value,
+			context = {
+				row = 1,
+				col = 0,
+			},
+		}
+		harpoon:list():add(item)
+	end)
+	return true
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
@@ -32,7 +48,6 @@ return {
 		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
 		local actions = require("telescope.actions")
-		local harpoon = require("harpoon")
 
 		telescope.setup({
 			defaults = {
@@ -82,6 +97,7 @@ return {
 				buffers = {
 					initial_mode = "normal",
 					-- theme = "dropdown",
+					attach_mappings = addToHarpoon,
 				},
 				grep_string = {
 					initial_mode = "normal",
@@ -96,9 +112,11 @@ return {
 				lsp_references = {
 					initial_mode = "normal",
 					show_line = false,
+					attach_mappings = addToHarpoon,
 				},
 				lsp_definitions = {
 					initial_mode = "normal",
+					attach_mappings = addToHarpoon,
 				},
 				git_status = {
 					initial_mode = "normal",
@@ -111,20 +129,7 @@ return {
 						"--iglob",
 						"!.git", -- Exclude the .git directory
 					},
-					attach_mappings = function(_, map)
-						map("n", "<leader>a", function()
-							local selected_entry = require("telescope.actions.state").get_selected_entry()
-							local item = {
-								value = selected_entry.value,
-								context = {
-									row = 1,
-									col = 0,
-								},
-							}
-							harpoon:list():add(item)
-						end)
-						return true
-					end,
+					attach_mappings = addToHarpoon,
 				},
 				resume = {
 					initial_mode = "normal",

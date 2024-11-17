@@ -30,6 +30,8 @@ return {
 				mc.clearCursors()
 			else
 				-- Default <esc> handler.
+				vim.cmd("nohlsearch") -- Clear highlighting on pressing Escape
+				vim.cmd("echo ''") -- clear the statusbar
 			end
 		end)
 

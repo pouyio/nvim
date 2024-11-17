@@ -2,7 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
-		local f = require("plugins.common.utils")
+		-- local f = require("plugins.common.utils")
 		local treesitter = require("nvim-treesitter.configs")
 
 		-- set .mdx files as markdown
@@ -45,14 +45,14 @@ return {
 				"vue",
 				"yaml",
 			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
-					node_incremental = f.isMac() and "<D-A-Right>" or "<C-A-Right>",
-					node_decremental = f.isMac() and "<D-A-Left>" or "<C-A-Left>",
-				},
-			},
+			-- incremental_selection = {
+			-- 	enable = true,
+			-- 	keymaps = {
+			-- 		init_selection = "<CR>",
+			-- 		node_incremental = "<CR>",
+			-- 		node_decremental = f.isMac() and "<S-CR>" or "⊗", -- strange unicode mapped in windows because it cant understand shift+enter
+			-- 	},
+			-- },
 		})
 	end,
 }
