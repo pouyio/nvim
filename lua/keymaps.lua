@@ -30,10 +30,10 @@ vim.keymap.set("n", "<Down>", "<C-w>j", { noremap = true })
 vim.keymap.set("n", "<Up>", "<C-w>k", { noremap = true })
 
 -- windows resize
-vim.keymap.set("n", "<leader>rk", ":horizontal resize +5<CR>", { desc = "vertical resize +5" })
-vim.keymap.set("n", "<leader>rj", ":horizontal resize -5<CR>", { desc = "vertical resize -5" })
-vim.keymap.set("n", "<leader>rl", ":vertical resize +5<CR>", { desc = "horizontal resize +5" })
-vim.keymap.set("n", "<leader>rh", ":vertical resize -5<CR>", { desc = "horizontal resize -5" })
+vim.keymap.set("n", "<leader>rk", ":horizontal resize +10<CR>", { desc = "vertical resize +10" })
+vim.keymap.set("n", "<leader>rj", ":horizontal resize -10<CR>", { desc = "vertical resize -10" })
+vim.keymap.set("n", "<leader>rl", ":vertical resize +10<CR>", { desc = "horizontal resize +10" })
+vim.keymap.set("n", "<leader>rh", ":vertical resize -10<CR>", { desc = "horizontal resize -10" })
 
 -- move selected line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move line down" })
