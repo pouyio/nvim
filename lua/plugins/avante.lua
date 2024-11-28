@@ -2,6 +2,7 @@ local f = require("plugins.common.utils")
 
 return {
 	"yetone/avante.nvim",
+	enabled = f.isMac() and true or false,
 	event = "VeryLazy",
 	lazy = false,
 	version = false, -- set this if you want to always pull the latest change
