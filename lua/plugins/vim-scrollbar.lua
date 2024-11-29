@@ -11,5 +11,9 @@ return {
 			Hint = { color = "#4fd6be" },
 			Misc = { color = "#c75ae8" },
 		},
+		excluded_filetypes = {
+			"neo-tree",
+			"neo-tree-popup",
+		},
 	},
 }
