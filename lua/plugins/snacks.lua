@@ -169,7 +169,7 @@ return {
 					key = "<CR>",
 					desc = "Open tree view",
 					action = function()
-						vim.cmd("NvimTreeFindFileToggle")
+						vim.cmd("Neotree")
 					end,
 				},
 				{
