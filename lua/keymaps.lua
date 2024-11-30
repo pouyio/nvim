@@ -58,8 +58,8 @@ vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
 vim.keymap.set("n", "<A-S-->", "<C-i>", { desc = "go forth" })
 
 -- next/prev word
-vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Right>" or "C-Right", "<S-Right>", { noremap = true })
-vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Left>" or "C-Left", "<S-Left>", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Right>" or "<C-Right>", "<S-Right>", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Left>" or "<C-Left>", "<S-Left>", { noremap = true })
 
 -- start/end line
 vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<D-Left>" or "<Home>", "^")
