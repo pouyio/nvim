@@ -153,7 +153,6 @@ return {
 				initial_mode = "normal",
 			})
 		end, { desc = "Grep Selected String" })
-		vim.keymap.set("n", "<leader>fg", builtin.git_status, { desc = "Find git status" })
 		-- keymaps inside buffer picker
 		vim.keymap.set("n", "<leader>v", function()
 			builtin.buffers({
