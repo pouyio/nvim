@@ -22,3 +22,7 @@ create_cmd("DiffThis", function()
 		vim.api.nvim_command("wincmd h")
 	end, 50)
 end, { desc = "Open git diff file" })
+
+create_cmd("QuickfixListToggle", function()
+	vim.cmd("copen")
+end, { desc = "Toggle quickfix list" })
