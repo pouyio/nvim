@@ -37,11 +37,10 @@ return {
 			lualine_b = {
 				function()
 					-- Get the current working directory
-					local currentDir = vim.fn.getcwd()
+					local cwd = vim.fn.getcwd()
 
 					-- Extract the last folder from the path
-					local lastFolder = currentDir:match("[^/]+$")
-					return lastFolder
+					return vim.fn.fnamemodify(cwd, ":t")
 				end,
 			},
 			lualine_c = {
