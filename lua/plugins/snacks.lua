@@ -50,11 +50,24 @@ function LazygitEdit(original_buffer)
 	end)
 end
 
+local animateConfig = {
+	duration = {
+		step = 10,
+		total = 80,
+	},
+}
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
 	opts = {
+		indent = {
+			scope = { animate = animateConfig },
+		},
+		scroll = {
+			animate = animateConfig,
+		},
 		statuscolumn = { enabled = false }, -- not working :( would add folding and remove gitsigns plugin
 		dashboard = {
 			preset = {
