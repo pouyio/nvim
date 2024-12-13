@@ -76,6 +76,8 @@ return {
 				mappings = {
 					["<leader>a"] = "add_to_harpoon",
 					["<leader>y"] = "copy_path",
+					["<c-u>"] = { "scroll_preview", config = { direction = 10 } },
+					["<c-d>"] = { "scroll_preview", config = { direction = -10 } },
 				},
 			},
 			filesystem = {
