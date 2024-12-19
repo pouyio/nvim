@@ -98,3 +98,5 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 
 -- disable copy when pasting in visual
 vim.keymap.set("v", "p", '"_dP')
+
+vim.keymap.set("i", "<S-Tab>", "<BS>")
