@@ -54,8 +54,7 @@ vim.keymap.set("c", f.isMac() and "<A-Del>" or "<C-Del>", "<S-Right><C-W>", { no
 
 -- go back/forth
 vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
--- TODO not working on windows
-vim.keymap.set("n", "<A-S-->", "<C-i>", { desc = "go forth" })
+vim.keymap.set("n", f.isMac() and "<A-S-->" or "<A-_>", "<C-i>", { desc = "go forth" })
 
 -- next/prev word
 vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Right>" or "<C-Right>", "<S-Right>", { noremap = true })
