@@ -6,7 +6,10 @@ return {
 		"neovim/nvim-lspconfig",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/nvim-cmp",
-		"L3MON4D3/LuaSnip",
+		{
+			"L3MON4D3/LuaSnip",
+			dependencies = { "rafamadriz/friendly-snippets" },
+		},
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 		{ "j-hui/fidget.nvim", opts = {} },
 	},
@@ -14,6 +17,8 @@ return {
 		local lsp_zero = require("lsp-zero")
 		local f = require("plugins.common.utils")
 		local lspkind = require("lspkind")
+
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		vim.diagnostic.config({
 			signs = { text = { [1] = " ", [2] = " ", [3] = " ", [4] = "󰌵" } },
@@ -30,19 +35,35 @@ return {
 		end)
 
 		local cmp = require("cmp")
-		local cmp_action = lsp_zero.cmp_action()
 
 		cmp.setup({
+			preselect = "item",
+			completion = {
+				completeopt = "menu,menuone,noinsert",
+			},
 			mapping = cmp.mapping.preset.insert({
 				-- `Enter` key to confirm completion
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 
 				[f.isMac() and "<D-i>" or "⊘"] = cmp.mapping.complete(),
 				-- Navigate between snippet placeholder
-				["<C-f>"] = cmp_action.luasnip_jump_forward(),
-				["<C-b>"] = cmp_action.luasnip_jump_backward(),
-
-				-- Scroll up and down in the completion documentation
+				["<Tab>"] = cmp.mapping(function(fallback)
+					local luasnip = require("luasnip")
+					if luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				-- Jump to the previous snippet placeholder
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					local luasnip = require("luasnip")
+					if luasnip.locally_jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }), -- Scroll up and down in the completion documentation
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				--['<C-d>'] = cmp.mapping.scroll_docs(4),
 			}),
@@ -61,12 +82,31 @@ return {
 				{ name = "nvim_lsp" }, -- lsp
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
-				{ name = "LuaSnip" }, -- snippets
+				{ name = "luasnip" }, -- snippets
 			}),
+			snippet = {
+				expand = function(args)
+					require("luasnip").lsp_expand(args.body)
+				end,
+			},
 		})
 
 		require("mason").setup({})
 		require("mason-lspconfig").setup({
+			ensure_installed = {
+				"tailwindcss",
+				"jsonls",
+				"gopls",
+				"emmet_language_server",
+				"cssls",
+				"eslint",
+				"lua_ls",
+				"ts_ls",
+				"stylua",
+				-- install manually
+				-- "prettier"
+				-- "stylua"
+			},
 			handlers = {
 				lsp_zero.default_setup,
 				lua_ls = function()
