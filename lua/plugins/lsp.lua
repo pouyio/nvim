@@ -149,7 +149,7 @@ return {
 					"gopls",
 					"emmet_language_server",
 					"cssls",
-					"eslint",
+					"eslint@4.8.0", -- latest version throwing error when no config file is found
 					"lua_ls",
 					"ts_ls",
 					-- install manually
