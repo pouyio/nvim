@@ -5,9 +5,9 @@ vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
 
--- visual movement
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
+-- relative jumps add entry to jumplist
+vim.keymap.set("n", "k", [[(v:count > 1 ? "m'" . v:count : "") . 'gk']], { expr = true })
+vim.keymap.set("n", "j", [[(v:count > 1 ? "m'" . v:count : "") . 'gj']], { expr = true })
 
 -- select all
 vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG", { desc = "Select all" })
