@@ -50,21 +50,12 @@ function LazygitEdit(original_buffer)
 	end)
 end
 
-local animateConfig = {
-	duration = {
-		step = 10,
-		total = 80,
-	},
-}
-
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
 	opts = {
-		indent = {
-			scope = { animate = animateConfig },
-		},
+		indent = {},
 		scroll = {
 			enabled = false, -- it breaks pasting big chunks of text
 		},
