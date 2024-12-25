@@ -60,7 +60,7 @@ return {
 			sections = allSections,
 			inactive_sections = allSections,
 			extensions = {
-				"nvim-tree",
+				"neo-tree",
 			},
 		}
 		require("lualine").setup(options)
