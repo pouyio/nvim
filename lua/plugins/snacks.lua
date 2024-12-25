@@ -66,7 +66,7 @@ return {
 			scope = { animate = animateConfig },
 		},
 		scroll = {
-			animate = animateConfig,
+			enabled = false, -- it breaks pasting big chunks of text
 		},
 		statuscolumn = { enabled = false }, -- not working :( would add folding and remove gitsigns plugin
 		dashboard = {
