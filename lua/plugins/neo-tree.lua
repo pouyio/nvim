@@ -75,6 +75,7 @@ return {
 				width = 35,
 				position = "right",
 				mappings = {
+					["<c-b>"] = false,
 					["<leader>a"] = "add_to_harpoon",
 					["<leader>y"] = "copy_path",
 					["<c-u>"] = { "scroll_preview", config = { direction = 10 } },
