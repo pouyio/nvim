@@ -68,7 +68,7 @@ return {
 					end, { "i", "s" }), -- Scroll up and down in the completion documentation
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
 					["<C-d>"] = cmp.mapping.scroll_docs(4),
-					["<Esc>"] = cmp.mapping.abort(),
+					-- ["<Esc>"] = cmp.mapping.abort(),
 				}),
 				window = {
 					completion = cmp.config.window.bordered(),
