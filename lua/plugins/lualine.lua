@@ -56,13 +56,17 @@ return {
 			lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
 			lualine_y = {},
 		}
-		local options = {
+		local opts = {
+			options = {
+				component_separators = "",
+				section_separators = "",
+			},
 			sections = allSections,
 			inactive_sections = allSections,
 			extensions = {
 				"neo-tree",
 			},
 		}
-		require("lualine").setup(options)
+		require("lualine").setup(opts)
 	end,
 }
