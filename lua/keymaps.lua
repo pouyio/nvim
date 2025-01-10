@@ -45,6 +45,9 @@ vim.keymap.set("n", "<S-A-Up>", ":<C-u>.,.t-1<CR>", { desc = "Duplicate line up"
 vim.keymap.set("v", "<S-A-Down>", "yPgv", { desc = "Duplicate selected lines down" })
 vim.keymap.set("v", "<S-A-Up>", "y'>pgv", { desc = "Duplicate selected lines up" })
 
+-- delete full line
+vim.keymap.set("i", "\x0b", "<C-o>D", { noremap = true })
+
 -- delete full word
 vim.keymap.set({ "i", "c" }, f.isMac() and "<A-BS>" or "<C-H>", function()
 	vim.api.nvim_input("<C-w>")
@@ -57,17 +60,17 @@ vim.keymap.set("n", "<A-->", "<C-o>", { desc = "go back" })
 vim.keymap.set("n", f.isMac() and "<A-S-->" or "<A-_>", "<C-i>", { desc = "go forth" })
 
 -- next/prev word
-vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Right>" or "<C-Right>", "<S-Right>", { noremap = true })
-vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-Left>" or "<C-Left>", "<S-Left>", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-f>" or "<C-Right>", "<S-Right>", { noremap = true })
+vim.keymap.set({ "n", "i", "v", "c", "o" }, f.isMac() and "<A-b>" or "<C-Left>", "<S-Left>", { noremap = true })
 
 -- start/end line
-vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<D-Left>" or "<Home>", "^")
-vim.keymap.set("i", f.isMac() and "<D-Left>" or "<Home>", "<C-o>^")
-vim.keymap.set("c", f.isMac() and "<D-Left>" or "<Home>", "<C-b>")
-vim.keymap.set({ "n", "o" }, f.isMac() and "<D-Right>" or "<End>", "$")
-vim.keymap.set("v", f.isMac() and "<D-Right>" or "<End>", "g_") -- move to last non-blank character
-vim.keymap.set("c", f.isMac() and "<D-Right>" or "<End>", "<C-e>")
-vim.keymap.set("i", f.isMac() and "<D-Right>" or "<End>", "<C-o>$")
+vim.keymap.set({ "n", "v", "o" }, f.isMac() and "<C-A>" or "<Home>", "^")
+vim.keymap.set("i", f.isMac() and "<C-A>" or "<Home>", "<C-o>^")
+vim.keymap.set("c", f.isMac() and "<C-A>" or "<Home>", "<C-b>")
+vim.keymap.set({ "n", "o" }, f.isMac() and "<C-E>" or "<End>", "$")
+vim.keymap.set("v", f.isMac() and "<C-E>" or "<End>", "g_") -- move to last non-blank character
+vim.keymap.set("c", f.isMac() and "<C-E>" or "<End>", "<C-e>")
+vim.keymap.set("i", f.isMac() and "<C-E>" or "<End>", "<C-o>$")
 
 -- save file, update to only save to this if there are changes
 vim.keymap.set("n", f.isMac() and "<D-s>" or "<C-s>", ":update<CR>")
