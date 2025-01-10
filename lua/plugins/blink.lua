@@ -1,6 +1,6 @@
 local f = require("plugins.common.utils")
 return {
-	enabled = false, -- TODO enable when dot repeat is fixed, needed for multicursor https://github.com/Saghen/blink.cmp/issues/182
+	enabled = false, -- TODO enable when dot repeat is fixed, needed for multicursor https://github.com/Saghen/blink.cmp/pull/870
 	"saghen/blink.cmp",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
