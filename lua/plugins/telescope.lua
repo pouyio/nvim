@@ -174,10 +174,6 @@ return {
 				end,
 			})
 		end, { desc = "Find buffer" })
-		vim.keymap.set("v", f.isMac() and "<D-f>" or "<C-f>", function()
-			local text = f.getVisualSelected()
-			builtin.grep_string({ search = text })
-		end, { desc = "Find selected text" })
 		vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Show references" })
 		telescope.load_extension("ui-select")
 	end,
