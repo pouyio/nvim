@@ -48,6 +48,7 @@ return {
 		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
 		local actions = require("telescope.actions")
+		local themes = require("telescope.themes")
 
 		telescope.setup({
 			defaults = {
@@ -78,6 +79,8 @@ return {
 					width = 0.95,
 					horizontal = {
 						prompt_position = "top",
+						preview_cutoff = 85,
+						preview_width = 85,
 					},
 				},
 				mappings = {
@@ -96,7 +99,12 @@ return {
 			pickers = {
 				buffers = {
 					initial_mode = "normal",
-					-- theme = "dropdown",
+					theme = "dropdown",
+					layout_config = {
+						mirror = true,
+						anchor = "N",
+						width = 0.60,
+					},
 					attach_mappings = addToHarpoon,
 				},
 				grep_string = {
@@ -137,7 +145,7 @@ return {
 			},
 			extensions = {
 				["ui-select"] = { -- show code actions in a telescope dropdown
-					require("telescope.themes").get_dropdown({
+					themes.get_dropdown({
 						initial_mode = "normal",
 					}),
 				},
@@ -148,7 +156,7 @@ return {
 		vim.keymap.set({ "n", "v" }, "<leader>ff", builtin.live_grep, { desc = "Grep String" })
 		vim.keymap.set("v", "<leader>ff", function()
 			local text = f.getVisualSelected()
-			require("telescope.builtin").live_grep({
+			builtin.live_grep({
 				default_text = text,
 				initial_mode = "normal",
 			})
@@ -171,6 +179,6 @@ return {
 			builtin.grep_string({ search = text })
 		end, { desc = "Find selected text" })
 		vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Show references" })
-		require("telescope").load_extension("ui-select")
+		telescope.load_extension("ui-select")
 	end,
 }
