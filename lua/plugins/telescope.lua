@@ -103,7 +103,7 @@ return {
 					layout_config = {
 						mirror = true,
 						anchor = "N",
-						width = 0.60,
+						width = 0.75,
 					},
 					attach_mappings = addToHarpoon,
 				},
