@@ -85,14 +85,20 @@ return {
 				},
 				mappings = {
 					n = {
-						[f.isMac and "<D-f>" or "<C-f>"] = actions.send_to_qflist + actions.open_qflist,
+						[f.isMac() and "<D-f>" or "<C-f>"] = function(prompt_bufnr)
+							actions.send_to_qflist(prompt_bufnr)
+							actions.open_qflist()
+						end,
 						["s"] = actions.select_vertical,
 					},
 					-- cycle through history in any picker
 					i = {
 						["<Down>"] = actions.cycle_history_next,
 						["<Up>"] = actions.cycle_history_prev,
-						[f.isMac and "<D-f>" or "<C-f>"] = actions.send_to_qflist + actions.open_qflist,
+						[f.isMac and "<D-f>" or "<C-f>"] = function(prompt_bufnr)
+							actions.send_to_qflist(prompt_bufnr)
+							actions.open_qflist()
+						end,
 					},
 				},
 			},
