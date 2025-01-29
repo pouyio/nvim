@@ -66,6 +66,10 @@ return {
 					{
 						"tabs",
 						mode = 1,
+						symbols = {
+							modified = "●", -- Text to show when the file is modified.
+						},
+						max_length = vim.o.columns,
 					},
 				},
 			},
