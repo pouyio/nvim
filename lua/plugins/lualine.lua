@@ -25,44 +25,50 @@ return {
 			["MORE"] = "M",
 		}
 
-		local allSections = {
-			lualine_a = {
-				{
-					"mode",
-					fmt = function(s)
-						return mode_map[s] or s
-					end,
-				},
-			},
-			lualine_b = {
-				function()
-					-- Get the current working directory
-					local cwd = vim.fn.getcwd()
-
-					-- Extract the last folder from the path
-					return vim.fn.fnamemodify(cwd, ":t")
-				end,
-			},
-			lualine_c = {
-				{
-					"harpoon2",
-					indicators = { " 1 ", " 2 ", " 3 ", " 4 " },
-					_separator = "",
-				},
-				{ "filename", path = 1, symbols = {
-					modified = "●",
-				} },
-			},
-			lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
-			lualine_y = {},
-		}
 		local opts = {
 			options = {
 				component_separators = "",
 				section_separators = "",
 			},
-			sections = allSections,
-			inactive_sections = allSections,
+			sections = {
+				lualine_a = {
+					{
+						"mode",
+						fmt = function(s)
+							return mode_map[s] or s
+						end,
+					},
+				},
+				lualine_b = {
+					function()
+						-- Get the current working directory
+						local cwd = vim.fn.getcwd()
+
+						-- Extract the last folder from the path
+						return vim.fn.fnamemodify(cwd, ":t")
+					end,
+				},
+				lualine_c = {
+					{
+						"harpoon2",
+						indicators = { " 1 ", " 2 ", " 3 ", " 4 " },
+						_separator = "",
+					},
+					{ "filename", path = 1, symbols = {
+						modified = "●",
+					} },
+				},
+				lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
+				lualine_y = {},
+			},
+			tabline = {
+				lualine_a = {
+					{
+						"tabs",
+						mode = 1,
+					},
+				},
+			},
 			extensions = {
 				"neo-tree",
 			},

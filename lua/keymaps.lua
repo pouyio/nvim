@@ -23,6 +23,13 @@ vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true,
 -- split
 vim.keymap.set("n", "<leader>s", ":vs <CR>", { desc = "Split to right" })
 
+-- tabs
+vim.keymap.set("n", ",t", ":tabnew<CR>", { silent = true })
+vim.keymap.set("n", ",m", ":tabnext<CR>", { silent = true })
+vim.keymap.set("n", ",.", ":tabprevious<CR>", { silent = true })
+vim.keymap.set("n", ",w", ":tabclose<CR>", { silent = true })
+vim.keymap.set("n", ",,", ":tabnext #<CR>", { silent = true })
+
 -- panes
 vim.keymap.set("n", "<Right>", "<C-w>l", { noremap = true })
 vim.keymap.set("n", "<Left>", "<C-w>h", { noremap = true })
