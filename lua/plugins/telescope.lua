@@ -159,7 +159,7 @@ return {
 		})
 		vim.keymap.set("n", "<leader>p", builtin.find_files, { desc = "Find Files" })
 		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume last picker" })
-		vim.keymap.set({ "n", "v" }, "<leader>ff", builtin.live_grep, { desc = "Grep String" })
+		vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Grep String" })
 		vim.keymap.set("v", "<leader>ff", function()
 			local text = f.getVisualSelected()
 			builtin.live_grep({
@@ -181,6 +181,12 @@ return {
 			})
 		end, { desc = "Find buffer" })
 		vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Show references" })
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "TelescopePreviewerLoaded",
+			callback = function()
+				vim.opt_local.number = true -- Enable line numbers
+			end,
+		})
 		telescope.load_extension("ui-select")
 	end,
 }
