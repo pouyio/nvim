@@ -89,7 +89,8 @@ return {
 							actions.send_to_qflist(prompt_bufnr)
 							actions.open_qflist()
 						end,
-						["s"] = actions.select_vertical,
+						["s"] = actions.file_vsplit,
+						["t"] = actions.file_tab,
 					},
 					-- cycle through history in any picker
 					i = {
