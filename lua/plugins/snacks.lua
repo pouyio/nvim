@@ -45,7 +45,9 @@ function LazygitEdit(original_buffer)
 
 		Snacks.lazygit()
 		vim.fn.win_gotoid(winid)
-		vim.cmd("e " .. relative_filepath)
+		vim.schedule(function()
+			vim.cmd("edit " .. vim.fn.fnameescape(relative_filepath))
+		end)
 	end)
 end
 
