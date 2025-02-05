@@ -39,15 +39,7 @@ return {
 						end,
 					},
 				},
-				lualine_b = {
-					function()
-						-- Get the current working directory
-						local cwd = vim.fn.getcwd()
-
-						-- Extract the last folder from the path
-						return vim.fn.fnamemodify(cwd, ":t")
-					end,
-				},
+				lualine_b = {},
 				lualine_c = {
 					{
 						"harpoon2",
@@ -63,6 +55,15 @@ return {
 			},
 			tabline = {
 				lualine_a = {
+					function()
+						-- Get the current working directory
+						local cwd = vim.fn.getcwd()
+
+						-- Extract the last folder from the path
+						return "󰉋 " .. vim.fn.fnamemodify(cwd, ":t")
+					end,
+				},
+				lualine_b = {
 					{
 						"tabs",
 						mode = 1,
@@ -70,6 +71,9 @@ return {
 							modified = "●", -- Text to show when the file is modified.
 						},
 						max_length = vim.o.columns,
+						cond = function()
+							return #vim.api.nvim_list_tabpages() > 1 -- Get the number of open tabs
+						end,
 					},
 				},
 			},
@@ -78,6 +82,6 @@ return {
 			},
 		}
 		require("lualine").setup(opts)
-		vim.opt.showtabline = 1
+		-- vim.opt.showtabline = 1
 	end,
 }
