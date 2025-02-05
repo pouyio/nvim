@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "kk", "<Esc>")
 
 -- relative jumps add entry to jumplist
 vim.keymap.set("n", "k", [[(v:count > 0 ? "m'" . v:count . 'k' : 'gk')]], { expr = true })
