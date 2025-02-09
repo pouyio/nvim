@@ -162,9 +162,6 @@ return {
 				},
 				select = {
 					focus = "list",
-					layout = {
-						preset = "select",
-					},
 				},
 				lsp_references = {
 					focus = "list",
@@ -275,8 +272,9 @@ return {
 		custom_vertical.layout.width = 0.8
 		custom_vertical.layout[3].height = 0.8
 
-		opts.picker.layout = custom_default
-		opts.picker.sources.select.layout = require("snacks.picker.config.layouts").select
+		opts.picker.sources.files.layout = custom_default
+		opts.picker.sources.grep.layout = custom_default
+		opts.picker.sources.lsp_references.layout = custom_default
 		opts.picker.sources.buffers.layout = custom_vertical
 
 		require("snacks").setup(opts)
