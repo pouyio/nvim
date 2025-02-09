@@ -82,6 +82,5 @@ return {
 			},
 		}
 		require("lualine").setup(opts)
-		-- vim.opt.showtabline = 1
 	end,
 }
