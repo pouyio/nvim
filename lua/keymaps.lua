@@ -4,10 +4,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "kk", "<Esc>")
 
 -- relative jumps add entry to jumplist
-vim.keymap.set("n", "k", [[(v:count > 1 ? "m'" . v:count : "") . 'gk']], { expr = true })
-vim.keymap.set("n", "j", [[(v:count > 1 ? "m'" . v:count : "") . 'gj']], { expr = true })
+vim.keymap.set("n", "k", [[(v:count > 0 ? "m'" . v:count . 'k' : 'gk')]], { expr = true })
+vim.keymap.set("n", "j", [[(v:count > 0 ? "m'" . v:count . 'j' : 'gj')]], { expr = true })
 
 -- select all
 vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG", { desc = "Select all" })
@@ -22,6 +23,13 @@ vim.keymap.set("n", "<leader>w", f.closeBuffer, { noremap = true, silent = true,
 
 -- split
 vim.keymap.set("n", "<leader>s", ":vs <CR>", { desc = "Split to right" })
+
+-- tabs
+vim.keymap.set("n", ",t", ":tab split<CR>", { silent = true, desc = "Open current buffer in new tab" })
+vim.keymap.set("n", ",m", ":tabprevious<CR>", { silent = true })
+vim.keymap.set("n", ",.", ":tabnext<CR>", { silent = true })
+vim.keymap.set("n", ",w", ":tabclose<CR>", { silent = true })
+vim.keymap.set("n", ",,", ":tabnext #<CR>", { silent = true })
 
 -- panes
 vim.keymap.set("n", "<Right>", "<C-w>l", { noremap = true })

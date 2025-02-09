@@ -1,5 +1,4 @@
 local f = require("plugins.common.utils")
-local version = vim.version()
 
 -- Function to check clipboard with retries
 local function getRelativeFilepath(retries, delay, callback)
@@ -46,7 +45,7 @@ function LazygitEdit(original_buffer)
 
 		Snacks.lazygit()
 		vim.fn.win_gotoid(winid)
-		vim.cmd("e " .. relative_filepath)
+		vim.cmd("edit " .. vim.fn.fnameescape(relative_filepath))
 	end)
 end
 
@@ -60,35 +59,6 @@ return {
 			enabled = false, -- it breaks pasting big chunks of text
 		},
 		statuscolumn = { enabled = false }, -- not working :( would add folding and remove gitsigns plugin
-		dashboard = {
-			preset = {
-				keys = {
-					{},
-				},
-				header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-]]
-					.. version.major
-					.. "."
-					.. version.minor
-					.. "."
-					.. version.patch,
-			},
-			sections = {
-				{ section = "header" },
-				{
-					section = "keys",
-					title = "󰀱 Harpoon",
-					padding = 2,
-				},
-				{ section = "startup" },
-			},
-		},
 		words = {
 			debounce = 50,
 			enabled = true,
@@ -162,43 +132,6 @@ return {
 		},
 	},
 	config = function(_, opts)
-		local harpoon = require("harpoon")
-		local items = harpoon:list().items
-
-		if #items == 0 then
-			opts.dashboard.sections[2].title = "󰀱 Harpoon - No Files"
-			opts.dashboard.preset.keys = {
-				{
-					icon = " ",
-					key = "<CR>",
-					desc = "Open tree view",
-					action = function()
-						vim.cmd("Neotree")
-					end,
-				},
-				{
-					icon = " ",
-					key = "<leader>ff",
-					desc = "Find File",
-					action = ":lua Snacks.dashboard.pick('files')",
-				},
-			}
-		end
-
-		for index, item in ipairs(harpoon:list().items) do
-			local file = vim.fs.normalize(item.value, { _fast = false, expand_env = false })
-
-			table.insert(opts.dashboard.preset.keys, {
-				autokey = true,
-				icon = "file",
-				file = file,
-				indent = 2,
-				action = function()
-					harpoon:list():select(index)
-				end,
-			})
-		end
-
 		require("snacks").setup(opts)
 	end,
 }
