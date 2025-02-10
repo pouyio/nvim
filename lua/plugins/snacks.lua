@@ -78,6 +78,7 @@ return {
 	lazy = false,
 	opts = {
 		image = {},
+		indent = {},
 		words = {
 			debounce = 50,
 			enabled = true,
