@@ -137,6 +137,9 @@ return {
 			sources = {
 				buffers = {
 					focus = "list",
+					layout = {
+						preset = "vertical",
+					},
 					win = {
 						input = {
 							keys = buffer_keys,
@@ -261,22 +264,17 @@ return {
 		},
 	},
 	config = function(_, opts)
-		local custom_default = vim.deepcopy(require("snacks.picker.config.layouts").default)
+		local custom_default = require("snacks.picker.config.layouts").default
 		custom_default.layout.width = 0.95
 		custom_default.layout.height = 0.9
 		custom_default.layout[2].min_width = 85
 		custom_default.layout[2].width = 85
 
-		local custom_vertical = vim.deepcopy(require("snacks.picker.config.layouts").vertical)
+		local custom_vertical = require("snacks.picker.config.layouts").vertical
 		custom_vertical.layout.height = 0.95
 		custom_vertical.layout.backdrop = true
 		custom_vertical.layout.width = 0.8
 		custom_vertical.layout[3].height = 0.8
-
-		opts.picker.sources.files.layout = custom_default
-		opts.picker.sources.grep.layout = custom_default
-		opts.picker.sources.lsp_references.layout = custom_default
-		opts.picker.sources.buffers.layout = custom_vertical
 
 		require("snacks").setup(opts)
 	end,
