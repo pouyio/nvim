@@ -77,6 +77,7 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
+		image = {},
 		words = {
 			debounce = 50,
 			enabled = true,
