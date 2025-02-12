@@ -1,4 +1,5 @@
 local f = require("plugins.common.utils")
+local TERMINAL_SHELL = "fish"
 
 -- Function to check clipboard with retries
 local function getRelativeFilepath(retries, delay, callback)
@@ -192,14 +193,14 @@ return {
 		{
 			f.isMac() and "<D-j>" or "<C-j>",
 			function()
-				Snacks.terminal("zsh")
+				Snacks.terminal(TERMINAL_SHELL)
 			end,
 			desc = "Open Terminal",
 		},
 		{
 			f.isMac() and "<D-j>" or "<C-j>",
 			function()
-				Snacks.terminal.toggle("zsh")
+				Snacks.terminal.toggle(TERMINAL_SHELL)
 			end,
 			mode = "t",
 			desc = "Toggle Terminal when opened",
