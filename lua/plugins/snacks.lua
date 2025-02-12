@@ -137,7 +137,7 @@ return {
 				},
 			},
 			sources = {
-				buffers = {
+				smart = {
 					focus = "list",
 					layout = {
 						preset = "vertical",
@@ -156,6 +156,10 @@ return {
 						"--hidden",
 						"-i",
 					},
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
 				},
 				files = {
 					cmd = "rg",
@@ -222,7 +226,9 @@ return {
 		{
 			"<leader>v",
 			function()
-				Snacks.picker.buffers({
+				Snacks.picker.smart({
+					multi = { "buffers" },
+					format = "buffer",
 					on_show = function(picker)
 						-- start in the next buffer
 						picker:action("list_down")
