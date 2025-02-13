@@ -175,6 +175,10 @@ return {
 				},
 				lsp_references = {
 					focus = "list",
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
 				},
 			},
 		},
