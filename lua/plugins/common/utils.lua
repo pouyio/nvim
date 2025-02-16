@@ -4,6 +4,10 @@ M.isMac = function()
 	return vim.loop.os_uname().sysname == "Darwin"
 end
 
+M.isGhostty = function()
+	return os.getenv("TERM") == "xterm-ghostty"
+end
+
 M.closeBuffer = function()
 	local window_count = #vim.api.nvim_tabpage_list_wins(0) -- Get the number of windows in the current tab
 
