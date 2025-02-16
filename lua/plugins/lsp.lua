@@ -5,83 +5,13 @@ return {
 		opts = {},
 	},
 	{
-		"hrsh7th/nvim-cmp",
+		"L3MON4D3/LuaSnip",
 		dependencies = {
-			{
-				"L3MON4D3/LuaSnip",
-				dependencies = {
-					"rafamadriz/friendly-snippets",
-				},
-			},
-			"saadparwaiz1/cmp_luasnip",
-			"onsails/lspkind.nvim",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lsp",
+			"rafamadriz/friendly-snippets",
 		},
 		event = "InsertEnter",
 		config = function()
-			local f = require("plugins.common.utils")
-			local cmp = require("cmp")
-			local lspkind = require("lspkind")
-
 			require("luasnip.loaders.from_vscode").lazy_load()
-
-			cmp.setup({
-				preselect = cmp.PreselectMode.None,
-				completion = {
-					completeopt = "menu,menuone,noinsert",
-				},
-				sources = {
-					{ name = "nvim_lsp" }, -- lsp
-					{ name = "path" }, -- file system paths
-					{ name = "buffer" }, -- text within current buffer
-					{ name = "luasnip" }, -- snippets
-				},
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					-- `Enter` key to confirm completion
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-					[f.isMac() and "<D-i>" or "⊘"] = cmp.mapping.complete(),
-					-- Navigate between snippet placeholder
-					["<Tab>"] = cmp.mapping(function(fallback)
-						local luasnip = require("luasnip")
-						if luasnip.locally_jumpable(1) then
-							luasnip.jump(1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					-- Jump to the previous snippet placeholder
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						local luasnip = require("luasnip")
-						if luasnip.locally_jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }), -- Scroll up and down in the completion documentation
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-					-- ["<Esc>"] = cmp.mapping.abort(),
-				}),
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-				-- configure lspkind for vs-code like pictograms in completion menu
-				formatting = {
-					format = lspkind.cmp_format({
-						maxwidth = 50,
-						ellipsis_char = "...",
-					}),
-				},
-			})
 		end,
 	},
 	{
@@ -89,8 +19,7 @@ return {
 		cmd = { "LspInfo", "LspInstall", "LspStart" },
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "williamboman/mason.nvim" },
+			{ "saghen/blink.cmp" },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
@@ -117,14 +46,9 @@ return {
 
 			local lspconfig = require("lspconfig")
 
-			-- Add cmp_nvim_lsp capabilities settings to lspconfig
-			-- This should be executed before you configure any language server
+			-- Add blink.cmp capabilities settings to lspconfig
 			local lspconfig_defaults = lspconfig.util.default_config
-			lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-				"force",
-				lspconfig_defaults.capabilities,
-				require("cmp_nvim_lsp").default_capabilities()
-			)
+			lspconfig_defaults.capabilities = require("blink.cmp").get_lsp_capabilities(lspconfig_defaults.capabilities)
 
 			-- LspAttach is where you enable features that only work
 			-- if there is a language server active in the file
