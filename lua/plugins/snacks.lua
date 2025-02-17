@@ -51,6 +51,7 @@ function LazygitEdit(original_buffer)
 end
 
 local global_keys = {
+	["<A-d>"] = { "list_scroll_down" },
 	["s"] = "edit_vsplit",
 	["t"] = "tab",
 	["<Down>"] = {
