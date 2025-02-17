@@ -293,6 +293,10 @@ return {
 		-- change the style of the path in all pickers
 		vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
 
+		vim.api.nvim_create_user_command("CloseOtherBuffers", function()
+			Snacks.bufdelete.other()
+		end, { desc = "Close all other buffers" })
+
 		require("snacks").setup(opts)
 	end,
 }
