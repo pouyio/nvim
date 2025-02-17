@@ -52,6 +52,7 @@ end
 
 local global_keys = {
 	["<A-d>"] = { "list_scroll_down" },
+	["<A-u>"] = { "list_scroll_up" },
 	["s"] = "edit_vsplit",
 	["t"] = "tab",
 	["<Down>"] = {
