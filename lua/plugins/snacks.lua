@@ -291,7 +291,7 @@ return {
 		custom_vertical.layout[3].height = 0.8
 
 		-- change the style of the path in all pickers
-		vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "SnacksIndentScope" })
+		vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
 
 		require("snacks").setup(opts)
 	end,
