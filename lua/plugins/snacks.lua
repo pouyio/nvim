@@ -137,7 +137,7 @@ return {
 				},
 			},
 			sources = {
-				smart = {
+				buffers = {
 					focus = "list",
 					layout = {
 						preset = "vertical",
@@ -230,9 +230,9 @@ return {
 		{
 			"<leader>v",
 			function()
-				Snacks.picker.smart({
-					multi = { "buffers" },
-					format = "buffer",
+				Snacks.picker.buffers({
+					-- multi = { "buffers" },
+					-- format = "buffer",
 					on_show = function(picker)
 						-- start in the next buffer
 						picker:action("list_down")
