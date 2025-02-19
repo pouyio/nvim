@@ -1,54 +1,7 @@
 local f = require("plugins.common.utils")
 local TERMINAL_SHELL = "fish"
 
--- Function to check clipboard with retries
-local function getRelativeFilepath(retries, delay, callback)
-	local function tryGetFilepath(remaining_retries)
-		local relative_filepath = vim.fn.getreg("+")
-		if relative_filepath ~= "" then
-			callback(relative_filepath) -- Call the callback with the filepath if found
-		elseif remaining_retries > 1 then
-			vim.defer_fn(function()
-				tryGetFilepath(remaining_retries - 1)
-			end, delay)
-		else
-			callback(nil) -- Call the callback with nil if retries are exhausted
-		end
-	end
-
-	tryGetFilepath(retries)
-end
-
--- Function to handle editing from Lazygit
-function LazygitEdit(original_buffer)
-	local current_bufnr = vim.fn.bufnr("%")
-	local channel_id = vim.fn.getbufvar(current_bufnr, "terminal_job_id")
-
-	if not channel_id then
-		vim.notify("No terminal job ID found.", vim.log.levels.ERROR)
-		return
-	end
-
-	vim.fn.chansend(channel_id, "\15") -- \15 is <c-o> to copy path
-
-	getRelativeFilepath(5, 50, function(relative_filepath)
-		if not relative_filepath then
-			vim.notify("Clipboard is empty or invalid.", vim.log.levels.ERROR)
-			return
-		end
-
-		local winid = vim.fn.bufwinid(original_buffer)
-
-		if winid == -1 then
-			vim.notify("Could not find the original window.", vim.log.levels.ERROR)
-			return
-		end
-
-		Snacks.lazygit()
-		vim.fn.win_gotoid(winid)
-		vim.cmd("edit " .. vim.fn.fnameescape(relative_filepath))
-	end)
-end
+local LAZYGIT_KEYMAP = f.isMac() and "<D-l>" or "<C-l>"
 
 local global_keys = {
 	["<A-d>"] = { "list_scroll_down" },
@@ -91,12 +44,23 @@ return {
 			notify_jump = true,
 		},
 		lazygit = {
+			config = {
+				editPreset = "nvim-remote",
+				os = {
+					edit = '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "'
+						.. LAZYGIT_KEYMAP
+						.. '" && nvim --server "$NVIM" --remote {{filename}})',
+					editAtLine = '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "'
+						.. LAZYGIT_KEYMAP
+						.. '" && nvim --server "$NVIM" --remote {{filename}}) && nvim --server "$NVIM" --remote-send ":{{line}}<CR>"',
+				},
+			},
 			win = {
 				height = 0.95,
 				width = 0.95,
 				keys = {
 					{
-						f.isMac() and "<D-l>" or "<C-l>",
+						LAZYGIT_KEYMAP,
 						function()
 							Snacks.lazygit()
 						end,
@@ -191,15 +155,9 @@ return {
 	},
 	keys = {
 		{
-			f.isMac() and "<D-l>" or "<C-l>",
+			LAZYGIT_KEYMAP,
 			function()
-				local current_buffer = vim.api.nvim_get_current_buf()
 				Snacks.lazygit()
-
-				-- keymap to open file and close lazygit
-				vim.keymap.set("t", f.isMac() and "<D-o>" or "<C-o>", function()
-					LazygitEdit(current_buffer)
-				end, { buffer = true, noremap = true, silent = true })
 			end,
 			mode = "n",
 			desc = "Open Lazygit",
