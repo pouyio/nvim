@@ -16,6 +16,9 @@ return {
 				vim.keymap.set("n", "<A-l>", function()
 					gitsigns.nav_hunk("next")
 				end, { buffer = bufnr })
+				vim.keymap.set("n", "<leader>gi", gitsigns.preview_hunk)
+				vim.keymap.set("n", "<leader>gu", gitsigns.reset_hunk)
+				vim.keymap.set("n", "<leader>gs", gitsigns.stage_hunk)
 			end,
 		}
 
