@@ -51,6 +51,8 @@ function LazygitEdit(original_buffer)
 end
 
 local global_keys = {
+	["<A-d>"] = { "list_scroll_down" },
+	["<A-u>"] = { "list_scroll_up" },
 	["s"] = "edit_vsplit",
 	["t"] = "tab",
 	["<Down>"] = {
@@ -76,6 +78,9 @@ local buffer_keys = {
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
+	dependencies = {
+		"olimorris/onedarkpro.nvim",
+	},
 	lazy = false,
 	opts = {
 		image = {},
@@ -287,6 +292,15 @@ return {
 		custom_vertical.layout.backdrop = true
 		custom_vertical.layout.width = 0.8
 		custom_vertical.layout[3].height = 0.8
+
+		-- change the style of the path in all pickers
+		vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
+		local colors = require("onedarkpro.helpers").get_colors()
+		vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = colors.comment })
+
+		vim.api.nvim_create_user_command("CloseOtherBuffers", function()
+			Snacks.bufdelete.other()
+		end, { desc = "Close all other buffers" })
 
 		require("snacks").setup(opts)
 	end,
