@@ -302,6 +302,10 @@ return {
 			Snacks.bufdelete.other()
 		end, { desc = "Close all other buffers" })
 
+		vim.api.nvim_create_user_command("SnacksPickers", function()
+			Snacks.picker()
+		end, { desc = "Show all Snacks pickers" })
+
 		require("snacks").setup(opts)
 	end,
 }
