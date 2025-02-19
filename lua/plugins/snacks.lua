@@ -1,4 +1,5 @@
 local f = require("plugins.common.utils")
+local TERMINAL_SHELL = "fish"
 
 -- Function to check clipboard with retries
 local function getRelativeFilepath(retries, delay, callback)
@@ -49,16 +50,36 @@ function LazygitEdit(original_buffer)
 	end)
 end
 
+local global_keys = {
+	["s"] = "edit_vsplit",
+	["t"] = "tab",
+	["<Down>"] = {
+		"history_forward",
+		mode = "i",
+	},
+	["<Up>"] = {
+		"history_back",
+		mode = "i",
+	},
+	[f.isMac() and "<D-f>" or "<C-f>"] = "qflist",
+	["<C-d>"] = { "preview_scroll_down", mode = { "n", "i" } },
+	["<C-u>"] = { "preview_scroll_up", mode = { "n", "i" } },
+	["<leader>a"] = "add_to_harpoon",
+}
+
+local buffer_keys = {
+	["<leader>w"] = "bufdelete",
+	["v"] = "list_down",
+	["c"] = "list_up",
+}
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
 	opts = {
+		image = {},
 		indent = {},
-		scroll = {
-			enabled = false, -- it breaks pasting big chunks of text
-		},
-		statuscolumn = { enabled = false }, -- not working :( would add folding and remove gitsigns plugin
 		words = {
 			debounce = 50,
 			enabled = true,
@@ -85,6 +106,82 @@ return {
 				width = 0.95,
 			},
 		},
+		picker = {
+			actions = {
+				add_to_harpoon = function(picker)
+					local harpoon = require("harpoon")
+					local full_path = picker:current()
+					local cwd_path = picker:cwd()
+
+					local item = {
+						value = full_path.file:gsub("^" .. vim.pesc(cwd_path) .. "/", ""),
+						context = {
+							row = 1,
+							col = 0,
+						},
+					}
+					harpoon:list():add(item)
+				end,
+			},
+			formatters = {
+				file = {
+					filename_first = true,
+				},
+			},
+			win = {
+				input = {
+					keys = global_keys,
+				},
+				list = {
+					keys = global_keys,
+				},
+			},
+			sources = {
+				buffers = {
+					focus = "list",
+					layout = {
+						preset = "vertical",
+					},
+					win = {
+						input = {
+							keys = buffer_keys,
+						},
+						list = {
+							keys = buffer_keys,
+						},
+					},
+				},
+				grep = {
+					args = {
+						"--hidden",
+						"-i",
+					},
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
+				},
+				files = {
+					cmd = "rg",
+					args = {
+						"--files", -- Search for files
+						"--hidden", -- Include hidden files and directories
+						"--iglob",
+						"!.git", -- Exclude the .git directory
+					},
+				},
+				select = {
+					focus = "list",
+				},
+				lsp_references = {
+					focus = "list",
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
+				},
+			},
+		},
 	},
 	keys = {
 		{
@@ -104,14 +201,14 @@ return {
 		{
 			f.isMac() and "<D-j>" or "<C-j>",
 			function()
-				Snacks.terminal("zsh")
+				Snacks.terminal(TERMINAL_SHELL)
 			end,
 			desc = "Open Terminal",
 		},
 		{
 			f.isMac() and "<D-j>" or "<C-j>",
 			function()
-				Snacks.terminal.toggle("zsh")
+				Snacks.terminal.toggle(TERMINAL_SHELL)
 			end,
 			mode = "t",
 			desc = "Toggle Terminal when opened",
@@ -130,8 +227,67 @@ return {
 			end,
 			desc = "Prev occurence",
 		},
+		{
+			"<leader>v",
+			function()
+				Snacks.picker.buffers({
+					-- multi = { "buffers" },
+					-- format = "buffer",
+					on_show = function(picker)
+						-- start in the next buffer
+						picker:action("list_down")
+					end,
+				})
+			end,
+		},
+		{
+			"<leader>p",
+			function()
+				Snacks.picker.files()
+			end,
+		},
+		{
+			"<leader>ff",
+			function()
+				Snacks.picker.grep()
+			end,
+			mode = "n",
+		},
+		{
+			"<leader>ff",
+			function()
+				Snacks.picker.grep_word({
+					focus = "list",
+				})
+			end,
+			mode = "v",
+		},
+		{
+			"<leader>fr",
+			function()
+				Snacks.picker.resume()
+			end,
+		},
+		{
+			"gr",
+			function()
+				Snacks.picker.lsp_references()
+			end,
+		},
 	},
 	config = function(_, opts)
+		local custom_default = require("snacks.picker.config.layouts").default
+		custom_default.layout.width = 0.95
+		custom_default.layout.height = 0.9
+		custom_default.layout[2].min_width = 85
+		custom_default.layout[2].width = 85
+
+		local custom_vertical = require("snacks.picker.config.layouts").vertical
+		custom_vertical.layout.height = 0.95
+		custom_vertical.layout.backdrop = true
+		custom_vertical.layout.width = 0.8
+		custom_vertical.layout[3].height = 0.8
+
 		require("snacks").setup(opts)
 	end,
 }

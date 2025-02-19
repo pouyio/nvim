@@ -26,10 +26,6 @@ return {
 		}
 
 		local opts = {
-			options = {
-				component_separators = "",
-				section_separators = "",
-			},
 			sections = {
 				lualine_a = {
 					{
@@ -71,9 +67,6 @@ return {
 							modified = "●", -- Text to show when the file is modified.
 						},
 						max_length = vim.o.columns,
-						cond = function()
-							return #vim.api.nvim_list_tabpages() > 1 -- Get the number of open tabs
-						end,
 					},
 				},
 			},
@@ -82,6 +75,5 @@ return {
 			},
 		}
 		require("lualine").setup(opts)
-		-- vim.opt.showtabline = 1
 	end,
 }
