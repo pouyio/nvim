@@ -4,6 +4,8 @@ local TERMINAL_SHELL = "fish"
 local LAZYGIT_KEYMAP = f.isMac() and "<D-l>" or "<C-l>"
 
 local global_keys = {
+	["<A-f>"] = { f.isMac() and "<A-f>" or "<C-Right>" },
+	["<C-a>"] = { f.isMac() and "<C-A>" or "<Home>" },
 	["<A-d>"] = { "list_scroll_down" },
 	["<A-u>"] = { "list_scroll_up" },
 	["s"] = "edit_vsplit",
@@ -192,11 +194,9 @@ return {
 			desc = "Prev occurence",
 		},
 		{
-			"<leader>v",
+			"<leader>V", -- using telescope buffer picker for better handling deleting buffers
 			function()
 				Snacks.picker.buffers({
-					-- multi = { "buffers" },
-					-- format = "buffer",
 					on_show = function(picker)
 						-- start in the next buffer
 						picker:action("list_down")
