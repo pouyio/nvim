@@ -31,4 +31,19 @@ return {
 			timeout = 500,
 		},
 	},
+	config = function(_, opts)
+		local conform = require("conform")
+		vim.api.nvim_create_user_command("SaveWithoutFormat", function()
+			-- disable conform plugin for formatting on save
+			conform.setup({ format_on_save = false })
+
+			-- saving
+			vim.api.nvim_command("update")
+
+			-- enabling conform plugin, not sure if it retrieves the original config in plugins/confom.lua
+			require("conform").setup({ format_on_save = true })
+		end, { desc = "Save file without formatting" })
+
+		conform.setup(opts)
+	end,
 }
