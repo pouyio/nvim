@@ -14,8 +14,8 @@ vim.keymap.set("n", "j", [[(v:count > 0 ? "m'" . v:count . 'j' : 'gj')]], { expr
 vim.keymap.set("n", f.isMac() and "<D-a>" or "<C-a>", "ggVG", { desc = "Select all" })
 
 -- move half screen up/down
-vim.keymap.set({ "n", "v" }, "<A-u>", "<C-u>")
-vim.keymap.set({ "n", "v" }, "<A-d>", "<C-d>")
+vim.keymap.set({ "n", "v" }, "<A-u>", "15k")
+vim.keymap.set({ "n", "v" }, "<A-d>", "15j")
 
 -- buffers
 vim.keymap.set("n", "<leader><leader>", ":b#<CR>", { desc = "Toggle last buffer", silent = true })
