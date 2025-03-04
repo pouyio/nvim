@@ -3,7 +3,6 @@ return {
 	"saghen/blink.cmp",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
-		"onsails/lspkind.nvim",
 		{ "L3MON4D3/LuaSnip", version = "v2.*" },
 	},
 	version = "v0.*",
@@ -45,9 +44,6 @@ return {
 		},
 		snippets = {
 			preset = "luasnip",
-		},
-		cmdline = {
-			enabled = false, -- preserve native nvim cmdline completion for now
 		},
 	},
 }
