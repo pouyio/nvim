@@ -63,7 +63,6 @@ return {
 					vim.keymap.set({ "n", "i" }, "<A-i>", vim.lsp.buf.hover, opts)
 					-- Not used the same as vscode because wsl does not support <C-.>
 					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts) -- show code actions for errors/warns
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 				end,
 			})
 

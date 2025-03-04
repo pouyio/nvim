@@ -152,6 +152,13 @@ return {
 						return item
 					end,
 				},
+				lsp_implementations = {
+					focus = "list",
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
+				},
 			},
 		},
 	},
@@ -236,6 +243,13 @@ return {
 			"gr",
 			function()
 				Snacks.picker.lsp_references()
+			end,
+			nowait = true,
+		},
+		{
+			"gi",
+			function()
+				Snacks.picker.lsp_implementations()
 			end,
 			nowait = true,
 		},
