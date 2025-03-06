@@ -12,13 +12,16 @@ return {
 		local state = require("barbar.state")
 		local render = require("barbar.ui.render")
 		local harpoon = require("harpoon")
+		local colors = require("onedarkpro.helpers").get_colors()
 
 		barbar.setup({
 			icons = {
-				pinned = { filename = true, buffer_index = true },
+				pinned = { button = "󰀱 ", filename = true },
 				diagnostics = { { enabled = true } },
 			},
 		})
+
+		vim.api.nvim_set_hl(0, "BufferCurrentError", { bg = colors.bg, fg = colors.red })
 
 		local function unpin_all()
 			for _, buf in ipairs(state.buffers) do
