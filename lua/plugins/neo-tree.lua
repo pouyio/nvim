@@ -39,6 +39,7 @@ return {
 						},
 					}
 					harpoon:list():add(item)
+					vim.cmd(":do User")
 				end,
 				copy_path = function(state)
 					local node = state.tree:get_node()
