@@ -1,4 +1,6 @@
 -- https://medium.com/@nikmas_dev/vscode-neovim-setup-keyboard-centric-powerful-reliable-clean-and-aesthetic-development-582d34297985
+
+require("options")
 vim.keymap.set("n", "<Space>", "", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -17,12 +19,9 @@ vim.keymap.set("n", "gi", function()
 	require("vscode").call("editor.action.goToImplementation")
 end)
 
--- expand/shrink selection
+-- expand
 vim.keymap.set({ "n", "v" }, "<CR>", function()
 	require("vscode").call("editor.action.smartSelect.expand")
-end, { noremap = true })
-vim.keymap.set({ "n", "v" }, "<S-CR>", function()
-	require("vscode").call("editor.action.smartSelect.shrink")
 end, { noremap = true })
 
 vim.keymap.set("n", "<leader>w", function()
@@ -71,6 +70,8 @@ end)
 -- Indent in visual mode using tab
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
+
+vim.keymap.set("n", "<esc>", ":nohlsearch<CR>")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
