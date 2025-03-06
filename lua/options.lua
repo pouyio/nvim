@@ -23,3 +23,4 @@ vim.filetype.add({
 		mdx = "mdx",
 	},
 })
+vim.o.mousescroll = "ver:1,hor:1"

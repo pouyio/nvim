@@ -1,56 +1,13 @@
 local f = require("plugins.common.utils")
 local TERMINAL_SHELL = "fish"
 
--- Function to check clipboard with retries
-local function getRelativeFilepath(retries, delay, callback)
-	local function tryGetFilepath(remaining_retries)
-		local relative_filepath = vim.fn.getreg("+")
-		if relative_filepath ~= "" then
-			callback(relative_filepath) -- Call the callback with the filepath if found
-		elseif remaining_retries > 1 then
-			vim.defer_fn(function()
-				tryGetFilepath(remaining_retries - 1)
-			end, delay)
-		else
-			callback(nil) -- Call the callback with nil if retries are exhausted
-		end
-	end
-
-	tryGetFilepath(retries)
-end
-
--- Function to handle editing from Lazygit
-function LazygitEdit(original_buffer)
-	local current_bufnr = vim.fn.bufnr("%")
-	local channel_id = vim.fn.getbufvar(current_bufnr, "terminal_job_id")
-
-	if not channel_id then
-		vim.notify("No terminal job ID found.", vim.log.levels.ERROR)
-		return
-	end
-
-	vim.fn.chansend(channel_id, "\15") -- \15 is <c-o> to copy path
-
-	getRelativeFilepath(5, 50, function(relative_filepath)
-		if not relative_filepath then
-			vim.notify("Clipboard is empty or invalid.", vim.log.levels.ERROR)
-			return
-		end
-
-		local winid = vim.fn.bufwinid(original_buffer)
-
-		if winid == -1 then
-			vim.notify("Could not find the original window.", vim.log.levels.ERROR)
-			return
-		end
-
-		Snacks.lazygit()
-		vim.fn.win_gotoid(winid)
-		vim.cmd("edit " .. vim.fn.fnameescape(relative_filepath))
-	end)
-end
+local LAZYGIT_KEYMAP = f.isMac() and "<D-l>" or "<C-l>"
 
 local global_keys = {
+	["<A-f>"] = { f.isMac() and "<A-f>" or "<C-Right>" },
+	["<C-a>"] = { f.isMac() and "<C-A>" or "<Home>" },
+	["<A-d>"] = { "list_scroll_down" },
+	["<A-u>"] = { "list_scroll_up" },
 	["s"] = "edit_vsplit",
 	["t"] = "tab",
 	["<Down>"] = {
@@ -76,6 +33,9 @@ local buffer_keys = {
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
+	dependencies = {
+		"olimorris/onedarkpro.nvim",
+	},
 	lazy = false,
 	opts = {
 		image = {},
@@ -86,12 +46,23 @@ return {
 			notify_jump = true,
 		},
 		lazygit = {
+			config = {
+				editPreset = "nvim-remote",
+				os = {
+					edit = '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "'
+						.. LAZYGIT_KEYMAP
+						.. '" && nvim --server "$NVIM" --remote {{filename}})',
+					editAtLine = '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "'
+						.. LAZYGIT_KEYMAP
+						.. '" && nvim --server "$NVIM" --remote {{filename}}) && nvim --server "$NVIM" --remote-send ":{{line}}<CR>"',
+				},
+			},
 			win = {
 				height = 0.95,
 				width = 0.95,
 				keys = {
 					{
-						f.isMac() and "<D-l>" or "<C-l>",
+						LAZYGIT_KEYMAP,
 						function()
 							Snacks.lazygit()
 						end,
@@ -126,6 +97,7 @@ return {
 			formatters = {
 				file = {
 					filename_first = true,
+					truncate = 80,
 				},
 			},
 			win = {
@@ -180,20 +152,21 @@ return {
 						return item
 					end,
 				},
+				lsp_implementations = {
+					focus = "list",
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
+				},
 			},
 		},
 	},
 	keys = {
 		{
-			f.isMac() and "<D-l>" or "<C-l>",
+			LAZYGIT_KEYMAP,
 			function()
-				local current_buffer = vim.api.nvim_get_current_buf()
 				Snacks.lazygit()
-
-				-- keymap to open file and close lazygit
-				vim.keymap.set("t", f.isMac() and "<D-o>" or "<C-o>", function()
-					LazygitEdit(current_buffer)
-				end, { buffer = true, noremap = true, silent = true })
 			end,
 			mode = "n",
 			desc = "Open Lazygit",
@@ -228,11 +201,9 @@ return {
 			desc = "Prev occurence",
 		},
 		{
-			"<leader>v",
+			"<leader>V", -- using telescope buffer picker for better handling deleting buffers
 			function()
 				Snacks.picker.buffers({
-					-- multi = { "buffers" },
-					-- format = "buffer",
 					on_show = function(picker)
 						-- start in the next buffer
 						picker:action("list_down")
@@ -273,6 +244,14 @@ return {
 			function()
 				Snacks.picker.lsp_references()
 			end,
+			nowait = true,
+		},
+		{
+			"gi",
+			function()
+				Snacks.picker.lsp_implementations()
+			end,
+			nowait = true,
 		},
 	},
 	config = function(_, opts)
@@ -287,6 +266,18 @@ return {
 		custom_vertical.layout.backdrop = true
 		custom_vertical.layout.width = 0.8
 		custom_vertical.layout[3].height = 0.8
+
+		-- change the style of the path in all pickers
+		local colors = require("onedarkpro.helpers").get_colors()
+		vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = colors.comment })
+
+		vim.api.nvim_create_user_command("CloseOtherBuffers", function()
+			Snacks.bufdelete.other()
+		end, { desc = "Close all other buffers" })
+
+		vim.api.nvim_create_user_command("SnacksPickers", function()
+			Snacks.picker()
+		end, { desc = "Show all Snacks pickers" })
 
 		require("snacks").setup(opts)
 	end,

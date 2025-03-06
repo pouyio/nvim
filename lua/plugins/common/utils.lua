@@ -4,16 +4,12 @@ M.isMac = function()
 	return vim.loop.os_uname().sysname == "Darwin"
 end
 
-M.closeBuffer = function()
-	local window_count = #vim.api.nvim_tabpage_list_wins(0) -- Get the number of windows in the current tab
+M.isGhostty = function()
+	return os.getenv("TERM") == "xterm-ghostty"
+end
 
-	if window_count > 1 then
-		vim.api.nvim_command("close") -- Close the window if there are multiple windows
-	else
-		vim.api.nvim_command("bd")
-		-- disabled because snacks loses correct track of the buffers
-		-- Snacks.bufdelete() -- Calling Snacks to handle unsaved buffers and terminal buffers
-	end
+M.closeBuffer = function()
+	vim.api.nvim_command("bd")
 end
 
 M.getVisualSelected = function()

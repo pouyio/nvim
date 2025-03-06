@@ -1,10 +1,8 @@
 local f = require("plugins.common.utils")
 return {
-	enabled = false, -- TODO enable when dot repeat is fixed, needed for multicursor https://github.com/Saghen/blink.cmp/pull/870
 	"saghen/blink.cmp",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
-		"onsails/lspkind.nvim",
 		{ "L3MON4D3/LuaSnip", version = "v2.*" },
 	},
 	version = "v0.*",
@@ -32,9 +30,8 @@ return {
 		completion = {
 			menu = {
 				border = "rounded",
-				auto_show = true,
 				draw = {
-					columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+					columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
 				},
 			},
 			documentation = {
@@ -46,21 +43,7 @@ return {
 			},
 		},
 		snippets = {
-			expand = function(snippet)
-				require("luasnip").lsp_expand(snippet)
-			end,
-			active = function(filter)
-				if filter and filter.direction then
-					return require("luasnip").jumpable(filter.direction)
-				end
-				return require("luasnip").in_snippet()
-			end,
-			jump = function(direction)
-				require("luasnip").jump(direction)
-			end,
-		},
-		sources = {
-			default = { "lsp", "path", "luasnip", "buffer" },
+			preset = "luasnip",
 		},
 	},
 }

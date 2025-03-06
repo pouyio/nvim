@@ -4,11 +4,6 @@ return {
 		priority = 1000, -- Ensure it laods first
 		config = function()
 			require("onedarkpro").setup({
-				colors = {
-					dark = {
-						bg = "#1f232d",
-					},
-				},
 				options = {
 					cursorline = true,
 				},
