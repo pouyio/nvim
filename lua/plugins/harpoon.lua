@@ -7,7 +7,6 @@ return {
 		local harpoon_extensions = require("harpoon.extensions")
 		harpoon.setup()
 		harpoon:extend(harpoon_extensions.builtins.highlight_current_file())
-		harpoon:extend(harpoon_extensions.builtins.navigate_with_number())
 
 		vim.keymap.set("n", "<leader>A", function()
 			harpoon:list():prepend()
