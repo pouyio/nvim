@@ -23,8 +23,8 @@ return {
 
 		vim.api.nvim_set_hl(0, "BufferCurrentError", { bg = colors.bg, fg = colors.red })
 
-		vim.keymap.set({ "n", "v" }, "<leader>th", ":BufferPrevious<CR>")
-		vim.keymap.set({ "n", "v" }, "<leader>tl", ":BufferNext<CR>")
+		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>")
+		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>")
 
 		local function unpin_all()
 			for _, buf in ipairs(state.buffers) do
