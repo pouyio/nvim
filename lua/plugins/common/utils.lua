@@ -9,15 +9,7 @@ M.isGhostty = function()
 end
 
 M.closeBuffer = function()
-	local window_count = #vim.api.nvim_tabpage_list_wins(0) -- Get the number of windows in the current tab
-
-	if window_count > 1 then
-		vim.api.nvim_command("close") -- Close the window if there are multiple windows
-	else
-		vim.api.nvim_command("bd")
-		-- disabled because snacks loses correct track of the buffers
-		-- Snacks.bufdelete() -- Calling Snacks to handle unsaved buffers and terminal buffers
-	end
+	vim.api.nvim_command("bd")
 end
 
 M.getVisualSelected = function()
