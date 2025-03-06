@@ -25,10 +25,6 @@ vim.keymap.set({ "n", "v" }, "<S-CR>", function()
 	require("vscode").call("editor.action.smartSelect.shrink")
 end, { noremap = true })
 
-vim.keymap.set("n", "<leader>.", function()
-	require("vscode").call("editor.action.quickFix")
-end, { noremap = true })
-
 vim.keymap.set("n", "<leader>w", function()
 	require("vscode").call("workbench.action.closeActiveEditor")
 end, { noremap = true })
