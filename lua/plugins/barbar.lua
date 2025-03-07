@@ -25,8 +25,8 @@ return {
 		vim.api.nvim_set_hl(0, "BufferCurrent", { fg = colors.blue })
 		vim.api.nvim_set_hl(0, "BufferCurrentMod", { fg = colors.blue })
 
-		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>")
-		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>")
+		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>", { silent = true })
+		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>", { silent = true })
 
 		local function unpin_all()
 			for _, buf in ipairs(state.buffers) do
