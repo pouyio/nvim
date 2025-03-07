@@ -16,12 +16,14 @@ return {
 
 		barbar.setup({
 			icons = {
-				pinned = { button = "󰀱 ", filename = true },
+				pinned = { filename = true, buffer_index = true },
 				diagnostics = { { enabled = true } },
 			},
 		})
 
 		vim.api.nvim_set_hl(0, "BufferCurrentError", { bg = colors.bg, fg = colors.red })
+		vim.api.nvim_set_hl(0, "BufferCurrent", { fg = colors.blue })
+		vim.api.nvim_set_hl(0, "BufferCurrentMod", { fg = colors.blue })
 
 		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>")
 		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>")
