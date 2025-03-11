@@ -94,6 +94,12 @@ return {
 			},
 			event_handlers = {
 				{
+					event = events.FILE_OPENED,
+					handler = function()
+						require("neo-tree.command").execute({ action = "close" })
+					end,
+				},
+				{
 					event = events.FILE_MOVED,
 					handler = on_move, -- not working, review with updated snacks.nvim
 				},
