@@ -53,7 +53,7 @@ return {
 						modified = "●",
 					} },
 				},
-				lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
+				lualine_x = { "diagnostics", "diff", "filetype" },
 				lualine_y = {},
 			},
 			extensions = {

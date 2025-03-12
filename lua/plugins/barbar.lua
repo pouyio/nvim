@@ -17,7 +17,6 @@ return {
 		barbar.setup({
 			icons = {
 				pinned = { filename = true, buffer_index = true },
-				diagnostics = { { enabled = true } },
 			},
 		})
 
