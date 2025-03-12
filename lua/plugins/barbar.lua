@@ -27,6 +27,8 @@ return {
 
 		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>", { silent = true })
 		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>", { silent = true })
+		vim.keymap.set("n", "<", ":BufferMovePrevious<CR>", { silent = true })
+		vim.keymap.set("n", ">", ":BufferMoveNext<CR>", { silent = true })
 
 		local function unpin_all()
 			for _, buf in ipairs(state.buffers) do
