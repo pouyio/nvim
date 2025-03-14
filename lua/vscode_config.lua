@@ -67,6 +67,13 @@ vim.keymap.set("n", "<leader>gu", function()
 	require("vscode").action("git.revertSelectedRanges")
 end)
 
+vim.keymap.set("n", "<S-Right>", function()
+	require("vscode").action("workbench.action.nextEditor")
+end)
+vim.keymap.set("n", "<S-Left>", function()
+	require("vscode").action("workbench.action.previousEditor")
+end)
+
 -- Indent in visual mode using tab
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
