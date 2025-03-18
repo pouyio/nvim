@@ -80,6 +80,11 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 
 vim.keymap.set("n", "<esc>", ":nohlsearch<CR>")
 
+-- redo
+vim.keymap.set("n", "<S-u>", function()
+	require("vscode").call("redo")
+end)
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
