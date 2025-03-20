@@ -85,6 +85,11 @@ vim.keymap.set("n", "<S-u>", function()
 	require("vscode").call("redo")
 end)
 
+-- code actions
+vim.keymap.set("n", "<leader>.", function()
+	require("vscode").call("editor.action.quickFix")
+end)
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
