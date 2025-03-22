@@ -12,6 +12,7 @@ local function addToHarpoon(_, map)
 			},
 		}
 		harpoon:list():add(item)
+		vim.cmd(":do User")
 	end)
 	return true
 end

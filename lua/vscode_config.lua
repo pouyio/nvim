@@ -67,11 +67,28 @@ vim.keymap.set("n", "<leader>gu", function()
 	require("vscode").action("git.revertSelectedRanges")
 end)
 
+vim.keymap.set("n", "<S-Right>", function()
+	require("vscode").action("workbench.action.nextEditor")
+end)
+vim.keymap.set("n", "<S-Left>", function()
+	require("vscode").action("workbench.action.previousEditor")
+end)
+
 -- Indent in visual mode using tab
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
 
 vim.keymap.set("n", "<esc>", ":nohlsearch<CR>")
+
+-- redo
+vim.keymap.set("n", "<S-u>", function()
+	require("vscode").call("redo")
+end)
+
+-- code actions
+vim.keymap.set("n", "<leader>.", function()
+	require("vscode").call("editor.action.quickFix")
+end)
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
