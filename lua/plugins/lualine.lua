@@ -28,6 +28,13 @@ return {
 		local opts = {
 			sections = {
 				lualine_a = {
+					function()
+						-- Get the current working directory
+						local cwd = vim.fn.getcwd()
+
+						-- Extract the last folder from the path
+						return "󰉋 " .. vim.fn.fnamemodify(cwd, ":t")
+					end,
 					{
 						"mode",
 						fmt = function(s)
@@ -46,29 +53,8 @@ return {
 						modified = "●",
 					} },
 				},
-				lualine_x = { "diagnostics", "diff", "filetype", "encoding" },
+				lualine_x = { "diagnostics", "diff", "filetype" },
 				lualine_y = {},
-			},
-			tabline = {
-				lualine_a = {
-					function()
-						-- Get the current working directory
-						local cwd = vim.fn.getcwd()
-
-						-- Extract the last folder from the path
-						return "󰉋 " .. vim.fn.fnamemodify(cwd, ":t")
-					end,
-				},
-				lualine_b = {
-					{
-						"tabs",
-						mode = 1,
-						symbols = {
-							modified = "●", -- Text to show when the file is modified.
-						},
-						max_length = vim.o.columns,
-					},
-				},
 			},
 			extensions = {
 				"neo-tree",

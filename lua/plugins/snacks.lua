@@ -18,7 +18,7 @@ local global_keys = {
 		"history_back",
 		mode = "i",
 	},
-	[f.isMac() and "<D-f>" or "<C-f>"] = "qflist",
+	[f.isMac() and "<D-f>" or "<C-f>"] = { "qflist", mode = { "n", "i" } },
 	["<C-d>"] = { "preview_scroll_down", mode = { "n", "i" } },
 	["<C-u>"] = { "preview_scroll_up", mode = { "n", "i" } },
 	["<leader>a"] = "add_to_harpoon",
