@@ -5,15 +5,6 @@ vim.keymap.set("n", "<Space>", "", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "<leader><leader>", function()
-	require("vscode").call("workbench.action.openPreviousEditorFromHistory")
-	require("vscode").call("workbench.action.acceptSelectedQuickOpenItem")
-end)
-
-vim.keymap.set("n", "<leader>v", function()
-	require("vscode").call("workbench.action.quickOpen")
-end)
-
 vim.keymap.set("n", "<s-l>", function()
 	require("vscode").call("editor.action.marker.next")
 end)
