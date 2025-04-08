@@ -194,7 +194,7 @@ return {
 			desc = "Next occurence",
 		},
 		{
-			"<A-p>",
+			"<A-N>",
 			function()
 				Snacks.words.jump(-1, true)
 			end,

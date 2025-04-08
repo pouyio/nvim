@@ -5,6 +5,15 @@ vim.keymap.set("n", "<Space>", "", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<leader><leader>", function()
+	require("vscode").call("workbench.action.openPreviousEditorFromHistory")
+	require("vscode").call("workbench.action.acceptSelectedQuickOpenItem")
+end)
+
+vim.keymap.set("n", "<leader>v", function()
+	require("vscode").call("workbench.action.quickOpen")
+end)
+
 vim.keymap.set("n", "<s-l>", function()
 	require("vscode").call("editor.action.marker.next")
 end)
@@ -80,10 +89,9 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 
 vim.keymap.set("n", "<esc>", ":nohlsearch<CR>")
 
--- redo
-vim.keymap.set("n", "<S-u>", function()
-	require("vscode").call("redo")
-end)
+-- redo/undo only works with this
+vim.keymap.set("n","u","<Cmd>call VSCodeNotify('undo')<CR>")
+vim.keymap.set("n","<S-u>","<Cmd>call VSCodeNotify('redo')<CR>") 
 
 -- code actions
 vim.keymap.set("n", "<leader>.", function()
