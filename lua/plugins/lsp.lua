@@ -40,10 +40,6 @@ return {
 			})
 		end,
 		config = function()
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
 			local lspconfig = require("lspconfig")
 
 			-- Add blink.cmp capabilities settings to lspconfig
