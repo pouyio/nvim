@@ -54,10 +54,10 @@ return {
 					local opts = { buffer = event.buf }
 
 					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-					vim.keymap.set("n", "L", function()
+					vim.keymap.set("n", "H", function()
 						vim.diagnostic.jump({ count = -1, float = true })
 					end, opts)
-					vim.keymap.set("n", "H", function()
+					vim.keymap.set("n", "L", function()
 						vim.diagnostic.jump({ count = 1, float = true })
 					end, opts)
 					vim.keymap.set({ "n", "i" }, "<A-i>", function()
