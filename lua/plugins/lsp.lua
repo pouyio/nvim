@@ -109,6 +109,17 @@ return {
 							},
 						})
 					end,
+					-- just to avoid annoying warning because biome uses utf-8 by default
+					-- and the rest of lsp's use utf-16 as recomended by the LSP spec
+					biome = function()
+						lspconfig.biome.setup({
+							capabilities = {
+								general = {
+									positionEncodings = { "utf-16" },
+								},
+							},
+						})
+					end,
 				},
 			})
 		end,
