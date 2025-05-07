@@ -24,3 +24,4 @@ vim.filetype.add({
 	},
 })
 vim.o.mousescroll = "ver:1,hor:1"
+vim.o.winborder = "rounded"

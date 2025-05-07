@@ -81,8 +81,8 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 vim.keymap.set("n", "<esc>", ":nohlsearch<CR>")
 
 -- redo/undo only works with this
-vim.keymap.set({"n", "v"},"<S-u>","<cmd>call vscodenotify('redo')<cr>")
-vim.keymap.set({"n", "v"},"u","<cmd>call VSCodeNotify('undo')<CR>")
+vim.keymap.set({ "n", "v" }, "<S-u>", "<cmd>call VSCodeNotify('redo')<cr>")
+vim.keymap.set({ "n", "v" }, "u", "<cmd>call VSCodeNotify('undo')<CR>")
 
 -- code actions
 vim.keymap.set("n", "<leader>.", function()

@@ -9,7 +9,7 @@ return {
 	opts = {
 		keymap = {
 			preset = "enter",
-			[f.isMac() and "<D-i>" or "⊘"] = { "show", "show_documentation", "hide_documentation" },
+			[f.isMac() and "<D-i>" or "⊘"] = { "show", "hide" },
 			["<C-space>"] = {},
 			["<C-e>"] = {},
 			["<C-p>"] = {},
@@ -23,13 +23,9 @@ return {
 		},
 		signature = {
 			enabled = true,
-			window = {
-				border = "rounded",
-			},
 		},
 		completion = {
 			menu = {
-				border = "rounded",
 				draw = {
 					columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "kind" } },
 				},
@@ -37,9 +33,6 @@ return {
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,
-				window = {
-					border = "rounded",
-				},
 			},
 		},
 		snippets = {
