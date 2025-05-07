@@ -82,45 +82,6 @@ return {
 					-- "prettier"
 					-- "stylua"
 				},
-				handlers = {
-					-- this first function is the "default handler"
-					-- it applies to every language server without a "custom handler"
-					function(server_name)
-						lspconfig[server_name].setup({})
-					end,
-					cssls = function()
-						lspconfig.cssls.setup({
-							settings = {
-								css = {
-									lint = {
-										-- disable because of tailwind @apply
-										unknownAtRules = "ignore",
-									},
-								},
-							},
-						})
-					end,
-					ts_ls = function()
-						lspconfig.ts_ls.setup({
-							init_options = {
-								preferences = {
-									importModuleSpecifierPreference = "relative",
-								},
-							},
-						})
-					end,
-					-- just to avoid annoying warning because biome uses utf-8 by default
-					-- and the rest of lsp's use utf-16 as recomended by the LSP spec
-					biome = function()
-						lspconfig.biome.setup({
-							capabilities = {
-								general = {
-									positionEncodings = { "utf-16" },
-								},
-							},
-						})
-					end,
-				},
 			})
 		end,
 	},
