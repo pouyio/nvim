@@ -103,6 +103,10 @@ return {
 						},
 					}
 					harpoon:list():add(item)
+
+					vim.api.nvim_exec_autocmds("User", {
+						pattern = "HarpoonRefresh", -- Use a specific pattern for better targeting
+					})
 				end,
 			},
 			formatters = {
@@ -174,6 +178,12 @@ return {
 		},
 	},
 	keys = {
+		{
+			f.isMac() and "<D-S-p>" or "<C-S-p>",
+			function()
+				print("Merge commands and keymaps picker")
+			end,
+		},
 		{
 			LAZYGIT_KEYMAP,
 			function()

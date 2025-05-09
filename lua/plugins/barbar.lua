@@ -75,6 +75,7 @@ return {
 		end
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufLeave", "User" }, {
+			pattern = { "*", "HarpoonRefresh" }, -- Add a specific pattern for User event
 			callback = refresh_all_harpoon_tabs,
 		})
 	end,
