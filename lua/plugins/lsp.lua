@@ -1,3 +1,5 @@
+local f = require("plugins.common.utils")
+
 return {
 	{
 		"williamboman/mason.nvim",
@@ -31,10 +33,10 @@ return {
 				virtual_text = true,
 				signs = {
 					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
-						[vim.diagnostic.severity.INFO] = " ",
-						[vim.diagnostic.severity.HINT] = "󰌵",
+						[vim.diagnostic.severity.ERROR] = f.diagnosticIcons.ERROR,
+						[vim.diagnostic.severity.WARN] = f.diagnosticIcons.WARN,
+						[vim.diagnostic.severity.INFO] = f.diagnosticIcons.INFO,
+						[vim.diagnostic.severity.HINT] = f.diagnosticIcons.HINT,
 					},
 				},
 			})

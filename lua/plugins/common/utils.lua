@@ -25,4 +25,11 @@ M.getVisualSelected = function()
 	return text
 end
 
+M.diagnosticIcons = {
+	ERROR = " ",
+	WARN = " ",
+	INFO = " ",
+	HINT = "󰌵",
+}
+
 return M

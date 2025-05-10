@@ -1,3 +1,5 @@
+local f = require("plugins.common.utils")
+
 return {
 	"petertriho/nvim-scrollbar",
 	dependencies = {
@@ -19,11 +21,10 @@ return {
 			handle = false,
 		},
 		marks = {
-			Error = { text = { " ", " " } },
-			Warn = { text = { " ", " " } },
-			Info = { text = { " ", " " } },
-			Hint = { text = { "󰌵", "󰌵" } },
-			Misc = {},
+			Error = { text = { f.diagnosticIcons.ERROR, f.diagnosticIcons.ERROR } },
+			Warn = { text = { f.diagnosticIcons.WARN, f.diagnosticIcons.WARN } },
+			Info = { text = { f.diagnosticIcons.INFO, f.diagnosticIcons.INFO } },
+			Hint = { text = { f.diagnosticIcons.HINT, f.diagnosticIcons.HINT } },
 		},
 		excluded_filetypes = {
 			"neo-tree",
