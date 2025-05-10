@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		{
 			"kevinhwang91/nvim-hlslens",
+			event = "VeryLazy",
 			config = function()
 				require("scrollbar.handlers.search").setup({
 					override_lens = function()
@@ -11,17 +12,18 @@ return {
 				})
 			end,
 		},
+		"lewis6991/gitsigns.nvim",
 	},
 	opts = {
 		handlers = {
 			handle = false,
 		},
 		marks = {
-			Error = { color = "#c53b53" },
-			Warn = { color = "#ffc777" },
-			Info = { color = "#0db9d7" },
-			Hint = { color = "#4fd6be" },
-			Misc = { color = "#c75ae8" },
+			Error = { text = { " ", " " } },
+			Warn = { text = { " ", " " } },
+			Info = { text = { " ", " " } },
+			Hint = { text = { "󰌵", "󰌵" } },
+			Misc = {},
 		},
 		excluded_filetypes = {
 			"neo-tree",
