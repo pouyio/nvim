@@ -1,4 +1,13 @@
+local f = require("plugins.common.utils")
+
 return {
+	{
+		-- windows with wsl does not listen for background change
+		-- last message in: https://chatgpt.com/share/681f1213-6938-8013-adcb-802845e8bb32
+		"f-person/auto-dark-mode.nvim",
+		enabled = not f.isMac(),
+		opts = {},
+	},
 	{
 		"olimorris/onedarkpro.nvim",
 		priority = 1000, -- Ensure it loads first
