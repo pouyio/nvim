@@ -250,6 +250,7 @@ return {
 			function()
 				Snacks.picker.grep_word({
 					focus = "list",
+					live = true,
 				})
 			end,
 			mode = "v",
