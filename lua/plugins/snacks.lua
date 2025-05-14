@@ -49,11 +49,13 @@ return {
 			config = {
 				editPreset = "nvim-remote",
 				os = {
-					edit = 'fish -c \'if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "'
+					edit = TERMINAL_SHELL
+						.. ' -c \'if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "'
 						.. LAZYGIT_KEYMAP
 						.. '"; nvim --server "$NVIM" --remote {{filename}}; end\'',
 
-					editAtLine = 'fish -c \'if test -z "$NVIM"; nvim +{{line}} -- {{filename}}; else; nvim --server "$NVIM" --remote-send "'
+					editAtLine = TERMINAL_SHELL
+						.. ' -c \'if test -z "$NVIM"; nvim +{{line}} -- {{filename}}; else; nvim --server "$NVIM" --remote-send "'
 						.. LAZYGIT_KEYMAP
 						.. '"; nvim --server "$NVIM" --remote {{filename}}; nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; end\'',
 				},
