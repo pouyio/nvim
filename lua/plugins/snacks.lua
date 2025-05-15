@@ -33,9 +33,6 @@ local buffer_keys = {
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
-	dependencies = {
-		"olimorris/onedarkpro.nvim",
-	},
 	lazy = false,
 	opts = {
 		image = {},
@@ -282,8 +279,9 @@ return {
 		custom_vertical.layout[3].height = 0.8
 
 		-- change the style of the path in all pickers
-		local colors = require("onedarkpro.helpers").get_colors()
-		vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = colors.comment })
+		f.HighlightGroups.register(function()
+			vim.api.nvim_set_hl(0, "SnacksPickerDir", vim.api.nvim_get_hl(0, { name = "Comment", link = false }))
+		end)
 
 		vim.api.nvim_create_user_command("CloseOtherBuffers", function()
 			Snacks.bufdelete.other()

@@ -19,24 +19,31 @@ M.closeBuffer = function()
 	end
 end
 
-M.getVisualSelected = function()
-	local a_orig = vim.fn.getreg("a")
-	local mode = vim.fn.mode()
-	if mode ~= "v" and mode ~= "V" then
-		vim.cmd([[normal! gv]])
-	end
-	vim.cmd([[silent! normal! "aygv]])
-	local text = vim.fn.getreg("a")
-	vim.fn.setreg("a", a_orig)
-	print(vim.inspect(text))
-	return text
-end
-
 M.diagnosticIcons = {
 	ERROR = " ",
 	WARN = " ",
 	INFO = " ",
 	HINT = "󰌵",
+}
+
+M.HighlightGroups = {
+	_callbacks = {
+		-- Trigger the ColorScheme autocommand used in the multicursor plugin
+		function()
+			vim.api.nvim_exec_autocmds("ColorScheme", {})
+		end,
+	},
+	register = function(callback)
+		if type(callback) == "function" then
+			callback()
+			table.insert(M.HighlightGroups._callbacks, callback)
+		end
+	end,
+	executeAll = function()
+		for _, callback in ipairs(M.HighlightGroups._callbacks) do
+			callback()
+		end
+	end,
 }
 
 return M
