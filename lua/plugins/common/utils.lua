@@ -9,14 +9,7 @@ M.isGhostty = function()
 end
 
 M.closeBuffer = function()
-	-- Check if there's more than one window open
-	if #vim.api.nvim_list_wins() > 1 then
-		-- If window is split, use :q to close the current window
-		vim.api.nvim_command("q")
-	else
-		-- If there's only one window, use :bd to close the buffer
-		vim.api.nvim_command("bd")
-	end
+	vim.api.nvim_command("bd")
 end
 
 M.diagnosticIcons = {
