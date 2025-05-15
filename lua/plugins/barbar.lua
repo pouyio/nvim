@@ -39,8 +39,8 @@ return {
 			vim.api.nvim_set_hl(0, "BufferCurrentSign", default_buffer_hl)
 		end)
 
-		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>", { silent = true })
-		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>", { silent = true })
+		vim.keymap.set({ "n", "v" }, "<Left>", ":BufferPrevious<CR>", { silent = true })
+		vim.keymap.set({ "n", "v" }, "<Right>", ":BufferNext<CR>", { silent = true })
 		vim.keymap.set("n", "<", ":BufferMovePrevious<CR>", { silent = true })
 		vim.keymap.set("n", ">", ":BufferMoveNext<CR>", { silent = true })
 
