@@ -36,6 +36,7 @@ return {
 			vim.api.nvim_set_hl(0, "BufferVisibleERROR", default_error_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentERROR", default_error_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrent", default_buffer_hl)
+			vim.api.nvim_set_hl(0, "BufferCurrentMod", default_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentSign", default_buffer_hl)
 		end)
 
