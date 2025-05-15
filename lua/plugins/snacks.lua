@@ -98,6 +98,11 @@ return {
 					})
 				end,
 			},
+			previewers = {
+				git = {
+					builtin = false,
+				},
+			},
 			formatters = {
 				file = {
 					filename_first = true,
@@ -113,6 +118,12 @@ return {
 				},
 			},
 			sources = {
+				git_log_line = {
+					focus = "list",
+					layout = {
+						preset = "vertical",
+					},
+				},
 				buffers = {
 					focus = "list",
 					layout = {
@@ -248,6 +259,12 @@ return {
 			"<leader>fr",
 			function()
 				Snacks.picker.resume()
+			end,
+		},
+		{
+			"<leader>fg",
+			function()
+				Snacks.picker.git_log_line()
 			end,
 		},
 		{
