@@ -63,7 +63,6 @@ return {
 						hint = f.diagnosticIcons.HINT,
 					},
 				},
-				"diff",
 				"filetype",
 			},
 			lualine_y = {},
