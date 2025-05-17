@@ -124,6 +124,12 @@ return {
 						preset = "vertical",
 					},
 				},
+				git_log_file = {
+					focus = "list",
+					layout = {
+						preset = "vertical",
+					},
+				},
 				buffers = {
 					focus = "list",
 					layout = {
@@ -265,6 +271,12 @@ return {
 			"<leader>fg",
 			function()
 				Snacks.picker.git_log_line()
+			end,
+		},
+		{
+			"<leader>fG",
+			function()
+				Snacks.picker.git_log_file()
 			end,
 		},
 		{
