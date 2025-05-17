@@ -22,7 +22,6 @@ local mode_map = {
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		{ "letieu/harpoon-lualine" },
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	opts = {
@@ -44,11 +43,6 @@ return {
 			},
 			lualine_b = {},
 			lualine_c = {
-				{
-					"harpoon2",
-					indicators = { " 1 ", " 2 ", " 3 ", " 4 " },
-					_separator = "",
-				},
 				{ "filename", path = 1, symbols = {
 					modified = "●",
 				} },
