@@ -23,7 +23,7 @@ return {
 					[vim.diagnostic.severity.ERROR] = { enabled = true, icon = f.diagnosticIcons.ERROR },
 				},
 				separator = {
-					left = "",
+					left = " ",
 				},
 			},
 		})
