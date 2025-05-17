@@ -33,9 +33,6 @@ local buffer_keys = {
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
-	dependencies = {
-		"olimorris/onedarkpro.nvim",
-	},
 	lazy = false,
 	opts = {
 		image = {},
@@ -49,23 +46,15 @@ return {
 			config = {
 				editPreset = "nvim-remote",
 				os = {
-					edit = 'if test -z "$NVIM"; '
-						.. "nvim -- {{filename}}; "
-						.. "else; "
-						.. 'nvim --server "$NVIM" --remote-send "'
+					edit = TERMINAL_SHELL
+						.. ' -c \'if test -z "$NVIM"; nvim -- {{filename}}; else; nvim --server "$NVIM" --remote-send "'
 						.. LAZYGIT_KEYMAP
-						.. '"; '
-						.. 'nvim --server "$NVIM" --remote {{filename}}; '
-						.. "end",
-					editAtLine = 'if test -z "$NVIM"; '
-						.. "nvim +{{line}} -- {{filename}}; "
-						.. "else; "
-						.. 'nvim --server "$NVIM" --remote-send "'
+						.. '"; nvim --server "$NVIM" --remote {{filename}}; end\'',
+
+					editAtLine = TERMINAL_SHELL
+						.. ' -c \'if test -z "$NVIM"; nvim +{{line}} -- {{filename}}; else; nvim --server "$NVIM" --remote-send "'
 						.. LAZYGIT_KEYMAP
-						.. '"; '
-						.. 'nvim --server "$NVIM" --remote {{filename}}; '
-						.. 'nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; '
-						.. "end",
+						.. '"; nvim --server "$NVIM" --remote {{filename}}; nvim --server "$NVIM" --remote-send ":{{line}}<CR>"; end\'',
 				},
 			},
 			win = {
@@ -109,6 +98,11 @@ return {
 					})
 				end,
 			},
+			previewers = {
+				git = {
+					builtin = false,
+				},
+			},
 			formatters = {
 				file = {
 					filename_first = true,
@@ -124,6 +118,18 @@ return {
 				},
 			},
 			sources = {
+				git_log_line = {
+					focus = "list",
+					layout = {
+						preset = "vertical",
+					},
+				},
+				git_log_file = {
+					focus = "list",
+					layout = {
+						preset = "vertical",
+					},
+				},
 				buffers = {
 					focus = "list",
 					layout = {
@@ -262,6 +268,18 @@ return {
 			end,
 		},
 		{
+			"<leader>fg",
+			function()
+				Snacks.picker.git_log_line()
+			end,
+		},
+		{
+			"<leader>fG",
+			function()
+				Snacks.picker.git_log_file()
+			end,
+		},
+		{
 			"gr",
 			function()
 				Snacks.picker.lsp_references()
@@ -290,8 +308,9 @@ return {
 		custom_vertical.layout[3].height = 0.8
 
 		-- change the style of the path in all pickers
-		local colors = require("onedarkpro.helpers").get_colors()
-		vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = colors.comment })
+		f.HighlightGroups.register(function()
+			vim.api.nvim_set_hl(0, "SnacksPickerDir", vim.api.nvim_get_hl(0, { name = "Comment", link = false }))
+		end)
 
 		vim.api.nvim_create_user_command("CloseOtherBuffers", function()
 			Snacks.bufdelete.other()

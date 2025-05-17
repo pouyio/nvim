@@ -32,10 +32,10 @@ vim.keymap.set("n", ",w", ":tabclose<CR>", { silent = true })
 vim.keymap.set("n", ",,", ":tabnext #<CR>", { silent = true })
 
 -- panes
-vim.keymap.set({ "n", "v" }, "<Right>", "<C-w>l", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<Left>", "<C-w>h", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<Down>", "<C-w>j", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<Up>", "<C-w>k", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<S-Right>", "<C-w>l", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<S-Left>", "<C-w>h", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<S-Down>", "<C-w>j", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<S-Up>", "<C-w>k", { noremap = true })
 
 -- windows resize
 vim.keymap.set("n", "<leader>rk", ":horizontal resize +10<CR>", { desc = "vertical resize +10" })
@@ -46,6 +46,8 @@ vim.keymap.set("n", "<leader>rh", ":vertical resize -10<CR>", { desc = "horizont
 -- move selected line up/down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move line up" })
+vim.keymap.set("n", "J", "V:m '>+1<CR>gv=gv<Esc>", { silent = true, desc = "move line down" })
+vim.keymap.set("n", "K", "V:m '<-2<CR>gv=gv<Esc>", { silent = true, desc = "move line up" })
 
 -- duplicate line
 vim.keymap.set("n", "<S-A-Down>", ":t.<CR>", { desc = "Duplicate line down" })

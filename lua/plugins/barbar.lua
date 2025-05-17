@@ -1,5 +1,8 @@
+local f = require("plugins.common.utils")
+
 return {
 	"romgrk/barbar.nvim",
+	event = "VeryLazy",
 	dependencies = {
 		"lewis6991/gitsigns.nvim",
 		"nvim-tree/nvim-web-devicons",
@@ -12,20 +15,33 @@ return {
 		local state = require("barbar.state")
 		local render = require("barbar.ui.render")
 		local harpoon = require("harpoon")
-		local colors = require("onedarkpro.helpers").get_colors()
 
 		barbar.setup({
 			icons = {
 				pinned = { filename = true, buffer_index = true },
+				diagnostics = {
+					[vim.diagnostic.severity.ERROR] = { enabled = true, icon = f.diagnosticIcons.ERROR },
+				},
+				separator = {
+					left = " ",
+				},
 			},
 		})
 
-		vim.api.nvim_set_hl(0, "BufferCurrentError", { bg = colors.bg, fg = colors.red })
-		vim.api.nvim_set_hl(0, "BufferCurrent", { fg = colors.blue })
-		vim.api.nvim_set_hl(0, "BufferCurrentMod", { fg = colors.blue })
+		f.HighlightGroups.register(function()
+			local default_error_hl = vim.api.nvim_get_hl(0, { name = "ErrorMsg" })
+			local default_buffer_hl =
+				vim.tbl_extend("force", vim.api.nvim_get_hl(0, { name = "Directory" }), { bold = true })
 
-		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>", { silent = true })
-		vim.keymap.set({ "n", "v" }, "<S-Right>", ":BufferNext<CR>", { silent = true })
+			vim.api.nvim_set_hl(0, "BufferVisibleERROR", default_error_hl)
+			vim.api.nvim_set_hl(0, "BufferCurrentERROR", default_error_hl)
+			vim.api.nvim_set_hl(0, "BufferCurrent", default_buffer_hl)
+			vim.api.nvim_set_hl(0, "BufferCurrentMod", default_buffer_hl)
+			vim.api.nvim_set_hl(0, "BufferCurrentSign", default_buffer_hl)
+		end)
+
+		vim.keymap.set({ "n", "v" }, "<Left>", ":BufferPrevious<CR>", { silent = true })
+		vim.keymap.set({ "n", "v" }, "<Right>", ":BufferNext<CR>", { silent = true })
 		vim.keymap.set("n", "<", ":BufferMovePrevious<CR>", { silent = true })
 		vim.keymap.set("n", ">", ":BufferMoveNext<CR>", { silent = true })
 
