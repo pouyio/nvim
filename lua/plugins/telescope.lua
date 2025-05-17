@@ -71,6 +71,7 @@ return {
 		})
 		vim.keymap.set("n", "<leader>v", function()
 			builtin.buffers({
+				border = false, -- temporal config until this is merged: https://github.com/nvim-lua/plenary.nvim/pull/649
 				sort_lastused = true,
 				sort_mru = true,
 				attach_mappings = function(_, map)
