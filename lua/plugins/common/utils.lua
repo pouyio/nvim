@@ -16,7 +16,7 @@ M.diagnosticIcons = {
 	ERROR = " ",
 	WARN = " ",
 	INFO = " ",
-	HINT = "󰌵",
+	HINT = "󰌵 ",
 }
 
 M.HighlightGroups = {
