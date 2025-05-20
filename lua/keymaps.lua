@@ -1,5 +1,11 @@
 local f = require("plugins.common.utils")
 
+local function feedkeys(keys)
+	-- Translate special keys like <Esc>, <CR>, etc.
+	local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+	vim.api.nvim_feedkeys(termcodes, "n", false)
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -52,8 +58,20 @@ vim.keymap.set("n", "K", "V:m '<-2<CR>gv=gv<Esc>", { silent = true, desc = "move
 -- duplicate line
 vim.keymap.set("n", "<S-A-Down>", ":t.<CR>", { desc = "Duplicate line down" })
 vim.keymap.set("n", "<S-A-Up>", ":<C-u>.,.t-1<CR>", { desc = "Duplicate line up" })
-vim.keymap.set("v", "<S-A-Down>", "yPgv", { desc = "Duplicate selected lines down" })
-vim.keymap.set("v", "<S-A-Up>", "y'>pgv", { desc = "Duplicate selected lines up" })
+vim.keymap.set("x", "<S-A-Down>", function()
+	if vim.fn.mode() == "V" then
+		feedkeys("yPgv") --visual-line
+	else
+		feedkeys("Vy'>p'[v']$") -- visual-character
+	end
+end, { desc = "Duplicate selected lines down" })
+vim.keymap.set("x", "<S-A-Up>", function()
+	if vim.fn.mode() == "V" then
+		feedkeys("y'>pgv") -- visual-line
+	else
+		feedkeys("VyP'[v']$") -- visual-character
+	end
+end, { desc = "Duplicate selected lines up" })
 
 -- delete full line
 vim.keymap.set("i", "\x0b", "<C-o>D", { noremap = true })
