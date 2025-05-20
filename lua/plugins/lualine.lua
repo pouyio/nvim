@@ -19,12 +19,28 @@ local mode_map = {
 	["MORE"] = "M",
 }
 
+local custom_tabs = {
+	{
+		"tabs",
+		show_modified_status = false,
+	},
+}
+
+local custom_filename = {
+	{ "filename", path = 1, symbols = {
+		modified = "●",
+	} },
+}
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	opts = {
+		options = {
+			always_show_tabline = false,
+		},
 		sections = {
 			lualine_a = {
 				function()
@@ -42,11 +58,7 @@ return {
 				},
 			},
 			lualine_b = {},
-			lualine_c = {
-				{ "filename", path = 1, symbols = {
-					modified = "●",
-				} },
-			},
+			lualine_c = custom_filename,
 			lualine_x = {
 				{
 					"diagnostics",
@@ -60,6 +72,12 @@ return {
 				"filetype",
 			},
 			lualine_y = {},
+			lualine_z = custom_tabs,
+		},
+		inactive_sections = {
+			lualine_c = custom_filename,
+			lualine_x = {},
+			lualine_z = custom_tabs,
 		},
 		extensions = {
 			"neo-tree",
