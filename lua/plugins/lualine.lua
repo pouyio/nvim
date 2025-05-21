@@ -20,44 +20,44 @@ local mode_map = {
 }
 
 local custom_tabs = {
-	{
-		"tabs",
-		mode = 1,
-		show_modified_status = false,
-		fmt = function(name, context)
-			-- Get all window names in the current tabpage
-			local buflist = vim.fn.tabpagebuflist(context.tabnr)
-			local window_names = {}
+	"tabs",
+	mode = 1,
+	show_modified_status = false,
+	fmt = function(name, context)
+		-- Get all window names in the current tabpage
+		local buflist = vim.fn.tabpagebuflist(context.tabnr)
+		local window_names = {}
 
-			-- Collect all window names from buffers in this tabpage
-			for _, bufnr in ipairs(buflist) do
-				local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
-				-- Only add non-empty names
-				if name and name ~= "" then
-					table.insert(window_names, name)
-				end
+		-- Collect all window names from buffers in this tabpage
+		for _, bufnr in ipairs(buflist) do
+			local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+			-- Only add non-empty names
+			if name and name ~= "" then
+				table.insert(window_names, name)
 			end
+		end
 
-			-- Join window names with comma
-			if #window_names > 0 then
-				return table.concat(window_names, "|")
-			else
-				return "[No Name]"
-			end
-		end,
-	},
+		-- Join window names with comma
+		if #window_names > 0 then
+			return table.concat(window_names, "|")
+		else
+			return "[No Name]"
+		end
+	end,
 }
 
 local custom_filename = {
-	{ "filename", path = 1, symbols = {
+	"filename",
+	path = 1,
+	symbols = {
 		modified = "●",
-	} },
+	},
 }
 
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		{ "nvim-tree/nvim-web-devicons" },
+		{ "nvim-tree/nvim-web-devicons", "letieu/harpoon-lualine" },
 	},
 	opts = {
 		-- options = {
@@ -65,7 +65,7 @@ return {
 		-- },
 		tabline = {
 			lualine_a = { "filename" },
-			lualine_z = custom_tabs,
+			lualine_z = { custom_tabs },
 		},
 		sections = {
 			lualine_a = {
@@ -84,7 +84,7 @@ return {
 				},
 			},
 			lualine_b = {},
-			lualine_c = custom_filename,
+			lualine_c = { { "harpoon2", indicators = { " 1 ", " 2 ", " 3 ", " 4 " }, _separator = "" }, custom_filename },
 			lualine_x = {
 				{
 					"diagnostics",
@@ -98,12 +98,11 @@ return {
 				"filetype",
 			},
 			lualine_y = {},
-			lualine_z = custom_tabs,
+			lualine_z = { custom_tabs },
 		},
 		inactive_sections = {
-			lualine_c = custom_filename,
+			lualine_c = { custom_filename },
 			lualine_x = {},
-			lualine_z = custom_tabs,
 		},
 		extensions = {
 			"neo-tree",
