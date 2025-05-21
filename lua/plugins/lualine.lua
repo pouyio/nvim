@@ -22,7 +22,29 @@ local mode_map = {
 local custom_tabs = {
 	{
 		"tabs",
+		mode = 1,
 		show_modified_status = false,
+		fmt = function(name, context)
+			-- Get all window names in the current tabpage
+			local buflist = vim.fn.tabpagebuflist(context.tabnr)
+			local window_names = {}
+
+			-- Collect all window names from buffers in this tabpage
+			for _, bufnr in ipairs(buflist) do
+				local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+				-- Only add non-empty names
+				if name and name ~= "" then
+					table.insert(window_names, name)
+				end
+			end
+
+			-- Join window names with comma
+			if #window_names > 0 then
+				return table.concat(window_names, "|")
+			else
+				return "[No Name]"
+			end
+		end,
 	},
 }
 
@@ -38,8 +60,12 @@ return {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	opts = {
-		options = {
-			always_show_tabline = false,
+		-- options = {
+		-- 	always_show_tabline = false,
+		-- },
+		tabline = {
+			lualine_a = { "filename" },
+			lualine_z = custom_tabs,
 		},
 		sections = {
 			lualine_a = {
