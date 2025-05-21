@@ -38,10 +38,10 @@ vim.keymap.set("n", ",w", ":tabclose<CR>", { silent = true })
 vim.keymap.set("n", ",,", ":tabnext #<CR>", { silent = true })
 
 -- panes
-vim.keymap.set({ "n", "v" }, "<S-Right>", "<C-w>l", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<S-Left>", "<C-w>h", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<S-Down>", "<C-w>j", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<S-Up>", "<C-w>k", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<Right>", "<C-w>l", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<Left>", "<C-w>h", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<Down>", "<C-w>j", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<Up>", "<C-w>k", { noremap = true })
 
 -- windows resize
 vim.keymap.set("n", "<leader>rk", ":horizontal resize +10<CR>", { desc = "vertical resize +10" })
