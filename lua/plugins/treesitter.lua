@@ -1,22 +1,15 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	branch = "master",
 	config = function()
-		-- local f = require("plugins.common.utils")
 		local treesitter = require("nvim-treesitter.configs")
 
-		-- set .mdx files as markdown
 		vim.treesitter.language.register("markdown", { "mdx" })
 
 		treesitter.setup({
-
 			highlight = {
 				enable = true,
-
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-				-- Using this option may slow down your editor, and you may see some duplicate highlights.
-				-- Instead of true it can also be a list of languages
 				additional_vim_regex_highlighting = false,
 			},
 			auto_install = true,
@@ -50,7 +43,7 @@ return {
 			-- 	keymaps = {
 			-- 		init_selection = "<CR>",
 			-- 		node_incremental = "<CR>",
-			-- 		node_decremental = f.isMac() and "<S-CR>" or "⊗", -- strange unicode mapped in windows because it cant understand shift+enter
+			-- 		node_decremental = f.isMac() and "<S-CR>" or "⊘", -- strange unicode mapped in windows because it cant understand shift+enter
 			-- 	},
 			-- },
 		})
