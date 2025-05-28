@@ -9,7 +9,8 @@ M.isGhostty = function()
 end
 
 M.closeBuffer = function()
-	vim.api.nvim_command("bd")
+	require("snacks").bufdelete()
+	-- vim.api.nvim_command("bd")
 end
 
 M.diagnosticIcons = {
