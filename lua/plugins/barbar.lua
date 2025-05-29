@@ -17,6 +17,7 @@ return {
 		local harpoon = require("harpoon")
 
 		barbar.setup({
+			animation = false,
 			tabpages = false,
 			icons = {
 				pinned = { filename = true, buffer_index = true },
