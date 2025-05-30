@@ -25,6 +25,7 @@ return {
 			Warn = { text = { f.diagnosticIcons.WARN, f.diagnosticIcons.WARN } },
 			Info = { text = { f.diagnosticIcons.INFO, f.diagnosticIcons.INFO } },
 			Hint = { text = { f.diagnosticIcons.HINT, f.diagnosticIcons.HINT } },
+			GitDelete = { text = "" },
 		},
 		excluded_filetypes = {
 			"neo-tree",

@@ -9,6 +9,14 @@ return {
 				delay = 300,
 			},
 			current_line_blame_formatter = "        <author>, <author_time:%R> - <summary>",
+			signs = {
+				delete = { text = "" },
+				topdelete = { text = "" },
+			},
+			signs_staged = {
+				delete = { text = "" },
+				topdelete = { text = "" },
+			},
 			on_attach = function(bufnr)
 				vim.keymap.set("n", "<A-h>", function()
 					gitsigns.nav_hunk("prev")
