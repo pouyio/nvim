@@ -35,14 +35,12 @@ return {
 			local default_buffer_hl =
 				vim.tbl_extend("force", vim.api.nvim_get_hl(0, { name = "Directory" }), { bold = true })
 			local mod_buffer_hl = vim.api.nvim_get_hl(0, { name = "WarningMsg" })
-			local mod_current_buffer_hl = vim.tbl_extend("force", mod_buffer_hl, { bold = true })
 
 			vim.api.nvim_set_hl(0, "BufferVisibleERROR", default_error_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentERROR", default_error_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrent", default_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentMod", default_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentSign", default_buffer_hl)
-			vim.api.nvim_set_hl(0, "BufferCurrentMod", mod_current_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferVisibleMod", mod_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferInactiveMod", mod_buffer_hl)
 		end)
