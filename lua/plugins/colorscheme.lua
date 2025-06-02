@@ -20,11 +20,11 @@ return {
 					functions = "bold",
 				},
 			})
-			vim.cmd.colorscheme("onedark_vivid")
+			vim.cmd.colorscheme("vaporwave")
 			vim.api.nvim_create_autocmd("OptionSet", {
 				pattern = "background",
 				callback = function(_)
-					vim.cmd.colorscheme(vim.o.background == "light" and "onelight" or "onedark_vivid")
+					vim.cmd.colorscheme(vim.o.background == "light" and "onelight" or "vaporwave")
 
 					f.HighlightGroups.executeAll()
 				end,
