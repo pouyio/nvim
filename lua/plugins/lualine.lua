@@ -28,7 +28,7 @@ local custom_tabs = {
 
 local custom_filename = {
 	{ "filename", path = 1, symbols = {
-		modified = "●",
+		modified = f.diagnosticIcons.modified,
 	} },
 }
 

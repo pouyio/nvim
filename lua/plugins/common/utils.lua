@@ -18,6 +18,7 @@ M.diagnosticIcons = {
 	WARN = " ",
 	INFO = " ",
 	HINT = "󰌵 ",
+	modified = "●",
 }
 
 M.HighlightGroups = {
