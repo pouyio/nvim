@@ -187,7 +187,23 @@ return {
 		{
 			f.isMac() and "<D-S-p>" or "<C-S-p>",
 			function()
-				print("Merge commands and keymaps picker")
+				Snacks.picker.pick({
+					multi = { "commands", "keymaps" },
+					layout = {
+						preset = "vertical",
+					},
+					confirm = function(picker, item)
+						if item.cmd then
+							picker:close()
+							vim.cmd(item.cmd)
+						elseif item.item and item.item.lhs then
+							picker:norm(function()
+								picker:close()
+								vim.api.nvim_input(item.item.lhs)
+							end)
+						end
+					end,
+				})
 			end,
 		},
 		{
