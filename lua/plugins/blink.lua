@@ -7,6 +7,7 @@ return {
 	},
 	version = "v0.*",
 	opts = {
+		sources = { default = { "lsp", "path", "buffer" } },
 		keymap = {
 			preset = "enter",
 			[f.isMac() and "<D-i>" or "⊘"] = { "show", "hide" },
