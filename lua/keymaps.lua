@@ -135,3 +135,6 @@ vim.keymap.set("v", "<S-Tab>", "<gv")
 vim.keymap.set("v", "p", '"_dP')
 
 vim.keymap.set("i", "<S-Tab>", "<BS>")
+
+-- Annoying, pressed when deselecting too much
+vim.keymap.set("n", "<S-CR>", "<Nop>", { desc = "Disable <S-CR>" })
