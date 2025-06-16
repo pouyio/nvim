@@ -31,7 +31,7 @@ return {
 					return require("codecompanion.adapters").extend("copilot", {
 						schema = {
 							model = {
-								default = "claude-3.7-sonnet",
+								default = "claude-sonnet-4",
 							},
 						},
 					})
@@ -42,7 +42,7 @@ return {
 					keymaps = {
 						stop = {
 							modes = {
-								n = "<C-c>", -- Changed from "q" to "<C-q>"
+								n = "<C-c>", -- Changed from "q" to "<C-c>"
 							},
 						},
 					},
