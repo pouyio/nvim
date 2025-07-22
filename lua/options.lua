@@ -1,3 +1,5 @@
+local f = require("plugins.common.utils")
+
 vim.o.clipboard = "unnamedplus" -- Enables system clipboard integration; yanked text will be available in the system clipboard
 vim.o.expandtab = true -- Converts tabs to spaces when you input them
 vim.o.ignorecase = true -- Makes search operations case-insensitive
@@ -23,5 +25,5 @@ vim.filetype.add({
 		mdx = "mdx",
 	},
 })
-vim.o.mousescroll = "ver:3,hor:3"
+vim.o.mousescroll = f.isMac() and "ver:1,hor:1" or "ver:3,hor:3"
 vim.o.winborder = "rounded"
