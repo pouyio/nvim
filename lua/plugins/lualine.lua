@@ -1,23 +1,4 @@
 local f = require("plugins.common.utils")
-local mode_map = {
-	["NORMAL"] = "N",
-	["O-PENDING"] = "N?",
-	["INSERT"] = "I",
-	["VISUAL"] = "V",
-	["V-BLOCK"] = "VB",
-	["V-LINE"] = "VL",
-	["V-REPLACE"] = "VR",
-	["REPLACE"] = "R",
-	["COMMAND"] = "!",
-	["SHELL"] = "SH",
-	["TERMINAL"] = "T",
-	["EX"] = "X",
-	["S-BLOCK"] = "SB",
-	["S-LINE"] = "SL",
-	["SELECT"] = "S",
-	["CONFIRM"] = "Y?",
-	["MORE"] = "M",
-}
 
 local custom_tabs = {
 	{
@@ -50,12 +31,6 @@ return {
 					-- Extract the last folder from the path
 					return "󰉋 " .. vim.fn.fnamemodify(cwd, ":t")
 				end,
-				{
-					"mode",
-					fmt = function(s)
-						return mode_map[s] or s
-					end,
-				},
 			},
 			lualine_b = {},
 			lualine_c = custom_filename,
@@ -71,7 +46,7 @@ return {
 				},
 				"filetype",
 			},
-			lualine_y = {},
+			lualine_y = { "branch" },
 			lualine_z = custom_tabs,
 		},
 		inactive_sections = {
