@@ -7,7 +7,14 @@ return {
 	},
 	version = "v0.*",
 	opts = {
-		sources = { default = { "lsp", "path", "buffer" } },
+		sources = {
+			default = function()
+				if vim.bo.filetype == "copilot-chat" then
+					return {}
+				end
+				return { "lsp", "path", "buffer" }
+			end,
+		},
 		keymap = {
 			preset = "enter",
 			[f.isMac() and "<D-i>" or "⊘"] = { "show", "hide" },
