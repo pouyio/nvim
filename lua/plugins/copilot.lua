@@ -25,12 +25,13 @@ return {
 		build = "make tiktoken",
 		opts = {
 			-- See Configuration section for options
-			model = "claude-sonnet-4", -- Default model
+			model = f.isMac() and "claude-sonnet-4" or nil,
 		},
 		keys = {
 			{
 				f.isMac() and "<D-k>" or "<C-k>",
-				":CopilotChatToggle<CR>",
+				"<cmd>CopilotChatToggle<CR>",
+				mode = { "n", "v" },
 				desc = "Toggle Copilot Chat",
 			},
 		},
