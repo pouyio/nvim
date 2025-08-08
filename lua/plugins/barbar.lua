@@ -20,6 +20,7 @@ return {
 			animation = false,
 			tabpages = false,
 			icons = {
+				button = false,
 				pinned = { filename = true, buffer_index = true },
 				diagnostics = {
 					[vim.diagnostic.severity.ERROR] = { enabled = true, icon = f.diagnosticIcons.ERROR },
@@ -34,15 +35,12 @@ return {
 			local default_error_hl = vim.api.nvim_get_hl(0, { name = "ErrorMsg" })
 			local default_buffer_hl =
 				vim.tbl_extend("force", vim.api.nvim_get_hl(0, { name = "Directory" }), { bold = true })
-			local mod_buffer_hl = vim.api.nvim_get_hl(0, { name = "WarningMsg" })
 
 			vim.api.nvim_set_hl(0, "BufferVisibleERROR", default_error_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentERROR", default_error_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrent", default_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentMod", default_buffer_hl)
 			vim.api.nvim_set_hl(0, "BufferCurrentSign", default_buffer_hl)
-			vim.api.nvim_set_hl(0, "BufferVisibleMod", mod_buffer_hl)
-			vim.api.nvim_set_hl(0, "BufferInactiveMod", mod_buffer_hl)
 		end)
 
 		vim.keymap.set({ "n", "v" }, "<S-Left>", ":BufferPrevious<CR>", { silent = true })

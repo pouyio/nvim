@@ -13,18 +13,15 @@ return {
 		priority = 1000, -- Ensure it loads first
 		config = function()
 			require("onedarkpro").setup({
-				colors = {
-					selection = "#3d3f5c",
-				},
 				styles = {
 					functions = "bold",
 				},
 			})
-			vim.cmd.colorscheme("vaporwave")
+			vim.cmd.colorscheme("onedark_vivid")
 			vim.api.nvim_create_autocmd("OptionSet", {
 				pattern = "background",
 				callback = function(_)
-					vim.cmd.colorscheme(vim.o.background == "light" and "onelight" or "vaporwave")
+					vim.cmd.colorscheme(vim.o.background == "light" and "onelight" or "onedark_vivid")
 
 					f.HighlightGroups.executeAll()
 				end,
