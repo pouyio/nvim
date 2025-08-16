@@ -1,3 +1,5 @@
+-- in WSL nvim > 0.11.0 breaks treesitter incremental parsing, check after 0.11.4
+-- also takes too long to quit
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
