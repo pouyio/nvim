@@ -12,6 +12,10 @@ vim.g.maplocalleader = " "
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "kk", "<Esc>")
 
+-- more ergonomic center / top quarter
+vim.keymap.set("n", "zz", "zt")
+vim.keymap.set("n", "zt", "zz")
+
 -- relative jumps add entry to jumplist
 vim.keymap.set("n", "k", [[(v:count > 0 ? "m'" . v:count . 'k' : 'gk')]], { expr = true })
 vim.keymap.set("n", "j", [[(v:count > 0 ? "m'" . v:count . 'j' : 'gj')]], { expr = true })
