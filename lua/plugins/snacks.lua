@@ -275,6 +275,12 @@ return {
 			end,
 		},
 		{
+			"<leader>fl",
+			function()
+				Snacks.picker.git_status({ focus = "list" })
+			end,
+		},
+		{
 			"gr",
 			function()
 				Snacks.picker.lsp_references()
