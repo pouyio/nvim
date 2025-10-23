@@ -155,6 +155,12 @@ return {
 						return item
 					end,
 				},
+				grep_word = {
+					transform = function(item)
+						item.line = ""
+						return item
+					end,
+				},
 				files = {
 					cmd = "rg",
 					args = {
