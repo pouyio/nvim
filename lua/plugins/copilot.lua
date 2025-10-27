@@ -26,7 +26,7 @@ return {
     build = "make tiktoken",
     opts = {
       -- See Configuration section for options
-      model = f.isMac() and "claude-sonnet-4" or nil,
+      model = f.isMac() and "claude-sonnet-4.5" or nil,
     },
     keys = {
       {
