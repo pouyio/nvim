@@ -71,6 +71,11 @@ return {
 						end
 					end)
 				end,
+        find_in_folder = function(state)
+          local node = state.tree:get_node()
+          local filepath = node:get_id()
+          Snacks.picker.grep({ dirs = { filepath } })
+        end,
 			},
 			window = {
 				position = "right",
@@ -78,6 +83,7 @@ return {
 					["<c-b>"] = false,
 					["<leader>a"] = "add_to_harpoon",
 					["<leader>y"] = "copy_path",
+					["<leader>ff"] = "find_in_folder",
 					["<c-u>"] = { "scroll_preview", config = { direction = 10 } },
 					["<c-d>"] = { "scroll_preview", config = { direction = -10 } },
 				},
