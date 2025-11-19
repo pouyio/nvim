@@ -148,6 +148,16 @@ return {
               keys = buffer_keys,
             },
           },
+          preview = function(ctx)
+            local previewers = require("snacks.picker.preview")
+            previewers.file(ctx)
+
+            local path = require("snacks.picker.util").path(ctx.item)
+            if path then
+              local relative_path = require("snacks.picker.util").truncpath(path, 999)
+              ctx.preview:set_title(relative_path)
+            end
+          end,
         },
         grep = {
           args = {
@@ -221,7 +231,7 @@ return {
       desc = "Prev occurence",
     },
     {
-      "<leader>V", -- using telescope buffer picker for better handling deleting buffers
+      "<leader>v",
       function()
         Snacks.picker.buffers({
           on_show = function(picker)
