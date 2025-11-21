@@ -74,7 +74,6 @@ return {
 				ensure_installed = {
 					"tailwindcss",
 					"jsonls",
-					"gopls",
 					"emmet_language_server",
 					"cssls",
 					"eslint@4.8.0", -- latest version throwing error when no config file is found
@@ -84,7 +83,7 @@ return {
 					-- "prettier"
 					-- "stylua"
 				},
-			})
+			}, not f.isMac() and { "gopls" } or {})
 		end,
 	},
 }
