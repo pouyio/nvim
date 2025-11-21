@@ -1,9 +1,9 @@
 local f = require("plugins.common.utils")
 
 local function feedkeys(keys)
-	-- Translate special keys like <Esc>, <CR>, etc.
-	local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
-	vim.api.nvim_feedkeys(termcodes, "n", false)
+  -- Translate special keys like <Esc>, <CR>, etc.
+  local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+  vim.api.nvim_feedkeys(termcodes, "n", false)
 end
 
 vim.g.mapleader = " "
@@ -67,18 +67,18 @@ vim.keymap.set("n", "K", "V:m '<-2<CR>gv=gv<Esc>", { silent = true, desc = "move
 vim.keymap.set("n", "<S-A-Down>", ":t.<CR>", { desc = "Duplicate line down" })
 vim.keymap.set("n", "<S-A-Up>", ":<C-u>.,.t-1<CR>", { desc = "Duplicate line up" })
 vim.keymap.set("x", "<S-A-Down>", function()
-	if vim.fn.mode() == "V" then
-		feedkeys("yPgv") --visual-line
-	else
-		feedkeys("Vy'>p'[v']$") -- visual-character
-	end
+  if vim.fn.mode() == "V" then
+    feedkeys("yPgv") --visual-line
+  else
+    feedkeys("Vy'>p'[v']$") -- visual-character
+  end
 end, { desc = "Duplicate selected lines down" })
 vim.keymap.set("x", "<S-A-Up>", function()
-	if vim.fn.mode() == "V" then
-		feedkeys("y'>pgv") -- visual-line
-	else
-		feedkeys("VyP'[v']$") -- visual-character
-	end
+  if vim.fn.mode() == "V" then
+    feedkeys("y'>pgv") -- visual-line
+  else
+    feedkeys("VyP'[v']$") -- visual-character
+  end
 end, { desc = "Duplicate selected lines up" })
 
 -- delete full line
@@ -86,7 +86,7 @@ vim.keymap.set("i", "\x0b", "<C-o>D", { noremap = true })
 
 -- delete full word
 vim.keymap.set({ "i", "c" }, f.isMac() and "<A-BS>" or "<C-H>", function()
-	vim.api.nvim_input("<C-w>")
+  vim.api.nvim_input("<C-w>")
 end, { noremap = true })
 vim.keymap.set("i", f.isMac() and "<A-Del>" or "<C-Del>", "<C-o>dw", { noremap = true })
 vim.keymap.set("c", f.isMac() and "<A-Del>" or "<C-Del>", "<S-Right><C-W>", { noremap = true })
@@ -142,3 +142,10 @@ vim.keymap.set("i", "<S-Tab>", "<BS>")
 
 -- Annoying, pressed when deselecting too much
 vim.keymap.set("n", "<S-CR>", "<Nop>", { desc = "Disable <S-CR>" })
+
+vim.keymap.set("n", "H", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
+vim.keymap.set("n", "L", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
