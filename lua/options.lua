@@ -21,9 +21,9 @@ vim.o.scrolloff = 20 -- Specifies the minimum number of screen lines to keep abo
 vim.o.pumheight = 10 -- Sets the maximum height of the popup menu
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals" -- recomended for plugin auto-session
 vim.filetype.add({
-  extension = {
-    mdx = "mdx",
-  },
+	extension = {
+		mdx = "mdx",
+	},
 })
 vim.o.mousescroll = f.isMac() and "ver:1,hor:1" or "ver:3,hor:3"
 vim.o.winborder = "rounded"
@@ -33,13 +33,13 @@ vim.o.winborder = "rounded"
 vim.opt.signcolumn = "yes"
 
 vim.diagnostic.config({
-  virtual_text = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = f.diagnosticIcons.ERROR,
-      [vim.diagnostic.severity.WARN] = f.diagnosticIcons.WARN,
-      [vim.diagnostic.severity.INFO] = f.diagnosticIcons.INFO,
-      [vim.diagnostic.severity.HINT] = f.diagnosticIcons.HINT,
-    },
-  },
+	virtual_text = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = f.diagnosticIcons.ERROR,
+			[vim.diagnostic.severity.WARN] = f.diagnosticIcons.WARN,
+			[vim.diagnostic.severity.INFO] = f.diagnosticIcons.INFO,
+			[vim.diagnostic.severity.HINT] = f.diagnosticIcons.HINT,
+		},
+	},
 })
