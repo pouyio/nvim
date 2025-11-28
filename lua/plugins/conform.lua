@@ -1,3 +1,4 @@
+local f = require("plugins.common.utils")
 local function use_biome_if_installed_locally(bufnr)
 	local biome_info = require("conform").get_formatter_info("biome", bufnr)
 	if biome_info and biome_info.available and biome_info.command:match("node_modules/.bin/biome") then
@@ -22,9 +23,14 @@ return {
 			["json"] = { "prettier" },
 			["jsonc"] = { "prettier" },
 			["yaml"] = { "prettier" },
-			["markdown"] = { "prettier" },
 			["markdown.mdx"] = { "prettier" },
 			["lua"] = { "stylua" },
+			["markdown"] = function()
+				if not f.isMac() == 1 then
+					return { "prettier" }
+				end
+				return {}
+			end,
 		},
 		format_on_save = {
 			lsp_format = "fallback",
