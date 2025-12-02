@@ -16,6 +16,9 @@ return {
 				styles = {
 					functions = "bold",
 				},
+				highlights = {
+					LspReferenceText = { underline = true, extend = true },
+				},
 			})
 			vim.cmd.colorscheme("onedark_vivid")
 			vim.api.nvim_create_autocmd("OptionSet", {
