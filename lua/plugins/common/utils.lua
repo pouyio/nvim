@@ -1,7 +1,7 @@
 local M = {}
 
 M.isMac = function()
-	return vim.loop.os_uname().sysname == "Darwin"
+	return vim.uv.os_uname().sysname == "Darwin"
 end
 
 M.isGhostty = function()
