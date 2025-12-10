@@ -17,7 +17,7 @@ return {
 					functions = "bold",
 				},
 				highlights = {
-					LspReferenceText = { underline = true, extend = true },
+					LspReferenceText = { link = "CursorColumn", extend = true },
 				},
 			})
 			vim.cmd.colorscheme("onedark_vivid")
