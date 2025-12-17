@@ -1,7 +1,10 @@
 local f = require("plugins.common.utils")
 return {
-	"pouyio/wildfire.nvim",
+	"sustech-data/wildfire.nvim",
 	event = "VeryLazy",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+	},
 	opts = {
 		keymaps = {
 			init_selection = "<CR>",
