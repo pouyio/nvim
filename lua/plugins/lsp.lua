@@ -13,7 +13,7 @@ return {
 				"cssls",
 				{ "eslint", version = "4.8.0" }, -- latest version throwing error when no config file is found
 				"lua_ls",
-				"ts_ls",
+				"tsgo",
 				"prettier",
 				"stylua",
 				{
