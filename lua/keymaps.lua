@@ -1,4 +1,5 @@
 local f = require("plugins.common.utils")
+local marks = require("marks")
 
 local function feedkeys(keys)
 	-- Translate special keys like <Esc>, <CR>, etc.
@@ -159,15 +160,15 @@ vim.keymap.set("n", "<leader>m", function()
 end, { desc = "Set global mark with <leader>m{a-z}" })
 
 vim.keymap.set("n", "<leader>mm", function()
-	require("marks").open_marks_list()
+	marks.open_marks_list()
 end, { desc = "List all marks" })
 
 vim.keymap.set("n", "m", function()
-	require("marks").go_to_global_mark()
+	marks.go_to_global_mark()
 end, { desc = "Go to global mark with m{a-z}" })
 
 vim.keymap.set("n", "mm", function()
-	require("marks").delete_line_marks()
+	marks.delete_line_marks()
 end, { desc = "Delete mark in current line" })
 
 -- Folds
