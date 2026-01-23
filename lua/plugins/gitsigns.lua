@@ -30,13 +30,6 @@ return {
 			end,
 		}
 
-		vim.api.nvim_create_user_command("DiffThis", function()
-			gitsigns.diffthis("~")
-			vim.defer_fn(function()
-				vim.api.nvim_command("wincmd h")
-			end, 50)
-		end, { desc = "Open git diff file" })
-
 		gitsigns.setup(opts)
 		require("scrollbar.handlers.gitsigns").setup()
 	end,
