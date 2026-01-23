@@ -21,7 +21,6 @@ return {
 		)
 		local events = require("neo-tree.events")
 		require("neo-tree").setup({
-			close_if_last_window = true,
 			commands = {
 				add_to_harpoon = function(state)
 					local node = state.tree:get_node()
@@ -98,15 +97,10 @@ return {
 				use_libuv_file_watcher = false,
 				follow_current_file = {
 					enabled = true,
+					leave_dirs_open = true,
 				},
 			},
 			event_handlers = {
-				{
-					event = events.FILE_OPENED,
-					handler = function()
-						require("neo-tree.command").execute({ action = "close" })
-					end,
-				},
 				{
 					event = events.FILE_MOVED,
 					handler = on_move, -- not working, review with updated snacks.nvim
