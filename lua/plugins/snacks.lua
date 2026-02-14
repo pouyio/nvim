@@ -340,6 +340,12 @@ return {
 			Snacks.picker()
 		end, { desc = "Show all Snacks pickers" })
 
+		vim.api.nvim_create_user_command("SymbolsPicker", function()
+			Snacks.picker.lsp_symbols({
+				focus = "list",
+			})
+		end, { desc = "Show Symbols for this file (Snack picker)" })
+
 		require("snacks").setup(opts)
 	end,
 }
