@@ -19,6 +19,7 @@ return {
 				highlights = {
 					LspReferenceText = { link = "CursorColumn", extend = true },
 					NeoTreeCursorLine = { bg = "${cursorline}", bold = true }, -- Neo-tree/onedarkpro bug fix
+					NeominimapCursorLine = { bg = "${cursorline}", bold = true }, -- Neo-tree/onedarkpro bug fix
 				},
 			})
 			vim.cmd.colorscheme("onedark_vivid")
