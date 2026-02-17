@@ -37,6 +37,17 @@ return {
 	opts = {
 		image = {},
 		indent = {},
+		statuscolumn = {
+			left = { "sign", "git" },
+			right = { "mark", "fold" },
+			folds = {
+				open = true,
+			},
+			git = {
+				patterns = { "GitSign" },
+			},
+			refresh = 100,
+		},
 		words = {
 			debounce = 50,
 			enabled = true,

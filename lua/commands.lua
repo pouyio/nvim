@@ -15,3 +15,7 @@ create_cmd("QuickfixListToggle", function()
 		vim.cmd("copen")
 	end
 end, { desc = "Toggle quickfix list" })
+
+create_cmd("ClearAllMarks", function()
+	vim.cmd("delmarks A-Z")
+end, { desc = "Clear {A-Z} marks" })

@@ -43,3 +43,6 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+vim.o.foldmethod = "indent"
+vim.o.foldlevelstart = 99
