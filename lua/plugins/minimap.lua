@@ -13,5 +13,9 @@ return {
 			layout = "split",
 			current_line_position = "percent",
 		}
+
+		vim.api.nvim_create_user_command("MinimapToggle", function()
+			vim.cmd("Neominimap Toggle")
+		end, { desc = "Toggle minimap" })
 	end,
 }
