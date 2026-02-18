@@ -10,8 +10,10 @@ return {
 		--- Put your configuration here
 		vim.g.neominimap = {
 			auto_enable = true,
-			layout = "split",
 			current_line_position = "percent",
+			float = {
+				window_border = "none",
+			},
 		}
 
 		vim.api.nvim_create_user_command("MinimapToggle", function()
