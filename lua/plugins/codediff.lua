@@ -8,7 +8,7 @@ return {
 	opts = {
 		explorer = {
 			position = "right",
-			width = 40,
+			-- width = 40,
 			view_mode = "tree",
 		},
 		keymaps = {
