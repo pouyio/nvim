@@ -173,3 +173,6 @@ end, { desc = "Delete mark in current line" })
 
 -- Folds
 vim.keymap.set("n", "ff", "za", { desc = "Toggle fold" })
+
+-- Search in visual mode
+vim.keymap.set("x", "/", "<C-\\><C-n>`</\\%V", { desc = "Search forward within visual selection" })
