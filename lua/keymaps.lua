@@ -176,20 +176,3 @@ vim.keymap.set("n", "ff", "za", { desc = "Toggle fold" })
 
 -- Search in visual mode
 vim.keymap.set("x", "/", "<C-\\><C-n>`</\\%V", { desc = "Search forward within visual selection" })
-
--- Incremental selection
-vim.keymap.set({ "n", "x", "o" }, "<CR>", function()
-	if vim.treesitter.get_parser(nil, nil, { error = false }) then
-		require("vim.treesitter._select").select_parent(vim.v.count1)
-	else
-		vim.lsp.buf.selection_range(vim.v.count1)
-	end
-end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
-
-vim.keymap.set({ "n", "x", "o" }, f.isMac() and "<S-CR>" or "⊘", function()
-	if vim.treesitter.get_parser(nil, nil, { error = false }) then
-		require("vim.treesitter._select").select_child(vim.v.count1)
-	else
-		vim.lsp.buf.selection_range(-vim.v.count1)
-	end
-end, { desc = "Select child treesitter node or inner incremental lsp selections" })
