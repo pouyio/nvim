@@ -19,10 +19,10 @@ return {
 			},
 			on_attach = function(bufnr)
 				vim.keymap.set("n", "<A-h>", function()
-					gitsigns.nav_hunk("prev", { target = "all" })
+					gitsigns.nav_hunk("prev")
 				end, { buffer = bufnr })
 				vim.keymap.set("n", "<A-l>", function()
-					gitsigns.nav_hunk("next", { target = "all" })
+					gitsigns.nav_hunk("next")
 				end, { buffer = bufnr })
 				vim.keymap.set("n", "<leader>gi", gitsigns.preview_hunk)
 				vim.keymap.set("n", "<leader>gu", gitsigns.reset_hunk)
