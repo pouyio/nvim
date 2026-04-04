@@ -30,6 +30,7 @@ return {
 		excluded_filetypes = {
 			"neo-tree",
 			"neo-tree-popup",
+			"neominimap",
 		},
 	},
 }

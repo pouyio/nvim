@@ -86,7 +86,6 @@ return {
 			win = {
 				height = 0.95,
 				width = 0.95,
-				border = "rounded",
 			},
 		},
 		picker = {

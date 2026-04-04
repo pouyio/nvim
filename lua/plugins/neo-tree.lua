@@ -77,7 +77,7 @@ return {
 				end,
 			},
 			window = {
-				width = 60,
+				width = 40,
 				position = "right",
 				mappings = {
 					["<c-b>"] = false,

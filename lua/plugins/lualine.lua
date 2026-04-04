@@ -21,6 +21,9 @@ return {
 	opts = {
 		options = {
 			always_show_tabline = false,
+			disabled_filetypes = {
+				statusline = { "neominimap" },
+			},
 		},
 		sections = {
 			lualine_a = {
