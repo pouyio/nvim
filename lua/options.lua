@@ -1,4 +1,4 @@
-local f = require("plugins.common.utils")
+local f = require("common.utils")
 
 vim.o.clipboard = "unnamedplus" -- Enables system clipboard integration; yanked text will be available in the system clipboard
 vim.o.expandtab = true -- Converts tabs to spaces when you input them
