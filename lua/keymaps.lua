@@ -176,11 +176,3 @@ vim.keymap.set("n", "ff", "za", { desc = "Toggle fold" })
 
 -- Search in visual mode
 vim.keymap.set("x", "/", "<C-\\><C-n>`</\\%V", { desc = "Search forward within visual selection" })
-
-vim.keymap.set("n", "<leader>pu", function()
-	vim.pack.update()
-end, { desc = "vimpack update - code action to skip some" })
-
-vim.keymap.set("n", "<leader>pr", function()
-	vim.pack.update(nil, { target = "lockfile", force = true })
-end, { desc = "vimpack to lockfile versions" })

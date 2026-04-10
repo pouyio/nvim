@@ -19,3 +19,11 @@ end, { desc = "Toggle quickfix list" })
 create_cmd("ClearAllMarks", function()
 	vim.cmd("delmarks A-Z")
 end, { desc = "Clear {A-Z} marks" })
+
+create_cmd("PackUpdate", function()
+	vim.pack.update()
+end, { desc = "Update all packs" })
+
+create_cmd("PackRestore", function()
+	vim.pack.update(nil, { target = "lockfile", force = true })
+end, { desc = "Restore packs to lockfile versions" })
