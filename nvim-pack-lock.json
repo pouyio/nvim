@@ -49,10 +49,6 @@
       "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
-    "harpoon": {
-      "rev": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3",
-      "src": "https://github.com/ThePrimeagen/harpoon"
-    },
     "live-server.nvim": {
       "rev": "1ee8ab4cbd18e2b2b38236321a73edcaba023fbd",
       "src": "https://github.com/selimacerbas/live-server.nvim"
