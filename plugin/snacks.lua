@@ -15,7 +15,6 @@ local global_keys = {
 	[f.isMac() and "<D-f>" or "<C-f>"] = { "qflist", mode = { "n", "i" } },
 	["<C-d>"] = { "preview_scroll_down", mode = { "n", "i" } },
 	["<C-u>"] = { "preview_scroll_up", mode = { "n", "i" } },
-	["<leader>a"] = "add_to_harpoon",
 }
 
 local buffer_keys = {
@@ -71,19 +70,6 @@ require("snacks").setup({
 		win = { height = 0.95, width = 0.95 },
 	},
 	picker = {
-		actions = {
-			add_to_harpoon = function(picker)
-				local harpoon = require("harpoon")
-				local full_path = picker:current()
-				local cwd_path = picker:cwd()
-				local item = {
-					value = full_path.file:gsub("^" .. vim.pesc(cwd_path) .. "/", ""),
-					context = { row = 1, col = 0 },
-				}
-				harpoon:list():add(item)
-				vim.api.nvim_exec_autocmds("User", { pattern = "HarpoonRefresh" })
-			end,
-		},
 		previewers = { git = { builtin = false } },
 		formatters = {
 			filename = { filename_first = true, truncate = 80 },

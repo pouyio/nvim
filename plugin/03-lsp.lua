@@ -37,7 +37,6 @@ vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/MunifTanjim/nui.nvim",
-	"https://github.com/ThePrimeagen/harpoon",
 	"https://github.com/saghen/blink.cmp",
 	"https://github.com/neovim/nvim-lspconfig",
 })

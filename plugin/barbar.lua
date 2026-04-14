@@ -8,7 +8,6 @@ vim.g.barbar_auto_setup = false
 local barbar = require("barbar")
 local state = require("barbar.state")
 local render = require("barbar.ui.render")
-local harpoon = require("harpoon")
 
 barbar.setup({
 	animation = false,
@@ -43,69 +42,3 @@ local function unpin_all()
 	end
 end
 
-local function get_buffer_by_mark(mark)
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		local buffer_path = vim.api.nvim_buf_get_name(buf)
-		if buffer_path == "" or mark.value == "" then
-			goto continue
-		end
-		local mark_pattern = mark.value:gsub("([%(%)%.%%%+%-%*%?%[%]%^%$])", "%%%1")
-		if string.match(buffer_path, mark_pattern) then
-			return buf
-		end
-		local buffer_path_pattern = buffer_path:gsub("([%(%)%.%%%+%-%*%?%[%]%^%$])", "%%%1")
-		if string.match(mark.value, buffer_path_pattern) then
-			return buf
-		end
-		::continue::
-	end
-end
-
-local function refresh_all_harpoon_tabs()
-	local ok, harpoon = pcall(require, "harpoon")
-	if not ok then
-		return
-	end
-	local list = harpoon:list()
-	if not list or not list.items then
-		return
-	end
-	unpin_all()
-	for _, mark in ipairs(list.items) do
-		local buf = get_buffer_by_mark(mark)
-		if buf == nil then
-			vim.cmd("badd " .. mark.value)
-			buf = get_buffer_by_mark(mark)
-		end
-		if buf ~= nil then
-			state.toggle_pin(buf)
-		end
-	end
-	render.update()
-end
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufLeave", "User" }, {
-	pattern = { "*", "HarpoonRefresh" },
-	callback = function()
-		local ok, harpoon = pcall(require, "harpoon")
-		if not ok or not harpoon.list then
-			return
-		end
-		local list = harpoon:list()
-		if not list or not list.items then
-			return
-		end
-		unpin_all()
-		for _, mark in ipairs(list.items) do
-			local buf = get_buffer_by_mark(mark)
-			if buf == nil then
-				vim.cmd("badd " .. mark.value)
-				buf = get_buffer_by_mark(mark)
-			end
-			if buf ~= nil then
-				state.toggle_pin(buf)
-			end
-		end
-		render.update()
-	end,
-})

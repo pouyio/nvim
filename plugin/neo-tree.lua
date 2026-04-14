@@ -5,23 +5,10 @@ end
 
 vim.pack.add({
 	"https://github.com/nvim-neo-tree/neo-tree.nvim",
-	"https://github.com/ThePrimeagen/harpoon",
 })
 local events = require("neo-tree.events")
 require("neo-tree").setup({
 	commands = {
-		add_to_harpoon = function(state)
-			local node = state.tree:get_node()
-			local filepath = node:get_id()
-			local project_root = vim.fn.getcwd()
-			local relative_filepath = vim.fn.fnamemodify(filepath, ":." .. project_root)
-			local item = {
-				value = relative_filepath,
-				context = { row = 1, col = 0 },
-			}
-			harpoon:list():add(item)
-			vim.cmd(":do User")
-		end,
 		copy_path = function(state)
 			local node = state.tree:get_node()
 			local filepath = node:get_id()
@@ -59,7 +46,6 @@ require("neo-tree").setup({
 		position = "right",
 		mappings = {
 			["<c-b>"] = false,
-			["<leader>a"] = "add_to_harpoon",
 			["<leader>y"] = "copy_path",
 			["<leader>ff"] = "find_in_folder",
 			["<c-u>"] = { "scroll_preview", config = { direction = 10 } },
