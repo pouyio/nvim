@@ -158,4 +158,12 @@ function M.open_marks_list()
 	vim.keymap.set("n", "<Esc>", close, { buffer = buf, nowait = true, silent = true })
 end
 
+function M.clear_all_marks()
+	vim.cmd("delmarks A-Z")
+end
+
+vim.api.nvim_create_user_command("ClearAllMarks", function()
+	M.clear_all_marks()
+end, { desc = "Clear {A-Z} marks" })
+
 return M
