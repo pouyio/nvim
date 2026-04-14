@@ -121,7 +121,7 @@ local function build_content()
 	add(sep, "PackUiSeparator")
 
 	-- Action bar
-	local bar = " [U]pdate All  [u] Update  [X] Clean  [D]elete  [L] Log  [?] Help"
+	local bar = " [U]pdate All  [u] Update  [R]estore  [X] Clean  [D]elete  [L] Log  [?] Help"
 	add(bar)
 	-- Highlight the bracket keys (gmatch () captures are 1-based;
 	-- the end capture points one past the match, which is exactly
@@ -137,6 +137,7 @@ local function build_content()
 		add(" Keymaps:", "PackUiHelp")
 		add("   U       Update all plugins", "PackUiHelp")
 		add("   u       Update plugin under cursor", "PackUiHelp")
+		add("   R       Restore plugins to lockfile versions", "PackUiHelp")
 		add("   X       Clean non-active plugins", "PackUiHelp")
 		add("   D       Delete plugin under cursor (non-active only)", "PackUiHelp")
 		add("   L       Open update log file", "PackUiHelp")
@@ -338,6 +339,12 @@ local function setup_keymaps()
 		end
 	end, opts)
 
+	-- Restore plugins from lockfile
+	vim.keymap.set("n", "R", function()
+		close()
+		vim.pack.update(nil, { target = "lockfile" })
+	end, opts)
+
 	-- Clean non-active plugins
 	vim.keymap.set("n", "X", function()
 		local to_clean = vim.iter(vim.pack.get(nil, { info = false }))
@@ -508,3 +515,7 @@ end
 vim.api.nvim_create_user_command("Pack", function()
 	open()
 end, { desc = "Open vim.pack plugin manager UI" })
+
+vim.api.nvim_create_user_command("PackRestore", function()
+	vim.pack.update(nil, { target = "lockfile" })
+end, { desc = "Restore plugins to versions in lockfile" })
