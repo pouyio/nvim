@@ -39,7 +39,11 @@ function M.go_to_global_mark()
 		vim.cmd("normal! `" .. string.upper(char))
 	end)
 	if not ok then
-		print(err)
+		if err:find("E20") then
+			vim.notify("Mark '" .. string.upper(char) .. "' not set", vim.log.levels.WARN)
+		else
+			vim.notify(err, vim.log.levels.ERROR)
+		end
 	end
 end
 
