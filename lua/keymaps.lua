@@ -1,4 +1,4 @@
-local f = require("plugins.common.utils")
+local f = require("common.utils")
 local marks = require("marks")
 
 local function feedkeys(keys)
@@ -173,3 +173,6 @@ end, { desc = "Delete mark in current line" })
 
 -- Folds
 vim.keymap.set("n", "ff", "za", { desc = "Toggle fold" })
+
+-- Search in visual mode
+vim.keymap.set("x", "/", "<C-\\><C-n>`</\\%V", { desc = "Search forward within visual selection" })

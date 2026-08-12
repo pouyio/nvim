@@ -1,0 +1,9 @@
+vim.pack.add({ "https://github.com/windwp/nvim-autopairs" })
+local autopairs = require("nvim-autopairs")
+autopairs.setup({
+	check_ts = true,
+	ts_config = {
+		lua = { "string" },
+		javascript = { "template_string" },
+	},
+})

@@ -1,4 +1,4 @@
-local f = require("plugins.common.utils")
+local f = require("common.utils")
 
 vim.o.clipboard = "unnamedplus" -- Enables system clipboard integration; yanked text will be available in the system clipboard
 vim.o.expandtab = true -- Converts tabs to spaces when you input them
@@ -15,7 +15,7 @@ vim.o.softtabstop = 2 -- Defines the number of spaces to insert for a <Tab> key
 vim.o.tabstop = 2 -- Sets the number of spaces a <Tab> character counts for
 vim.o.splitright = true -- Opens new vertical splits to the right of the current split
 vim.o.timeoutlen = 500 -- Sets the time in milliseconds to wait for key codes
-vim.o.ttimeoutlen = 0 -- Disables the time Neovim waits for a key code
+vim.o.ttimeoutlen = 1 -- Disables the time Neovim waits for a key code
 vim.wo.scl = "yes" -- Sets "sidescrolloff" to "yes," making the cursor stay a certain number of columns away from the screen edge when scrolling horizontally
 vim.o.scrolloff = 20 -- Specifies the minimum number of screen lines to keep above and below the cursor
 vim.o.pumheight = 10 -- Sets the maximum height of the popup menu
