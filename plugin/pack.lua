@@ -327,7 +327,7 @@ local function setup_keymaps()
 	-- Update all
 	vim.keymap.set("n", "U", function()
 		close()
-		vim.pack.update()
+		vim.cmd.packupdate()
 	end, opts)
 
 	-- Update plugin under cursor
@@ -335,14 +335,14 @@ local function setup_keymaps()
 		local name = plugin_at_cursor()
 		if name then
 			close()
-			vim.pack.update({ name })
+			vim.cmd.packupdate(name)
 		end
 	end, opts)
 
 	-- Restore plugins from lockfile
 	vim.keymap.set("n", "R", function()
 		close()
-		vim.pack.update(nil, { target = "lockfile" })
+		vim.cmd.packupdate({ "++lockfile" })
 	end, opts)
 
 	-- Clean non-active plugins
@@ -499,7 +499,7 @@ open = function()
 		once = true,
 		callback = function(ev)
 			-- Only clean up if the closed window matches the one we opened
-			if vim._tointeger(ev.match) ~= captured_winid then
+			if tonumber(ev.match) ~= captured_winid then
 				return
 			end
 			state.winid = nil
@@ -517,5 +517,5 @@ vim.api.nvim_create_user_command("Pack", function()
 end, { desc = "Open vim.pack plugin manager UI" })
 
 vim.api.nvim_create_user_command("PackRestore", function()
-	vim.pack.update(nil, { target = "lockfile" })
+	vim.cmd.packupdate({ "++lockfile" })
 end, { desc = "Restore plugins to versions in lockfile" })
