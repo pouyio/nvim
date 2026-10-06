@@ -1,9 +1,6 @@
 local f = require("common.utils")
 
-vim.pack.add({
-	"https://github.com/rafamadriz/friendly-snippets",
-	{ src = "https://github.com/L3MON4D3/LuaSnip", version = "v2.5.0" },
-})
+vim.pack.add({ "https://github.com/rafamadriz/friendly-snippets" })
 
 vim.pack.add({ { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") } })
 require("blink.cmp").setup({
@@ -46,6 +43,6 @@ require("blink.cmp").setup({
 		},
 	},
 	snippets = {
-		preset = "luasnip",
+		preset = "default", -- native vim.snippet (supports nested snippets since 0.13)
 	},
 })

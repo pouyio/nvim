@@ -18,24 +18,25 @@ local function goto_definition_smart()
 
 		local location = vim.islist(result) and result[1] or result
 		local target_uri = location.uri or location.targetUri
-		if not target_uri then
+		local range = location.targetSelectionRange or location.range
+		local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+		local on_definition = target_uri == vim.uri_from_bufnr(0)
+			and range
+			and (row - 1 > range.start.line or (row - 1 == range.start.line and col >= range.start.character))
+			and (row - 1 < range["end"].line or (row - 1 == range["end"].line and col <= range["end"].character))
+		if not target_uri or on_definition then
 			require("definition-or-references").definition_or_references()
 			return
 		end
 
-		local target_buf = vim.uri_to_bufnr(target_uri)
-		local current_win = vim.api.nvim_get_current_win()
-
-		for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-			if win ~= current_win and vim.api.nvim_win_get_buf(win) == target_buf then
-				local range = (location.range or location.targetSelectionRange or location.targetRange).start
-				vim.api.nvim_set_current_win(win)
-				vim.api.nvim_win_set_cursor(win, { range.line + 1, range.character })
-				return
-			end
-		end
-
-		require("definition-or-references").definition_or_references()
+		-- Jump to the first definition via :cfirst, which follows 'switchbuf'
+		-- (useopen: reuse a window already showing the target)
+		vim.lsp.buf.definition({
+			on_list = function(list)
+				vim.fn.setqflist({}, " ", { title = list.title, items = { list.items[1] } })
+				vim.cmd.cfirst()
+			end,
+		})
 	end)
 end
 

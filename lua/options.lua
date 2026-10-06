@@ -27,6 +27,7 @@ vim.filetype.add({
 })
 vim.o.mousescroll = f.isMac() and "ver:1,hor:1" or "ver:3,hor:3"
 vim.o.winborder = "rounded"
+vim.o.switchbuf = "useopen" -- LSP go-to-definition reuses a window that already shows the target buffer
 
 -- Reserve a space in the gutter
 -- This will avoid an annoying layout shift in the screen
