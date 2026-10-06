@@ -20,7 +20,7 @@ local tools = {
 	"cssls",
 	{ "eslint", version = "4.8.0" },
 	"lua_ls",
-	"ts_ls",
+	"tsgo",
 	"prettier",
 	"stylua",
 }
