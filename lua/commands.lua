@@ -16,6 +16,6 @@ create_cmd("QuickfixListToggle", function()
 	end
 end, { desc = "Toggle quickfix list" })
 
-create_cmd("ClearAllMarks", function()
-	vim.cmd("delmarks A-Z")
-end, { desc = "Clear {A-Z} marks" })
+create_cmd("MarkdownPreview", function()
+	vim.cmd("MdKite")
+end, { desc = "Markdown Preview" })
