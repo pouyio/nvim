@@ -15,3 +15,7 @@ create_cmd("QuickfixListToggle", function()
 		vim.cmd("copen")
 	end
 end, { desc = "Toggle quickfix list" })
+
+create_cmd("MarkdownPreview", function()
+	vim.cmd("MdKite")
+end, { desc = "Markdown Preview" })

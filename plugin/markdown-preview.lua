@@ -1,8 +1,8 @@
 vim.pack.add({
-	"https://github.com/selimacerbas/markdown-preview.nvim",
-	"https://github.com/selimacerbas/live-server.nvim",
+	"https://github.com/selimacerbas/mdkite.nvim",
+	"https://github.com/selimacerbas/kitehost.nvim",
 })
-require("markdown_preview").setup({
+require("mdkite").setup({
 	port = 8421,
 	open_browser = true,
 	debounce_ms = 300,
