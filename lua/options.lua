@@ -16,7 +16,6 @@ vim.o.tabstop = 2 -- Sets the number of spaces a <Tab> character counts for
 vim.o.splitright = true -- Opens new vertical splits to the right of the current split
 vim.o.timeoutlen = 500 -- Sets the time in milliseconds to wait for key codes
 vim.o.ttimeoutlen = 1 -- Disables the time Neovim waits for a key code
-vim.wo.scl = "yes" -- Sets "sidescrolloff" to "yes," making the cursor stay a certain number of columns away from the screen edge when scrolling horizontally
 vim.o.scrolloff = 20 -- Specifies the minimum number of screen lines to keep above and below the cursor
 vim.o.pumheight = 10 -- Sets the maximum height of the popup menu
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals" -- recomended for plugin auto-session
@@ -31,7 +30,7 @@ vim.o.switchbuf = "useopen" -- LSP go-to-definition reuses a window that already
 
 -- Reserve a space in the gutter
 -- This will avoid an annoying layout shift in the screen
-vim.opt.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 
 vim.diagnostic.config({
 	virtual_text = true,
